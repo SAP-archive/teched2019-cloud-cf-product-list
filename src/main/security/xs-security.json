@@ -1,0 +1,27 @@
+{
+	"xsappname": "product-list",
+	"tenant-mode": "shared",
+	"scopes": 
+	[
+		{
+			"name": "$XSAPPNAME.read",
+			"description": "With this scope, all endpoints of the product-list app can be read.",
+			"grant-as-authority-to-apps": 
+			[
+				"$XSAPPNAME(application,604685de-3081-485f-bcdb-a05d8ad6a139,calling-app)"
+			]
+		}
+	],
+
+	"role-templates": 
+	[
+		{
+			"name": "UserRoleTemplate",
+			"description": "Role to call the product-list service",
+			"scope-references": 
+			[
+				"$XSAPPNAME.read"
+			]
+		}
+	]
+}
