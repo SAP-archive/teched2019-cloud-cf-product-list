@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<title>Products App</title>
+	<script src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+		id="sap-ui-bootstrap"
+		data-sap-ui-theme="sap_belize"
+		data-sap-ui-libs="sap.m">
+	</script>
+	<script type="text/javascript">
+		sap.ui.getCore().attachInit(function () {
+
+			// create a mobile app and display page1 initially
+			var app = new sap.m.App("productsApp", {
+				initialPage: "products"
+			});
+
+			// create model for the list view
+			var oListModel = new sap.ui.model.json.JSONModel();
+			sap.ui.getCore().setModel(oListModel);
+			var productsUrl = document.origin + "/products"
+			oListModel.loadData(productsUrl);
+			console.log(productsUrl);
+
+			// create a model for the details view
+			var oDetailsModel = new sap.ui.model.json.JSONModel();
+			sap.ui.getCore().setModel(oDetailsModel, "details");
+
+			// create list item template
+			var productItemTemplate = new sap.m.StandardListItem({
+				title : "{name}",
+				description : "{description}",
+				icon : "{pictureUrl}",
+				type : sap.m.ListType.Navigation,
+				press: function (oEvent) {
+					oSelectedItem = oEvent.oSource.getBindingContext().getObject();
+					oDetailsModel.setData(oSelectedItem);
+	        			app.to("details");
+	        		}
+			});
+
+			// create list
+	        var productList = new sap.m.List({title: "Products"});
+
+			// bind list with template
+	        productList.bindAggregation("items", "/_embedded/products", productItemTemplate, null, null);
+
+			// create the list page
+			var products = new sap.m.Page("products", {
+				title : "Products",
+				showNavButton : false,
+				content : productList
+			});
+
+			// create the details page with a back button
+			var details = new sap.m.Page("details", {
+				title : "Product Details",
+				showNavButton : true,
+				navButtonPress : function () {
+					// go back to the previous page
+					app.back();
+				},
+				// display the details of the product
+				content : new sap.m.ObjectHeader({
+					title : "{details>/name}",
+					attributes: new sap.m.ObjectAttribute({
+						title : "Product Description",
+						text : "{details>/description}"
+					})
+				})
+			});
+			
+			// add list and details to the app
+			app.addPage(products).addPage(details);
+			
+			// place the app into the HTML document
+			app.placeAt("content");
+		});
+	</script>
+</head>
+<body class="sapUiBody" id="content">
+</body>
+</html>

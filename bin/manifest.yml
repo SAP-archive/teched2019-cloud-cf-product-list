@@ -1,0 +1,13 @@
+---
+applications:
+# Application
+- name: product-list
+  instances: 1
+  memory: 1G
+  host: product-list-d000000
+  path: target/product-list.jar
+  buildpack: https://github.com/cloudfoundry/java-buildpack.git#v4.3
+  services:
+    - postgres
+    - logs
+...

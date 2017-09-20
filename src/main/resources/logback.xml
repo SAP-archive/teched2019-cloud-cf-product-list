@@ -1,0 +1,17 @@
+<configuration debug="false" scan="false">
+	<appender name="STDOUT-JSON" class="ch.qos.logback.core.ConsoleAppender">
+       <encoder class="com.sap.hcp.cf.logback.encoder.JsonEncoder"/>
+    </appender>
+    <!-- for local development, you may want to switch to a more human-readable layout -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date %-5level [%thread] - [%logger] [%mdc] - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <root level="${LOG_ROOT_LEVEL:-INFO}">
+       <!-- Use 'STDOUT' instead for human-readable output -->
+       <appender-ref ref="STDOUT-JSON" />
+    </root>
+  	<!-- request metrics are reported using INFO level, so make sure the instrumentation loggers are set to that level -->
+    <logger name="com.sap.hcp.cf" level="INFO" />
+</configuration>
