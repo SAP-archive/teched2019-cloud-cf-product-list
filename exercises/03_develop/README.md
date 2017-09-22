@@ -149,7 +149,7 @@ import org.springframework.context.annotation.Bean;
 ```
 Then the main() method of our application class uses Spring Boot’s SpringApplication.run() method to launch an application. It fetches the ProductRepository from the Spring application context. Then it saves a handful of Product objects, demonstrating the save() method and setting up some data to work with. Next, it calls findAll() to fetch all Customer objects from the database and prints them.
 
-## Create Controller
+## (Optional) Create Controller
 In Spring’s approach to building RESTful web services, HTTP requests are handled by a controller. These components are easily identified by the `@RestController` annotation.
 - Create new **class Controller**
 - Add annotation `@RestController` and include the following code snippet replacing class names where applicable:
