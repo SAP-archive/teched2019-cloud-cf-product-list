@@ -109,7 +109,7 @@ We will explore the automatic scaling based on increased memory usage, so that's
 		String str = "";
 		HashMap<String, Double> h = null;
 	    for (int i = 0; i < 100000; i++) {
-			h = new HashMap();
+			h = new HashMap<>();
 			String key = new String("key");
 			Double value = new Double(100.98);
 	        h.put(key, value);
