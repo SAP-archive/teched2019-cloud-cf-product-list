@@ -3,10 +3,9 @@
 This tutorial shows how to:
 * get access to SAP Cloud Platform Cloud Foundry Environment trial
 * work with your trial using the SAP Cloud Platform cockpit and Cloud Foundry CLI
-* scale and update your application
 * secure the application and configure different roles
 * setup and use connectivity to obtain data from a backend system.
-
+* scale and update your application
 
 # Exercises
 
