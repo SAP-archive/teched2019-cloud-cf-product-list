@@ -54,8 +54,8 @@ Simple local http server can be started using following steps:
 ## Start and connect Cloud Connector
 
 Cloud Connector is installed on the local machines so you need to simply start and configure it.
-* Open [Cloud Connector configuration UI](https://localhost:8443). Initial credentials are **Administrator** : **manager**. Change the initial password with your own;
-* Open [SAP Cloud Platform cockpit](https://account.us1.hana.ondemand.com/cockpit) and navigate to the Cloud Foundry region via Home -> Cloud Foundry Environment -> US East (VA);
+* Open [Cloud Connector configuration UI](https://scc.fair.sap.corp:8443). Credentials are **Administrator** : **welcome**. 
+* Open [SAP Cloud Platform cockpit](https://account.hana.ondemand.com/cockpit) and navigate to the Cloud Foundry region via Home -> Cloud Foundry Environment -> US East (VA);
 * Go to your trial subaccount and click on the "refresh" icon on the bottom right corner. Copy the ID into the clip board:
 
 	![Get Subaccount ID](/img/connectivity_subaccountid.png?raw=true)
@@ -73,7 +73,7 @@ By default backend systems are not accessible by the cloud application and have 
 * In the Cloud Connector UI, go to "Cloud To On-Premise" -> "Access Control" and add mapping:
 
 	![Add Mapping](/img/connectivity_addaccess.png?raw=true)
-* Select backend type "Non SAP System" -> Protocol "HTTP" -> Internal host "localhost", Internal port "10080" -> Virtual host can be "**myBackend**" and you can keep the port 10080 -> Principal propagation type "None" -> Finish;
+* Select backend type "Non SAP System" -> Protocol "HTTP" -> Internal host "localhost", Internal port "10080" -> Virtual host can be "**mybackend**" and you can keep the port 10080 -> Principal propagation type "None" -> Finish;
 * Expose the */images* folder and all of its content.
 	* Add a new resource to your virtual mapping:
 
