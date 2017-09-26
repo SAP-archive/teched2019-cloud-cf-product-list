@@ -10,9 +10,7 @@ In this exercise you'll learn how you can clone the target version of the Produc
 
 # Exercise description
 
-You can either download the application as zip 1.1 or clone it using the git client in the local dev environment 1.2.
-
-## 1.1 Download the sample code as zip
+## 1 Download the sample code as zip
 1. Go to the root of the project in github: https://github.com/SAP/cloud-cf-product-list-sample
 2. Click on **Clone or download** button and select Download zip
 <br><br>
@@ -20,20 +18,6 @@ You can either download the application as zip 1.1 or clone it using the git cli
 <br><br>
 
 3.  Unzip the downloaded file in your students directory - a new directory ```cloud-cf-product-list-sample``` will be created.
-
-
-## (Optional - in case you downloaded as zip, no need to clone the same project with git) 1.2 Clone the sample code from github
-1. Switch to the terminal on your computer. For that please:
-	* press the Windows key and the 'R' key
-	* type ```cmd``` into the input field and press the return key
-2. Now switch to your **student directory folder** at D:\Files\Session\CPL...\. Enter:
-   ```
-   D:
-   cd D:\Files\Session\CPL...\
-   ```
-3. Now type ```git clone https://github.com/SAP/cloud-cf-product-list-sample.git``` and press the return key.
-4. A new directory called ```cloud-cf-product-list-sample-master``` was created in your student directory folder.
-
 
 ## 2. Import the sample project into Eclipse
 1. Open the Windows Start menu and enter ```CPL...``` in the input field. Under ```Programs``` you will see ```ABAP in Eclipse - CPL...```. Click on this entry to open Eclipse.
