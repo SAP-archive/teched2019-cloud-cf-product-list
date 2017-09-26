@@ -26,6 +26,14 @@ In many cases cloud applications needs to access on-premise systems. In many cas
 
 # Detailed steps
 
+## Set up Python
+
+As an on-premise system we will use a part of the file system, exposed via Python's built-in http server. To achieve this we will need to download and install Python.
+* Download Python from the [official web page](https://www.python.org/ftp/python/3.6.2/python-3.6.2.exe);
+* Run the downloaded executable;
+* In the install wizard, select **Install Now**;
+* Wait for the installation to finish.
+
 ## Prepare simple backend system
 
 Simple local http server can be started using following steps:
@@ -33,14 +41,9 @@ Simple local http server can be started using following steps:
 * Start a simple HTTP server:
 	* Open a separate CLI from the one you use for the Cloud Foundry commands;
 	* Navigate to the parent folder of */images* (the location to which you copied the folder from the first step);
-	* Execute the following command (depending on your version of Python):
-		* Python 2.x:
+	* Execute the following command:
 		```
-			python -m SimpleHTTPServer 10080
-		```
-		* Python 3.x:
-		```
-			python -m http.server 10080
+			C:\Users\student\AppData\Local\Programs\Python\Python36-32\python.exe -m http.server 10080
 		```
 	:warning: Do not close the CLI used to start the server.
 * Ensure that the started server is working by opening http://localhost:10080 from a browser.
@@ -51,7 +54,7 @@ Simple local http server can be started using following steps:
 ## Start and connect Cloud Connector
 
 Cloud Connector is installed on the local machines so you need to simply start and configure it.
-* Open [Cloud Connector configuration UI]( https://localhost:8443). Initial credentials are **Administrator** : **manager**. Change the initial password with your own;
+* Open [Cloud Connector configuration UI](https://localhost:8443). Initial credentials are **Administrator** : **manager**. Change the initial password with your own;
 * Open [SAP Cloud Platform cockpit](https://account.us1.hana.ondemand.com/cockpit) and navigate to the Cloud Foundry region via Home -> Cloud Foundry Environment -> US East (VA);
 * Go to your trial subaccount and click on the "refresh" icon on the bottom right corner. Copy the ID into the clip board:
 
@@ -94,110 +97,129 @@ Now let us modify the application to consume the connectivity service:
 	</dependency>
 ```
 * In Eclipse, add a new class to the *com.sap.cp.cf.demoapps* package and name it **ConnectivityConsumer**;
-* To consume the connectivity service, the application will need to read credentials from the environment variables, which are in JSON format. Add the following code to the **ConnectivityConsumer** class:
-```java
-	// Parse the credentials for a given service from the environment variables.
-	private static JSONObject getServiceCredentials(String serviceName) throws JSONException {
-		JSONObject jsonObj = new JSONObject(System.getenv("VCAP_SERVICES"));
-		JSONArray jsonArr = jsonObj.getJSONArray(serviceName);
-		return jsonArr.getJSONObject(0).getJSONObject("credentials");
-	}
-```
-* Configure the Connectivity service endpoint as a proxy. Add the following code to the **ConnectivityConsumer** class:
-```java
-	// Create a HTTP proxy from the connectivity service credentials.
-	private static Proxy getProxy() throws JSONException {
-		JSONObject credentials = getServiceCredentials(CONNECTIVITY_SERVICE_NAME);
-		String proxyHost = credentials.getString(OP_HTTP_PROXY_HOST);
-		int proxyPort = Integer.parseInt(credentials.getString(OP_HTTP_PROXY_PORT));
-		return new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
-	}
-```
-* Get a JWT access token from the *xsuaa* service. The token is used for the authorization of the connectivity proxy. Add the following code to the **ConnectivityConsumer** class:
-```java
-	// Get JWT token for the connectivity service from UAA
-	private static CompositeAccessToken getAccessToken() throws Exception {
-		JSONObject connectivityCredentials = getServiceCredentials("connectivity");
-		String clientId = connectivityCredentials.getString("clientid");
-		String clientSecret = connectivityCredentials.getString("clientsecret");
-
-		// Make request to UAA to retrieve JWT token
-		JSONObject xsuaaCredentials = getServiceCredentials("xsuaa");
-		URI xsUaaUri = new URI(xsuaaCredentials.getString("url"));
-
-		UaaContextFactory factory = UaaContextFactory.factory(xsUaaUri)
-			.authorizePath("/oauth/authorize")
-			.tokenPath("/oauth/token");
-
-		TokenRequest tokenRequest = factory.tokenRequest();
-		tokenRequest.setGrantType(GrantType.CLIENT_CREDENTIALS);
-		tokenRequest.setClientId(clientId);
-		tokenRequest.setClientSecret(clientSecret);
-
-		UaaContext xsUaaContext = factory.authenticate(tokenRequest);
-		return xsUaaContext.getToken();
-	}
-```
-* Applications are responsible to propagate the user JWT token via the **SAP-Connectivity-Authentication** header. This is needed by the connectivity service to open a tunnel to the subaccount for which a configuration is made in the Cloud Connector. To get this token, add the following code to the **ConnectivityConsumer** class:
-```java
-	private static String getClientOAuthToken() throws UserInfoException {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (auth == null) {
-			throw new UserInfoException("User not authenticated");
-		}
-		OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) auth.getDetails();
-		return details.getTokenValue();
-	}
-```
-
-* Now you are ready to add the method that handles the requests to the on-premise system. Add the following code to the **ConnectivityConsumer** class:
-```java
-	private static final Logger logger = LoggerFactory.getLogger(Application.class);
-	
-	public static byte[] getImageFromBackend(String fileName) throws IOException {
-		HttpURLConnection urlConnection = null;
-		URL url = null;
-		try {
-			// Build the URL to the requested file.
-			url = new URL("http://mybackend:10080/images/" + fileName);
-
-			// Build the connectivity proxy and set up the connection.
-			Proxy proxy = getProxy();
-			urlConnection = (HttpURLConnection) url.openConnection(proxy);
-
-			// Get connectivity access token and configure the proxy authorization header. 
-			CompositeAccessToken accessToken = getAccessToken();
-			urlConnection.setRequestProperty("Proxy-Authorization", "Bearer " + accessToken);
-
-			// Set connection timeouts.
-			urlConnection.setConnectTimeout(10000);
-			urlConnection.setReadTimeout(60000);
-
-			// Get the user JWT token and configure the connectivity authentication header.
-			String token = getClientOAuthToken();
-			urlConnection.setRequestProperty("SAP-Connectivity-Authentication", "Bearer " + token);
-
-			// Execute request, returning the response as a byte array.
-			urlConnection.connect();
-			InputStream in = urlConnection.getInputStream();
-			return IOUtils.toByteArray(in);
-
-		} catch (Exception e) {
-			String messagePrefix = "Connectivity operation failed with reason: ";
-			logger.error(messagePrefix, e);
-		} finally {
-			if (urlConnection != null) {
-				urlConnection.disconnect();
-			}
-		}
-		return null;
-	}
-```
-* Now add a way to make calls to the on-premise system. To achieve this, map all *images/\<file\>* requests to go through the *getImageFromBackend(String fileName)* method, with *\<file\>* passed as the argument. Change the content of **Controller.java** to:
+* Change the content of the newly created **ConnectivityConsumer.java** file to:
 ```java
 	package com.sap.cp.cf.demoapps;
 
-	import static com.sap.cp.cf.demoapps.ConnectivityConsumer.getImageFromBackend;
+	import java.io.IOException;
+	import java.io.InputStream;
+	import java.net.HttpURLConnection;
+	import java.net.InetSocketAddress;
+	import java.net.Proxy;
+	import java.net.URI;
+	import java.net.URL;
+
+	import org.apache.commons.io.IOUtils;
+	import org.cloudfoundry.identity.client.UaaContext;
+	import org.cloudfoundry.identity.client.UaaContextFactory;
+	import org.cloudfoundry.identity.client.token.GrantType;
+	import org.cloudfoundry.identity.client.token.TokenRequest;
+	import org.cloudfoundry.identity.uaa.oauth.token.CompositeAccessToken;
+	import org.json.JSONArray;
+	import org.json.JSONException;
+	import org.json.JSONObject;
+	import org.slf4j.Logger;
+	import org.slf4j.LoggerFactory;
+	import org.springframework.security.core.Authentication;
+	import org.springframework.security.core.context.SecurityContextHolder;
+	import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
+
+	import com.sap.xs2.security.container.UserInfoException;
+
+	public class ConnectivityConsumer {
+		private static final Logger logger = LoggerFactory.getLogger(Application.class);
+
+		public byte[] getImageFromBackend(String fileName) throws IOException {
+			HttpURLConnection urlConnection = null;
+			URL url = null;
+			try {
+				// Build the URL to the requested file.
+				url = new URL("http://mybackend:10080/images/" + fileName);
+
+				// Build the connectivity proxy and set up the connection.
+				Proxy proxy = getProxy();
+				urlConnection = (HttpURLConnection) url.openConnection(proxy);
+
+				// Get connectivity access token and configure the proxy authorization header.
+				CompositeAccessToken accessToken = getAccessToken();
+				urlConnection.setRequestProperty("Proxy-Authorization", "Bearer " + accessToken);
+
+				// Set connection timeouts.
+				urlConnection.setConnectTimeout(10000);
+				urlConnection.setReadTimeout(60000);
+
+				// Get the user JWT token and configure the connectivity authentication header.
+				String token = getClientOAuthToken();
+				urlConnection.setRequestProperty("SAP-Connectivity-Authentication", "Bearer " + token);
+
+				// Execute request, returning the response as a byte array.
+				urlConnection.connect();
+				InputStream in = urlConnection.getInputStream();
+				return IOUtils.toByteArray(in);
+
+			} catch (Exception e) {
+				String messagePrefix = "Connectivity operation failed with reason: ";
+				logger.error(messagePrefix, e);
+			} finally {
+				if (urlConnection != null) {
+					urlConnection.disconnect();
+				}
+			}
+			return null;
+		}
+
+		// Parse the credentials for a given service from the environment variables.
+		private JSONObject getServiceCredentials(String serviceName) throws JSONException {
+			JSONObject jsonObj = new JSONObject(System.getenv("VCAP_SERVICES"));
+			JSONArray jsonArr = jsonObj.getJSONArray(serviceName);
+			return jsonArr.getJSONObject(0).getJSONObject("credentials");
+		}
+
+		// Create a HTTP proxy from the connectivity service credentials.
+		private Proxy getProxy() throws JSONException {
+			JSONObject credentials = getServiceCredentials("connectivity");
+			String proxyHost = credentials.getString("onpremise_proxy_host");
+			int proxyPort = Integer.parseInt(credentials.getString("onpremise_proxy_port"));
+			return new Proxy(Proxy.Type.HTTP, new InetSocketAddress(proxyHost, proxyPort));
+		}
+
+		// Get JWT token for the connectivity service from UAA
+		private CompositeAccessToken getAccessToken() throws Exception {
+			JSONObject connectivityCredentials = getServiceCredentials("connectivity");
+			String clientId = connectivityCredentials.getString("clientid");
+			String clientSecret = connectivityCredentials.getString("clientsecret");
+
+			// Make request to UAA to retrieve JWT token
+			JSONObject xsuaaCredentials = getServiceCredentials("xsuaa");
+			URI xsUaaUri = new URI(xsuaaCredentials.getString("url"));
+
+			UaaContextFactory factory = UaaContextFactory.factory(xsUaaUri).authorizePath("/oauth/authorize")
+					.tokenPath("/oauth/token");
+
+			TokenRequest tokenRequest = factory.tokenRequest();
+			tokenRequest.setGrantType(GrantType.CLIENT_CREDENTIALS);
+			tokenRequest.setClientId(clientId);
+			tokenRequest.setClientSecret(clientSecret);
+
+			UaaContext xsUaaContext = factory.authenticate(tokenRequest);
+			return xsUaaContext.getToken();
+		}
+
+		private String getClientOAuthToken() throws UserInfoException {
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			if (auth == null) {
+				throw new UserInfoException("User not authenticated");
+			}
+			OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) auth.getDetails();
+			return details.getTokenValue();
+		}
+	}
+
+```
+The **getImageFromBackend** method handles the requests to the on-premise system. It is tasked with retrieving an image from the server via the connectivity service. The **getServiceCredentials** method is used to read JSON-formated credentials from the environment variables of the application. The **getProxy** method configures the Connectivity service endpoint as a proxy. The **getAccessToken** method requests a JWT access token from the xsuaa service. The token is used for the authorization of the connectivity proxy. The **getClientOAuthToken** retrieves the client JWT token. Applications are responsible to propagate this token via the **SAP-Connectivity-Authentication** header. This is needed by the connectivity service to open a tunnel to the subaccount for which a configuration is made in the Cloud Connector.
+* Now add a way to make calls to the on-premise system. To achieve this, map all *images/\<file\>* requests to go through the *getImageFromBackend(String fileName)* method, with *\<file\>* passed as the argument. Change the content of **Controller.java** to:
+```java
+	package com.sap.cp.cf.demoapps;
 
 	import java.io.IOException;
 	import java.util.Collection;
@@ -230,9 +252,9 @@ Now let us modify the application to consume the connectivity service:
 		@ResponseBody
 		@GetMapping(value = "/images/{imageFile:.+}", produces = MediaType.IMAGE_JPEG_VALUE)
 		public byte[] getIcon(@PathVariable String imageFile) throws IOException {
-			return getImageFromBackend(imageFile);
+			ConnectivityConsumer connConsumer = new ConnectivityConsumer();
+			return connConsumer.getImageFromBackend(imageFile);
 		}
-
 	}
 ```		
 :bulb: **Note:** If you look at **Application.java**, you will see that the URLs for the icons match the pattern you mapped in the controller, for example *"images/HT-1000.jpg"*. This means that when the list items are loaded, the icons will be retrieved from the on-premise system.
