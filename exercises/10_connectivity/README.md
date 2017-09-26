@@ -95,6 +95,11 @@ Now let us modify the application to consume the connectivity service:
 	      <version>3.16.0</version>
 	      <scope>compile</scope>
 	</dependency>
+	<dependency>
+              <groupId>commons-io</groupId>
+              <artifactId>commons-io</artifactId>
+              <version>2.5</version>
+        </dependency>
 ```
 * In Eclipse, add a new class to the *com.sap.cp.cf.demoapps* package and name it **ConnectivityConsumer**;
 * Change the content of the newly created **ConnectivityConsumer.java** file to:
@@ -205,10 +210,10 @@ Now let us modify the application to consume the connectivity service:
 			return xsUaaContext.getToken();
 		}
 
-		private String getClientOAuthToken() throws UserInfoException {
+		private String getClientOAuthToken() throws Exception {
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			if (auth == null) {
-				throw new UserInfoException("User not authenticated");
+				throw new Exception("User not authenticated");
 			}
 			OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) auth.getDetails();
 			return details.getTokenValue();
