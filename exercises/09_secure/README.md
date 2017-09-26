@@ -263,7 +263,6 @@ applications:
   buildpack: nodejs_buildpack
   memory: 128M
   env:
-    TENANT_HOST_PATTERN: "^(.*)-approuter-YOUR_BIRTH_DATE.cfapps.eu10.hana.ondemand.com"
     destinations: >
       [
         {"name":"products-destination",
@@ -275,12 +274,6 @@ applications:
 ```
 
 * Deploy the application router: `product-list$ cf push approuter`
-
-* A new route has to be configured for the approuter according to the following schema: `<tenant-domain>-<approuter-host-name>.cfapps.<cf-domain>` e.g. `d046826trial-approuter-d000000.cfapps.eu10.hana.ondemand.com`
-* The tenant domain can either be found in the cockpit or in the environment variables:
-    * `cf env approuter` : `System-Provided:{"VCAP_SERVICES": {"xsuaa": [{"credentials": {"identityzone": "d046826trial" ...`
-    * `cf map-route approuter cfapps.eu10.hana.ondemand.com -n d046826trial-approuter-d000000`
-* When calling the `https://d046826trial-approuter-d000000.cfapps.eu10.hana.ondemand.com` the user has to authenticate himself with his trial account credentials.
 
 ### Step 6: Trust configuration
 Now let us see how to enable access to the application for the business users or end-users.
