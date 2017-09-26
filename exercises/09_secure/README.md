@@ -36,7 +36,7 @@ An Application Security Descriptor defines the details of the authentication met
 ```json
 {
 	"xsappname": "product-list",
-	"tenant-mode": "shared",
+	"tenant-mode": "dedicated",
 	"scopes":
 	[
 		{
