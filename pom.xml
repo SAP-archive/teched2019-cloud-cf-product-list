@@ -127,13 +127,17 @@
 		</dependency>
 		<!-- Connectivity -->
 		<dependency>
-      		<groupId>org.cloudfoundry.identity</groupId>
-      		<artifactId>cloudfoundry-identity-client-lib</artifactId>
-      		<version>3.16.0</version>
-      		<scope>compile</scope>
+		      <groupId>org.cloudfoundry.identity</groupId>
+		      <artifactId>cloudfoundry-identity-client-lib</artifactId>
+		      <version>3.16.0</version>
+		      <scope>compile</scope>
+		</dependency>
+		<dependency>
+		      <groupId>commons-io</groupId>
+		      <artifactId>commons-io</artifactId>
+		      <version>2.5</version>
 		</dependency>
 	</dependencies>
-
 	<build>
       <finalName>product-list</finalName>
 		<plugins>
