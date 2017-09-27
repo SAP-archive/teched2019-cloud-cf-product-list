@@ -140,7 +140,7 @@ All HTTP endpoints are secured and the Product List application is inaccessible.
 
 ### Step 4: Configuration of the Spring Security framework
 
-* In the advanced branch a new class `com.sap.cp.cf.demoapps.ConfigSecurity.java` was created including the following scope checks and offline token validations.
+* In the advanced branch, a new class `com.sap.cp.cf.demoapps.ConfigSecurity.java` was created including the following scope checks and offline token validations.
 
 ```java
 package com.sap.cp.cf.demoapps;
@@ -188,7 +188,7 @@ Now all endpoints are blocked except the health endpoint.
 * Push the application to your cloud foundry space: `cf push`
 
 ### Step 5: Adding the XS Advanced Application Router
-The [XS Advanced Application Router](https://github.infra.hana.ondemand.com/TechEd2017/product-list/blob/advanced/src/main/approuter/README.md) is used to provide a single entry point to a business application that consists of several different apps (microservices). It dispatches requests to backend microservices and acts as a reverse proxy. The rules that determine which request should be forwarded to which _destinations_ are called _routes_. The application router can be configured to authenticate the users and propagate the user information. Fianlly, the application router can serve static content.
+The [XS Advanced Application Router](https://github.infra.hana.ondemand.com/TechEd2017/product-list/blob/advanced/src/main/approuter/README.md) is used to provide a single entry point to a business application that consists of several different apps (microservices). It dispatches requests to backend microservices and acts as a reverse proxy. The rules that determine which request should be forwarded to which _destinations_ are called _routes_. The application router can be configured to authenticate the users and propagate the user information. Finally, the application router can serve static content.
 
 **Note** that the application router does not hide the backend microservices in any way. They are still directly accessible bypassing the application router. So, the backend microservices _must_ protect all their endpoints by validating the JWT token and implementing proper scope checks.
 
