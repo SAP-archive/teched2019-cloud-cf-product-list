@@ -7,11 +7,6 @@ applications:
   host: product-list-YOUR_BIRTH_DATE
   path: target/product-list.jar
   buildpack: https://github.com/cloudfoundry/java-buildpack.git#v4.3
-  services:
-    - postgres 
-    - logs
-    - xsuaa
-    - connInstance
   env:
     SAP_JWT_TRUST_ACL: '[{"clientid" : "*", "identityzone" : "*"}]'
 # Application Router
@@ -27,6 +22,4 @@ applications:
          "url":"https://product-list-YOUR_BIRTH_DATE.cfapps.us10.hana.ondemand.com",
          "forwardAuthToken": true}
       ]
-  services:
-    - xsuaa
 ...
