@@ -185,8 +185,6 @@ public class ConfigSecurity extends ResourceServerConfigurerAdapter {
 
 Now all endpoints are blocked except the health endpoint.
 
-* Push the application to your cloud foundry space: `cf push`
-
 ### Step 5: Adding the XS Advanced Application Router
 The [XS Advanced Application Router](https://github.infra.hana.ondemand.com/TechEd2017/product-list/blob/advanced/src/main/approuter/README.md) is used to provide a single entry point to a business application that consists of several different apps (microservices). It dispatches requests to backend microservices and acts as a reverse proxy. The rules that determine which request should be forwarded to which _destinations_ are called _routes_. The application router can be configured to authenticate the users and propagate the user information. Finally, the application router can serve static content.
 
@@ -261,7 +259,7 @@ applications:
     - xsuaa
 ```
 
-* Deploy the application router: `product-list$ cf push approuter`
+* [Push the product list application togehter with a approuter](https://github.com/SAP/cloud-cf-product-list-sample/tree/master/exercises/04_push) to your cloud foundry space: `product-list$ cf push`
 
 ### Step 6: Trust configuration
 Now let us see how to enable access to the application for the business users or end-users.
