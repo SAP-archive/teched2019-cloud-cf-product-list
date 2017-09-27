@@ -2,7 +2,7 @@
 
 ## Estimated time
 
-:clock4: 40 minutes
+:clock4: 60 minutes
 
 ## Objective
 In this exercise, you will learn how to secure the Product List application by using a flexible authorization framework - OAuth 2.0. The Authorization Code grant of OAuth 2.0 provides an excellent security mechanism to grant only authorized users access to your application and its data. The SAP XS Advanced Application Router, the SAP XS UAA OAuth authorization service and Spring Boot are outstanding tools to configure roles, assign them to users and, finally, implement role checks in your application.
