@@ -7,6 +7,8 @@ applications:
   host: product-list-YOUR_BIRTH_DATE
   path: target/product-list.jar
   buildpack: https://github.com/cloudfoundry/java-buildpack.git#v4.3
+  services:
+    - xsuaa
   env:
     SAP_JWT_TRUST_ACL: '[{"clientid" : "*", "identityzone" : "*"}]'
 # Application Router
@@ -15,6 +17,8 @@ applications:
   path: src/main/approuter
   buildpack: nodejs_buildpack
   memory: 128M
+  services:
+    - xsuaa
   env:
     destinations: >
       [
