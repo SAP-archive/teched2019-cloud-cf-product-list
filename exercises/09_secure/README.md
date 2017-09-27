@@ -259,7 +259,7 @@ applications:
     - xsuaa
 ```
 
-* [Push the product list application togehter with a approuter](https://github.com/SAP/cloud-cf-product-list-sample/tree/master/exercises/04_push) to your cloud foundry space: `product-list$ cf push`
+* [Push the product list application togehter with a approuter](https://github.com/SAP/cloud-cf-product-list-sample/tree/master/exercises/04_push) to your cloud foundry space: `cf push`
 
 ### Step 6: Trust configuration
 Now let us see how to enable access to the application for the business users or end-users.
