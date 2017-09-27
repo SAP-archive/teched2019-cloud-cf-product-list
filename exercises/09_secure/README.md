@@ -21,7 +21,7 @@ The following steps are required to protect the Product List application with OA
 * Step 6: Configuration of trust
 
 ## Protecting the Product List application
-* If not yet done, please [clone](https://github.com/SAP/cloud-cf-product-list-sample/tree/master/exercises/02_clone) the **advanced** version of the application and import it into Eclipse.
+* If not yet done, please [clone](https://github.com/SAP/cloud-cf-product-list-sample/tree/master/exercises/11_clonebranch) the **advanced** version of the application and import it into Eclipse.
 
 ### Step 1: Definition of the Application Security Descriptor
 An Application Security Descriptor defines the details of the authentication methods and authorization types to use for accessing the Product List application. The Product List application uses this information to perform scope checks. With scopes a fine-grained user authorization can be build up. Spring Security allows to check scopes for each HTTP method on all HTTP endpoints. Scopes are carried by [JSON Web Tokens (JWTs)](https://tools.ietf.org/html/rfc7519) which in turn are issued by the [XS UAA Service](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/1.0.12/en-US/17acf1ac0cf84487a3199c51b28feafd.html).
