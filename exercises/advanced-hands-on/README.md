@@ -15,9 +15,7 @@ In this exercise, you will start a free SAP Cloud Platform Cloud Foundry Environ
 
 :two: **Clone the sample application**
 
- Clone the basic version of the application that was developed during the basic hands-on sessions: [clone](../02_clone)
-
- Clone also the target version of the application that will be enhanced during the advanced session in case you need it as a reference or to copy easily some snippets: [clone advanced branch](../11_clonebranch)
+Clone also the **advanced** branch of the product list application: [clone advanced branch](../11_clonebranch)
 
 :three: **Push to cloud**
 
