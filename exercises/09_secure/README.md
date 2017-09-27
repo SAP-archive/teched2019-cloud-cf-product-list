@@ -68,7 +68,7 @@ To secure the application we have to add Spring Security to the classpath. By co
 
 To enable offline JWT validation the SAP XS Security Libraries need to be added as well. The libraries are stored in `product-list/libs`. The latest version can be downloaded from the [Service Marketplace](https://launchpad.support.sap.com/#/softwarecenter/template/products/%20_APP=00200682500000001943&_EVENT=DISPHIER&HEADER=Y&FUNCTIONBAR=N&EVENT=TREE&NE=NAVIGATE&ENR=73555000100200004333&V=MAINT&TA=ACTUAL&PAGE=SEARCH/XS%20JAVA%201). At the time of writing the latest version is `XS_JAVA_4-70001362`.
 
-**Note**: Be aware to adapt the version number in your `pom.xml` in case you are using a newer version of the SAP XS Security Libraries.
+**Note:** Be aware to adapt the version number in your `pom.xml` in case you are using a newer version of the SAP XS Security Libraries.
 
 * Unzip `product-list/libs/XS_JAVA_4-70001362.ZIP`
 * Install SAP XS Security Libraries to your local maven repo by executing:
@@ -129,9 +129,7 @@ mvn clean install
 </dependency>
 ```
 
-The build will fail as some unit tests are failing due to missing authentication: `Status expected:<200> but was:<401>`.
-
-To disable authentication for the unit tests we need to enhance the `ControllerTest` class.
+**Note:** In case you started with the master branch the unit tests will fail. To disable authentication for the unit tests we need to enhance the `ControllerTest` class.
 
 * Add `@AutoConfigureMockMvc(secure = false)` to `ControllerTests` class
 * Build the project in Eclipse (`Context Menu -> Run As -> Maven install`) -> Result: BUILD SUCCESS
@@ -142,8 +140,7 @@ All HTTP endpoints are secured and the Product List application is inaccessible.
 
 ### Step 4: Configuration of the Spring Security framework
 
-* Create a new class `com.sap.cp.cf.demoapps.ConfigSecurity.java`
-* Add the following scope checks and offline token validation to the Security Configuration
+* In the advanced branch a new class `com.sap.cp.cf.demoapps.ConfigSecurity.java` was created including the following scope checks and offline token validations.
 
 ```java
 package com.sap.cp.cf.demoapps;
@@ -188,10 +185,7 @@ public class ConfigSecurity extends ResourceServerConfigurerAdapter {
 
 Now all endpoints are blocked except the health endpoint.
 
-* Call `localhost:8080` from your browser -> the access to the Product List UI is blocked
-* Call `localhost:8080/health` from your browser -> the health status of the Product List application is displayed
-* Build the project in Eclipse (`Context Menu -> Run As -> Maven install`) -> Result: BUILD SUCCESS
-* Push the application: `cf push`
+* Push the application to your cloud foundry space: `cf push`
 
 ### Step 5: Adding the XS Advanced Application Router
 The [XS Advanced Application Router](https://github.infra.hana.ondemand.com/TechEd2017/product-list/blob/advanced/src/main/approuter/README.md) is used to provide a single entry point to a business application that consists of several different apps (microservices). It dispatches requests to backend microservices and acts as a reverse proxy. The rules that determine which request should be forwarded to which _destinations_ are called _routes_. The application router can be configured to authenticate the users and propagate the user information. Fianlly, the application router can serve static content.
