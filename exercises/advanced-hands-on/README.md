@@ -29,10 +29,10 @@ Secure the Product List application, configure the OAuth 2.0 Client Credentials 
 
 Use Cloud Connector and Connectivity service to retrieve data from on-premise backend systems [connectivity](../10_connectivity)
 
-:six: **Scale**
+:six: **(Optional) Scale**
 
 Explore different options for application scaling that are available in the SAP Cloud Platform Cloud Foundry Environment.  [scale](../07_scale)
 
-:seven: **Update**
+:seven: **(Optional) Update**
 
 Blue-green deployment applied for update of the application - manually with CF CLI commands, then build an MTA and use the MTA plugin automated blue-green deployment: [update](../08_update)
