@@ -20,7 +20,7 @@ In this exercise you'll learn how you can create free trial account on the SAP C
 ![Start Cloud Foundry Trial](/img/start_cf_trial.png?raw=true)
 <br><br>
 2. Click on the *Start Cloud Foundry Trial* button – a pop-up will appear. Select a region from the dropdown for your trial and click OK
-- If you attend TechEd Las Vegas, select US East (VA) region.
+- If you attend TechEd Las Vegas or TechEd Bangalore select US East (VA) region.
 - If you attend TechEd Barcelona, select Europe (Frankfurt) region. 
 <br><br>
 ![Select Trial Region](/img/select_trial_region.png?raw=true)
@@ -60,7 +60,7 @@ In case you already used the trial account quota, you have to clean-up applicati
 
 ## Local development environment
 
-:bulb: **Note:** If you use the TechEd provided laptops then your local development environment tools listed below are already installed. In this case all you have to do is check whether it works and there are the proper versions. If you are using your own laptop, then make sure you install and setup the tools listed below in case you don't have them.
+:bulb: **Note:** If you use the TechEd provided laptops then your local development environment tools listed below are already installed. In this case no need to install anything additional. If you are using your own laptop, then make sure you install and setup the tools listed below in case you don't have them.
 
 ### Cloud Foundry Command Line Interface (CF CLI)
 
