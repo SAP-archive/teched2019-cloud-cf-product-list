@@ -18,23 +18,18 @@ In this exercise, you will start a free SAP Cloud Platform Cloud Foundry Environ
 
 Clone the target version of the application that we will develop during the session. As a result you will have the target version of the application imported in Eclipse in case you need it as a reference or to copy easily some snippets: [clone](../02_clone)
 
-:three: **Develop the application**
-
-You will develop from scratch the Product List application. As a result you will have the initial version of the application ready and running locally: [develop](../03_develop)
-
-
-:four: **Push to cloud**
+:three: **Push to cloud**
 
 In this exercise, you will push the Product List application to your Clooud Foundry environment trial, change the application to use PostgreSQL service for persistence layer: [push](../04_push)
 
-:five: **Observe the application**
+:four: **Observe the application**
 
 Check what information is available for the running application via CF CLI and SAP Cloud Platform cockpit: application events, logs, metrics, service instances, etc.: [observe](../05_observe)
 
-:six: **Enhance the application**
+:five: **Enhance the application**
 
 In this exercise, we improve the application with supportability enhancements e.g. integrate with Application Logging service and understand how health-checks work and can be changed: [enhance](../06_enhance)
 
-:seven: **(Optional) Scale**
+:six: **(Optional) Scale**
 
 Explore different options for application scaling that are available in the SAP Cloud Platform Cloud Foundry Environment.  [scale](../07_scale)
