@@ -1,4 +1,4 @@
-# Exercise 04: Push the application to SAP Cloud Platform Cloud Foundry Environment
+# Exercise 03: Push the application to SAP Cloud Platform Cloud Foundry Environment
 
 ## Estimated time
 
