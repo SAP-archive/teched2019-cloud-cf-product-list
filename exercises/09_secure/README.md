@@ -8,7 +8,7 @@
 In this exercise, you will learn how to secure the Product List application by using a flexible authorization framework - OAuth 2.0. The Authorization Code grant of OAuth 2.0 provides an excellent security mechanism to grant only authorized users access to your application and its data. The SAP XS Advanced Application Router, the SAP XS UAA OAuth authorization service and Spring Boot are outstanding tools to configure roles, assign them to users and, finally, implement role checks in your application.
 
 # Exercise description
-Microservices deployed on SAP Cloud Platform are freely accessible via the internat. To restrict access to authorized users only each microservice like the Product List application has to implement appropriate security mechanisms like [OAuth 2.0.](https://tools.ietf.org/html/rfc6749)
+Microservices deployed on SAP Cloud Platform are freely accessible via the internet. To restrict access to authorized users only each microservice like the Product List application has to implement appropriate security mechanisms like [OAuth 2.0.](https://tools.ietf.org/html/rfc6749)
 
 ## Steps overview
 The following steps are required to protect the Product List application with OAuth 2.O on the SAP Cloud Platform:
