@@ -167,6 +167,7 @@ applications:
   path: target/product-list.jar
   buildpack: https://github.com/cloudfoundry/java-buildpack.git#v4.3
   services:
+    - postgres
     - xsuaa
   env:
     SAP_JWT_TRUST_ACL: '[{"clientid" : "*", "identityzone" : "*"}]'
