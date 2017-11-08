@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+    xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.sap.ldi</groupId>
+		<artifactId>ldi-parent</artifactId>
+		<version>8.0.0</version>
+	</parent>
+
+	<groupId>com.sap.gateway.v4.rt</groupId>
+	<artifactId>parent</artifactId>
+	<version>1.2.4</version>
+	<packaging>pom</packaging> 
+
+	<name>com.sap.gateway.v4.rt</name>
+	
+	<properties>	
+		<javax.version>3.1.0</javax.version>
+		<odata.version>4.3.0-sap-04</odata.version>
+		<odata2.version>2.0.6-sap-10</odata2.version>
+		<slf4j.version>1.7.7</slf4j.version>
+		<mockito.version>1.9.5</mockito.version>
+		<junit.version>4.8.1</junit.version>
+		<jackson.version>2.4.2</jackson.version>
+		<jds.version>1.4.6</jds.version>
+		<igw.version>1.32.0</igw.version>
+		<cxf-version>2.7.6</cxf-version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<tycho-groupid>org.eclipse.tycho</tycho-groupid>
+	</properties>
+
+
+	<modules>
+		<module>com.sap.gateway.v4.rt.api</module>
+		<module>com.sap.gateway.v4.rt.core</module>
+		<module>com.sap.gateway.v4.rt.jdbc</module>
+		<module>com.sap.gateway.v4.rt.cds</module>
+		<module>com.sap.gateway.v4.rt.jdbc.hana</module>
+		<module>com.sap.gateway.v4.rt.core.web</module>
+		<module>com.sap.gateway.v4.rt.xsa</module>
+		<module>java-maven-arch-odata</module>
+		<!--module>com.sap.gateway.v4.rt.demo.hana</module-->
+		<module>com.sap.gateway.v4.rt.demo.cds</module>
+		
+		<module>com.sap.gateway.rt.cds</module>
+		<module>com.sap.gateway.rt.annotations</module>
+		<module>cds-mta-archetype</module>
+		<module>jdbc</module>
+		<module>cds-mta-complete-archetype</module>
+		<module>annotations</module>
+		
+		<!-- Commenting out the V2 modules for SP01 customer release  -->
+		<!-- 
+		<module>com.sap.gateway.v2.rt.api</module>
+		<module>com.sap.gateway.v2.rt.cds</module>
+		<module>com.sap.gateway.v2.rt.core.web</module>
+		<module>com.sap.gateway.v2.rt.demo.cds</module>
+		<module>com.sap.gateway.v2.rt.xsa</module>
+		
+		<module>com.sap.gateway.rt.cdm</module>
+		<module>com.sap.gateway.v2.rt.cdm</module>
+		<module>com.sap.gateway.v2.rt.demo.cdm</module>
+		<module>java-maven-arch-odatav2</module>
+		
+
+		<module>cds-mta-v2-complete-archetype</module>
+		<module>cdm-mta-v2-complete-archetype</module>
+		 -->
+	</modules>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.felix</groupId>
+					<artifactId>maven-bundle-plugin</artifactId>
+					<version>2.3.7</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<wtpversion>2.0</wtpversion>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+					<projectNameTemplate>[artifactId]-[version]</projectNameTemplate>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<attach>true</attach>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<show>private</show>
+					<nohelp>true</nohelp>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.5</version>
+            </plugin>
+			
+		</plugins>
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<show>public</show>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+	
+	<distributionManagement>
+		<snapshotRepository>
+			<id>deploy.snapshots</id>
+			<url>http://nexus:8081/nexus/content/repositories/deploy.snapshots/</url>
+		</snapshotRepository>
+
+		<repository>
+			<id>nexus.deploy.milestones</id>
+			<url>http://nexus:8081/nexus/content/repositories/deploy.milestones/</url>
+		</repository>
+
+	</distributionManagement>
+
+	<organization>
+		<name>SAP</name>
+	</organization>
+
+	<profiles>
+		<profile>
+			<id>release.build</id>
+			<activation>
+				<property>
+					<name>ldi.releaseBuild</name>
+				</property>
+			</activation>
+			<properties>
+				<maven.test.skip>true</maven.test.skip>
+			</properties>
+		</profile>
+	</profiles>
+
+</project>

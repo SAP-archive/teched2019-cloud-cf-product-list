@@ -1,0 +1,108 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.sap.gateway.v4.rt</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.2.4</version>
+	</parent>
+
+	<artifactId>com.sap.gateway.v4.rt.cds</artifactId>
+	<name>Gateway Java V4 Runtime for CDS </name>
+	
+
+	<dependencies>
+		<dependency>
+			<groupId>com.sap.gateway.v4.rt</groupId>
+			<artifactId>com.sap.gateway.rt.annotations</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sap.gateway.v4.rt</groupId>
+			<artifactId>com.sap.gateway.v4.rt.api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+			<dependency>
+			<groupId>com.sap.gateway.v4.rt</groupId>
+			<artifactId>com.sap.gateway.rt.cds</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sap.gateway.v4.rt</groupId>
+			<artifactId>com.sap.gateway.v4.rt.core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sap.jds</groupId>
+			<artifactId>metadata</artifactId>
+			<version>${jds.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>${mockito.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>odata-server-api</artifactId>
+			<version>${odata.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>odata-server-core</artifactId>
+			<version>${odata.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>odata-commons-api</artifactId>
+			<version>${odata.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>odata-commons-core</artifactId>
+			<version>${odata.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<!--	<dependency>
+			<groupId>com.sap.db</groupId>
+			<artifactId>ngdbc</artifactId>
+			<version>1.00.11</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sap.xs.java</groupId>
+			<artifactId>xs-jdbc-datasource</artifactId>
+			<version>0.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${javax.version}</version>
+			<scope>provided</scope>
+		</dependency>-->
+	</dependencies>
+	<properties>
+		<sonar.exclusions>src/main/java/com/sap/gateway/v4/rt/cds/api/**/*.java</sonar.exclusions>
+	</properties>
+</project>
