@@ -11,6 +11,19 @@ In this exercise you'll learn how you can get more info for the applications and
 For all these exercises you have the information accessible via both tools: CF CLI and Cockpit. You will find below the commands that you should execute in CF CLI to get the info and the respective navigation in cockpit menus for the same.
 
 # Exercise description
+
+Before being able to see logs in Kibana, the service `application-logs` must be bound to the app.
+
+Let's use the CLI to create and bind a service instance to our application.
+
+```
+cf marketplace
+cf create-service application-logs lite myapplogs
+cf services
+cf bind-service product-list myapplogs
+cf restage product-list
+```
+
 ## List applications
 List all applications in the target space with basic information for them.
 ### CF CLI
@@ -142,8 +155,6 @@ These are environment variables that Cloud Foundry makes available to your appli
 - `VCAP_SERVICES`
 
 The last one (`VCAP_SERVICES`) is important if your application is using bindable services because Cloud Foundry adds connection details to it when you restage your application after a service has been bound to it. The following example is taken from an app that has a postgresql service bound to it.
-
-
 
 ## Health Checks
 An application health check is a monitoring process that continually checks the status of a running Cloud Foundry app. In Cloud Foundry, the default timeout is 60 seconds and the maximum configurable timeout is 180 seconds. There are three types of health checks available in Cloud Foundry:
