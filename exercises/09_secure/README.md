@@ -15,9 +15,12 @@ The following steps are required to protect the Product List application with OA
 
 * Step 1: Definition of the Application Security Descriptor
 * Step 2: Creation and configuration of the XS UAA service
-* Step 3: Configuration of the Spring Security framework
-* Step 4: Adding the XS Advanced Application Router
-* Step 5: Configuration of trust
+* Step 3: Adding required security libraries
+* Step 4: Configuration of the Spring Security framework
+* Step 5: Adding the XS Advanced Application Router
+* Step 6: Configuration of trust
+
+If not yet done, please [clone](https://github.com/SAP/cloud-cf-product-list-sample/tree/master/exercises/11_clonebranch) the advanced version of the application and import it into Eclipse.
 
 ### Step 1: Definition of the Application Security Descriptor
 An Application Security Descriptor defines the details of the authentication methods and authorization types to use for accessing the Product List application. The Product List application uses this information to perform scope checks. With scopes a fine-grained user authorization can be build up. Spring Security allows to check scopes for each HTTP method on all HTTP endpoints. Scopes are carried by [JSON Web Tokens (JWTs)](https://tools.ietf.org/html/rfc7519) which in turn are issued by the [XS UAA Service](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/1.0.12/en-US/17acf1ac0cf84487a3199c51b28feafd.html).
@@ -58,25 +61,96 @@ To grant users access to the Product List application, an instance of the XS UAA
 * Create the XS UAA service instance: `cf create-service xsuaa application xsuaa -c ./src/main/security/xs-security.json`
 * Add the XS UAA service instance under services to the `manifest.yml`: `- xsuaa`
 
-### Step 3: Configuration of the Spring Security framework
+### Step 3: Adding required security libraries
 
-* Create a new class called `ConfigSecurity` in `com.sap.cp.cf.demoapps`.
+To secure the application we have to add Spring Security to the classpath. By configuring Spring Security in the application, Spring Boot automatically secures all HTTP endpoints with BASIC authentication. Since we want to use OAuth 2.0 together with [Java Web Tokens (JWT)](https://tools.ietf.org/html/rfc7519) instead, we need to add the Spring OAUTH and Spring JWT dependencies as well.
+
+To enable offline JWT validation the SAP XS Security Libraries need to be added as well. The libraries are stored in `product-list/libs`. The latest version can be downloaded from the [Service Marketplace](https://launchpad.support.sap.com/#/softwarecenter/template/products/%20_APP=00200682500000001943&_EVENT=DISPHIER&HEADER=Y&FUNCTIONBAR=N&EVENT=TREE&NE=NAVIGATE&ENR=73555000100200004333&V=MAINT&TA=ACTUAL&PAGE=SEARCH/XS%20JAVA%201). At the time of writing the latest version is `XS_JAVA_4-70001362`.
+
+**Note:** Be aware to adapt the version number in your `pom.xml` in case you are using a newer version of the SAP XS Security Libraries.
+
+* Unzip `product-list/libs/XS_JAVA_4-70001362.ZIP`
+* Install SAP XS Security Libraries to your local maven repo by executing:
+
+```shell
+cd product-list/libs
+mvn clean install
+```
+* The following dependencies are already added to the advanced `pom.xml` file:
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.security.oauth</groupId>
+    <artifactId>spring-security-oauth2</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-jwt</artifactId>
+</dependency>
+<dependency>
+    <groupId>com.sap.xs2.security</groupId>
+    <artifactId>security-commons</artifactId>
+    <version>0.22.2</version>
+</dependency>
+<dependency>
+    <groupId>com.sap.xs2.security</groupId>
+    <artifactId>java-container-security</artifactId>
+    <version>0.22.2</version>
+</dependency>
+<dependency>
+    <groupId>com.unboundid.components</groupId>
+    <artifactId>json</artifactId>
+    <version>1.0.0</version>
+</dependency>
+<dependency>
+    <groupId>com.sap.security.nw.sso.linuxx86_64.opt</groupId>
+    <artifactId>sapjwt.linuxx86_64</artifactId>
+    <version>1.0.0</version>
+</dependency>
+<dependency>
+    <groupId>com.sap.security.nw.sso.ntamd64.opt</groupId>
+    <artifactId>sapjwt.ntamd64</artifactId>
+    <version>1.0.0</version>
+</dependency>
+<dependency>
+    <groupId>com.sap.security.nw.sso.linuxppc64.opt</groupId>
+    <artifactId>sapjwt.linuxppc64</artifactId>
+    <version>1.0.0</version>
+</dependency>
+<dependency>
+    <groupId>com.sap.security.nw.sso.darwinintel64.opt</groupId>
+    <artifactId>sapjwt.darwinintel64</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
+**Note:** In case you started with the master branch the unit tests will fail. To disable authentication for the unit tests we need to enhance the `ControllerTest` class.
+
+* Add `@AutoConfigureMockMvc(secure = false)` to `ControllerTests` class
+* Build the project in Eclipse (`Context Menu -> Run As -> Maven install`) -> Result: BUILD SUCCESS
+* Run the project as Spring Boot App (`Context Menu -> Run As -> Spring Boot App`)
+* Call `localhost:8080` from your browser -> a window is popping up informing us that authentication is required
+
+All HTTP endpoints are secured and the Product List application is inaccessible. To regain access, we need to configure the Spring Security.
+
+### Step 4: Configuration of the Spring Security framework
+
+* In the advanced branch, a new class `com.sap.cp.cf.demoapps.ConfigSecurity.java` was created including the following scope checks and offline token validations.
 
 ```java
 package com.sap.cp.cf.demoapps;
 
-import static org.springframework.http.HttpMethod.GET;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 
-import com.sap.xs2.security.commons.SAPOfflineTokenServicesCloud;
+import static org.springframework.http.HttpMethod.GET;
 
 @Configuration
 @EnableWebSecurity
@@ -113,7 +187,7 @@ Now all endpoints are blocked except the health endpoint. You can verify that by
 * right clicking on `product-list` and then `Run As -> Spring Boot App`
 * clicking on the following link http://localhost:8080/health
 
-### Step 4: Adding the XS Advanced Application Router
+### Step 5: Adding the XS Advanced Application Router
 The [XS Advanced Application Router](https://github.com/SAP/cloud-cf-product-list-sample/blob/advanced/src/main/approuter/README.md) is used to provide a single entry point to a business application that consists of several different apps (microservices). It dispatches requests to backend microservices and acts as a reverse proxy. The rules that determine which request should be forwarded to which _destinations_ are called _routes_. The application router can be configured to authenticate the users and propagate the user information. Finally, the application router can serve static content.
 
 **Note** that the application router does not hide the backend microservices in any way. They are still directly accessible bypassing the application router. So, the backend microservices _must_ protect all their endpoints by validating the JWT token and implementing proper scope checks.
@@ -190,7 +264,7 @@ applications:
 
 * [Push the product list application togehter with a approuter](https://github.com/SAP/cloud-cf-product-list-sample/tree/master/exercises/04_push) to your cloud foundry space: `cf push`
 
-### Step 5: Trust configuration
+### Step 6: Trust configuration
 Now let us see how to enable access to the application for the business users or end-users.
 - Launch the `approuter` application in the browser and logon with your user credentials
 - You will get an error, Insufficient scope for this resource
