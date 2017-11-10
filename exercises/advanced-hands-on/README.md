@@ -13,9 +13,9 @@ This tutorial shows how to:
 
 In this exercise, you will start a free SAP Cloud Platform Cloud Foundry Environment trial which you can use to deploy and run applications. You will also setup your development environment and tools: [setup](../01_setup)
 
-:two: **Install needed libs**
+:two: **Clone the sample application**
 
-Install and configure the needed [security deps](../12_deps-install)
+Clone also the **advanced** branch of the product list application: [clone advanced branch](../11_clonebranch)
 
 :three: **Push to cloud**
 
