@@ -17,22 +17,18 @@ In this exercise, you will start a free SAP Cloud Platform Cloud Foundry Environ
 
 Clone also the **advanced** branch of the product list application: [clone advanced branch](../11_clonebranch)
 
-:three: **Push to cloud**
-
-In this exercise, you will push the Product List application to your Cloud Foundry Environment trial, change the application to use PostgreSQL service for persistence layer: [push](../04_push)
-
-:four: **Security**
+:three: **Secure your app and push it into the cloud**
 
 Secure the Product List application, configure the OAuth 2.0 Client Credentials Grant (service to service communication) and the OAuth 2.0 Authorization Code Grant (human to service communication):  [secure](../09_secure)
 
-:five: **Connectivity**
+:four: **Connectivity**
 
 Use Cloud Connector and Connectivity service to retrieve data from on-premise backend systems [connectivity](../10_connectivity)
 
-:six: **(Optional) Scale**
+:five: **(Optional) Scale**
 
 Explore different options for application scaling that are available in the SAP Cloud Platform Cloud Foundry Environment.  [scale](../07_scale)
 
-:seven: **(Optional) Update**
+:six: **(Optional) Update**
 
 Blue-green deployment applied for update of the application - manually with CF CLI commands, then build an MTA and use the MTA plugin automated blue-green deployment: [update](../08_update)
