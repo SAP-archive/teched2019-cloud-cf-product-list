@@ -26,9 +26,9 @@ In this exercise, you will push the Product List application to your Clooud Foun
 
 Check what information is available for the running application via CF CLI and SAP Cloud Platform cockpit: application events, logs, metrics, service instances, etc.: [observe](../05_observe)
 
-:five: **Enhance the application**
+:five: **Integrate application logging**
 
-In this exercise, we improve the application with supportability enhancements e.g. integrate with Application Logging service and understand how health-checks work and can be changed: [enhance](../06_enhance)
+In this exercise, we improve the application with supportability enhancements e.g. integrate with Application Logging service and understand how health-checks work and can be changed: [application logging](../12_app_logs)
 
 :six: **(Optional) Scale**
 
