@@ -23,6 +23,8 @@ The following steps are required to protect the Product List application with OA
 :warning: If not yet done, please [clone](https://github.com/SAP/cloud-cf-product-list-sample/tree/master/exercises/11_clonebranch) the advanced version of the application and import it into Eclipse.
 
 ### Step 1: Definition of the Application Security Descriptor
+
+**This step is mandatory only if you work on the master branch. For the advanced branch you can go through it to understand what is happening (no need to change anything)**
 An Application Security Descriptor defines the details of the authentication methods and authorization types to use for accessing the Product List application. The Product List application uses this information to perform scope checks. With scopes a fine-grained user authorization can be build up. Spring Security allows to check scopes for each HTTP method on all HTTP endpoints. Scopes are carried by [JSON Web Tokens (JWTs)](https://tools.ietf.org/html/rfc7519) which in turn are issued by the [XS UAA Service](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/1.0.12/en-US/17acf1ac0cf84487a3199c51b28feafd.html).
 
 * Create the file `xs-security.json` in `src/main/security/`.
@@ -55,6 +57,8 @@ An Application Security Descriptor defines the details of the authentication met
 ```
 
 ### Step 2: Creation and configuration of the XS UAA service
+
+**Mandatory for both master and advanced branch**
 To grant users access to the Product List application, an instance of the XS UAA service for this application must be created; the XSUAA service instance acts as an OAuth 2.0 client for the bound application.
 * You need to tell the CF CLI which Cloud Foundry you will use. To do this you have to set the API endpoint to the Cloud Controller of the Cloud Foundry region where you created your Cloud Foundry trial using ```cf api CLOUD_FOUNDRY_API_ENDPOINT```.
   * If you attend TechEd Las Vegas, target the US10 region API endpoint:
@@ -85,6 +89,7 @@ To grant users access to the Product List application, an instance of the XS UAA
 
 ### Step 3: Adding required security libraries
 
+**This step is mandatory only if you work on the master branch. For the advanced branch you can go through it to understand what is happening (no need to change anything)**
 To secure the application we have to add Spring Security to the classpath. By configuring Spring Security in the application, Spring Boot automatically secures all HTTP endpoints with BASIC authentication. Since we want to use OAuth 2.0 together with [Java Web Tokens (JWT)](https://tools.ietf.org/html/rfc7519) instead, we need to add the Spring OAUTH and Spring JWT dependencies as well.
 
 To enable offline JWT validation the SAP XS Security Libraries need to be added as well. The libraries are stored in `cloud-cf-product-list-sample-advanced/libs`. The latest version can be downloaded from the [Service Marketplace](https://launchpad.support.sap.com/#/softwarecenter/template/products/%20_APP=00200682500000001943&_EVENT=DISPHIER&HEADER=Y&FUNCTIONBAR=N&EVENT=TREE&NE=NAVIGATE&ENR=73555000100200004333&V=MAINT&TA=ACTUAL&PAGE=SEARCH/XS%20JAVA%201). At the time of writing the latest version is `XS_JAVA_4-70001362`.
@@ -161,6 +166,7 @@ All HTTP endpoints are secured and the Product List application is inaccessible.
 
 ### Step 4: Configuration of the Spring Security framework
 
+**This step is mandatory only if you work on the master branch. For the advanced branch you can go through it to understand what is happening (no need to change anything)**
 * In the advanced branch, a new class `com.sap.cp.cf.demoapps.ConfigSecurity.java` was created including the following scope checks and offline token validations.
 
 ```java
@@ -210,6 +216,8 @@ Now all endpoints are blocked except the health endpoint. You can verify that by
 * clicking on the following link http://localhost:8080/health
 
 ### Step 5: Adding the XS Advanced Application Router
+
+**This step is mandatory for both the master and the advanced branch. For the latter, only the 'npm install' step has to be executed. You should still go entirely through it to have a better understanding of what is happening though.**
 The [XS Advanced Application Router](https://github.com/SAP/cloud-cf-product-list-sample/blob/advanced/src/main/approuter/README.md) is used to provide a single entry point to a business application that consists of several different apps (microservices). It dispatches requests to backend microservices and acts as a reverse proxy. The rules that determine which request should be forwarded to which _destinations_ are called _routes_. The application router can be configured to authenticate the users and propagate the user information. Finally, the application router can serve static content.
 
 **Note** that the application router does not hide the backend microservices in any way. They are still directly accessible bypassing the application router. So, the backend microservices _must_ protect all their endpoints by validating the JWT token and implementing proper scope checks.
@@ -232,6 +240,7 @@ The [XS Advanced Application Router](https://github.com/SAP/cloud-cf-product-lis
 ```
 
 *  Run `npm install`
+:bulb: For the advanced branch only this command has to be executed from `cloud-cf-product-list-sample-advanced/src/main/approuter`
 
 ```shell
     approuter$ npm config set @sap:registry https://npm.sap.com
@@ -287,6 +296,8 @@ applications:
 * [Push the product list application togehter with a approuter](https://github.com/SAP/cloud-cf-product-list-sample/tree/master/exercises/04_push) to your cloud foundry space: `cf push`
 
 ### Step 6: Trust configuration
+
+**This step is mandatory for both master and advanced branch**
 Now let us see how to enable access to the application for the business users or end-users.
 - Launch the `approuter` application in the browser and logon with your user credentials
 - You will get an error, Insufficient scope for this resource
