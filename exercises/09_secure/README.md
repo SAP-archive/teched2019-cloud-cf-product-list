@@ -56,7 +56,29 @@ An Application Security Descriptor defines the details of the authentication met
 
 ### Step 2: Creation and configuration of the XS UAA service
 To grant users access to the Product List application, an instance of the XS UAA service for this application must be created; the XSUAA service instance acts as an OAuth 2.0 client for the bound application.
+* You need to tell the CF CLI which Cloud Foundry you will use. To do this you have to set the API endpoint to the Cloud Controller of the Cloud Foundry region where you created your Cloud Foundry trial using ```cf api CLOUD_FOUNDRY_API_ENDPOINT```.
+  * If you attend TechEd Las Vegas, target the US10 region API endpoint:
+  ```
+  cf api https://api.cf.us10.hana.ondemand.com
+  ```
+  * If you attend TechEd Barcelona, target the EU10 region API endpoint:
+  ```
+  cf api https://api.cf.eu10.hana.ondemand.com
+  ```
 
+:bulb: **Note:** You can find the API endpoints for the different regions where Cloud Foundry Environment is available in the [SAP Cloud Platform Documentation](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/350356d1dc314d3199dca15bd2ab9b0e.html)
+
+* Login with your user account. At the command prompt type:
+	```
+	cf login
+	```
+
+	You will be prompted to fill in the e-mail and password you used when you registered for the SAP Cloud Platform trial account:
+
+	```
+	Email> enter your e-mail
+	Password> password for your user
+	```
 * Show the marketplace:  `cf m`
 * Create the XS UAA service instance: `cf create-service xsuaa application xsuaa -c ./src/main/security/xs-security.json`
 * Add the XS UAA service instance under services to the `manifest.yml`: `- xsuaa`
