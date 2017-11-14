@@ -22,8 +22,8 @@ applications:
   env:
     destinations: >
       [
-        {"name":"products-destination", 
-         "url":"https://product-list-YOUR_BIRTH_DATE.cfapps.us10.hana.ondemand.com",
+        {"name":"products-destination",
+         "url":"https://product-list-YOUR_BIRTH_DATE.cfapps.eu10.hana.ondemand.com",
          "forwardAuthToken": true}
       ]
 ...
