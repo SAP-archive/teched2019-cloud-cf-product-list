@@ -16,10 +16,14 @@ In this exercise, you will sign up for a free SAP Cloud Platform Cloud Foundry E
 
 Clone the target version of the application that will be shown during the session. As a result you will have the target version of the application imported in Eclipse in case you need it as a reference or to copy easily some snippets: [clone](../02_clone)
 
-:three: **Push to cloud**
+:three: **Run the app locally**
+
+Using the cloned master branch, build the app and test it locally before pushing it into the cloud: [local run](../13_localrun)
+
+:four: **Push to cloud**
 
 In this exercise, you will push the Product List application to your Cloud Foundry Environment trial, change the application to use PostgreSQL service for persistence layer: [push](../04_push)
 
-:four: **(Optional) Observe the application**
+:five: **(Optional) Observe the application**
 
 Check what information is available for the running application via CF CLI and SAP Cloud Platform cockpit: application events, logs, metrics, service instances, etc.: [observe](../05_observe)
