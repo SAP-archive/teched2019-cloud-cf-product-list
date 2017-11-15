@@ -23,3 +23,7 @@ In this exercise, you will push the Product List application to your Cloud Found
 :four: **(Optional) Observe the application**
 
 Check what information is available for the running application via CF CLI and SAP Cloud Platform cockpit: application events, logs, metrics, service instances, etc.: [observe](../05_observe)
+
+:five: **(Optional) Blue-Green Deployment**
+
+Reducing downtime is important. Learn how to achieve that with the "blue green" deployment approach: [bluegreen](../13_bluegreen)
