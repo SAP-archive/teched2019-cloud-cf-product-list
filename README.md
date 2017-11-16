@@ -88,7 +88,12 @@ There are three different sessions where we use this sample application - mini c
 
 :one: **Mini CodeJam (1 hour)**
 
-In this session, you will develop a simple SpringBoot application, run it locally and on SAP Cloud Platform Cloud Foundry Environment. You will explore what you see for the application in SAP Cloud Platform cockpit and via CF CLI, check basic logs and metrics, etc.
+In this session, you will get familiar with the Cockpit and the Cloud Foundry CLI. Specifically, you will learn to:
+- push an application
+- bind a service to an app
+- check app logs
+- change the health check
+- do a blue-green deployment
 
 Detailed steps description for the session: [Mini CodeJam](/exercises/basic-codeJam)
 
