@@ -218,7 +218,7 @@ Then you should specify parameters for scaling. The rules to scale an applicatio
 ```Config
 {
     "instance_min_count": 1,
-    "instance_max_count": 3,
+    "instance_max_count": 2,
     "scaling_rules": [
         {
             "metric_type": "memoryused",
