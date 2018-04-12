@@ -86,7 +86,7 @@ Now you have connected and configured Cloud Connector and you have exposed one b
 
 ## Modify the cloud application
 
-Now let us modify the application to consume the connectivity service:
+(**only for master branch**) Now let us modify the application to consume the connectivity service:
 * Add the following dependency to the *pom.xml* file:
 ```xml
 	<dependency>
@@ -275,7 +275,7 @@ The **getImageFromBackend** method handles the requests to the on-premise system
 ```
 
 ## Push the application
-* Modify the *manifest.yml* file to include the binding for your connectivity instance:
+* Modify the `manifest.yml` file to include the binding for your connectivity instance for the application `product-list`:
 ```
 	services:
 	    - ...
