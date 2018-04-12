@@ -29,8 +29,8 @@ private static final Logger logger = LoggerFactory.getLogger(Application.class);
   ```
 * The application-logs service is already created and bound to the product-list.
 * Before generating logs, the `logback.xml` file must be changed.
-* In Eclipse open `logback.xml` and change `<appender-ref ref="STDOUT-JSON" />` to `<appender-ref ref="STDOUT" />`
-* In Eclipse build the project - Right click on the project -> Run As... -> Maven Build
+  * In Eclipse open `logback.xml` and change `<appender-ref ref="STDOUT-JSON" />` to `<appender-ref ref="STDOUT" />`
+  * In Eclipse build the project - Right click on the project -> Run As... -> Maven Build
 * Go into the root folder of the application via command line and push it with `cf push product-list`
 <br><br>
 
@@ -67,7 +67,7 @@ private static final Logger logger = LoggerFactory.getLogger(Application.class);
 ![Kibana recent logs](/img/kibana_recent_logs.png?raw=true)
 <br><br>
 
-* In Eclipse open **logback.xml**. Change `<appender-ref ref="STDOUT" />` to `<appender-ref ref="STDOUT-JSON" />`
+* In Eclipse open `logback.xml` Change `<appender-ref ref="STDOUT" />` to `<appender-ref ref="STDOUT-JSON" />`
 * In Eclipse build the project - Right click on the project -> Run As... -> Maven Build
 * Go into the root folder of the application via command line and push it with `cf push product-list`
 * Once the application is up and running in your Cloud Foundry trial account, go to cockpit, navigate to the application and request the application route in a browser adding the relative path that generates logs: `YOUR_APP_URL/productsByParam?name=Notebook%20Basic%2015`
