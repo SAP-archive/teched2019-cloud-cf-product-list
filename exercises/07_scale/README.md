@@ -39,7 +39,7 @@ Use ```cf scale APP_NAME -k DISK``` to change the disk space limit applied to al
 
 Use ```cf scale APP_NAME -m MEMORY``` to change the memory limit applied to all instances of your application. MEMORY must be an integer followed by either an M, for megabytes, or G, for gigabytes.
 
-- We want to scale down the application and make our sample application run with less memory - 256MB.
+- We want to scale down the application and make our sample application run with less memory (712MB instead of 896MB):
 ```
 cf scale APP_NAME -m 712M
 ```
