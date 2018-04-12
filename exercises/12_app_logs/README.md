@@ -17,9 +17,9 @@ First we will have a look at the source code of the application. It already uses
 The pom.xml has the required dependencies declared, configuration (logback.xml) and implementation (ConfigLogging) is available.
 
 * Open Eclipse and go to the class  `Controller.java` in my-product-list application"
-  - a `Logger` object is declared inside the class:
+  - a `Logger` object is already declared inside the class:
 ```java
-private static final Logger logger = LoggerFactory.getLogger(Controller.class);
+private static final Logger logger = LoggerFactory.getLogger(Application.class);
 ```
 
   - The method `getProductByName` writes the following log entries:
