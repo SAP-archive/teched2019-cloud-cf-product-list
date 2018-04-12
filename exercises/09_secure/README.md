@@ -87,7 +87,13 @@ To grant users access to the Product List application, an instance of the XS UAA
 	```
 * Show the marketplace:  `cf m`
 * Create the XS UAA service instance: `cf create-service xsuaa application xsuaa -c ./src/main/security/xs-security.json`
-* (**only for master branch**) Add the XS UAA service instance under services to the `manifest.yml`: `- xsuaa`
+* (**only for master branch**) Add the XS UAA service instance under services to the `manifest.yml`:
+```
+applications:
+  ...
+  services:
+    - xsuaa
+```
 
 ### Step 3: Adding required security libraries
 
