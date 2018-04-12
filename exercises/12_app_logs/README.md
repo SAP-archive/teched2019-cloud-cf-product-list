@@ -17,7 +17,7 @@ First we will have a look at the source code of the application. It already uses
 The pom.xml has the required dependencies declared, configuration (logback.xml) and implementation (ConfigLogging) is available.
 
 * Open Eclipse and go to the class  `Controller.java` in my-product-list application"
-  - There us a `Logger` object inside the class:
+  - a `Logger` object is declared inside the class:
 ```java
 private static final Logger logger = LoggerFactory.getLogger(Controller.class);
 ```
@@ -28,8 +28,8 @@ private static final Logger logger = LoggerFactory.getLogger(Controller.class);
   logger.info("***Second - Retrieving details for '{}'.", name);
   ```
 * The application-logs service is already created and bound to the product-list.
-* Before generating logs change the logback.xml file.
-* In Eclipse open **logback.xml**. Change `<appender-ref ref="STDOUT-JSON" />` to `<appender-ref ref="STDOUT" />`
+* Before generating logs, the `logback.xml` file must be changed.
+* In Eclipse open `logback.xml` and change `<appender-ref ref="STDOUT-JSON" />` to `<appender-ref ref="STDOUT" />`
 * In Eclipse build the project - Right click on the project -> Run As... -> Maven Build
 * Go into the root folder of the application via command line and push it with `cf push product-list`
 <br><br>
