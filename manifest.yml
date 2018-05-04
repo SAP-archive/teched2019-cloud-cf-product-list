@@ -20,6 +20,7 @@ applications:
   services:
     - xsuaa
   env:
+    TENANT_HOST_PATTERN: ^(.*)-approuter-YOUR_BIRTH_DATE.cfapps.eu10.hana.ondemand.com
     destinations: >
       [
         {"name":"products-destination",
