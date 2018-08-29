@@ -9,8 +9,7 @@ applications:
   buildpack: https://github.com/cloudfoundry/java-buildpack.git#v4.3
   services:
     - xsuaa
-  env:
-    SAP_JWT_TRUST_ACL: '[{"clientid" : "*", "identityzone" : "*"}]'
+
 # Application Router
 - name: approuter
   host: approuter-YOUR_BIRTH_DATE
@@ -20,7 +19,6 @@ applications:
   services:
     - xsuaa
   env:
-    TENANT_HOST_PATTERN: ^(.*)-approuter-YOUR_BIRTH_DATE.cfapps.eu10.hana.ondemand.com
     destinations: >
       [
         {"name":"products-destination",

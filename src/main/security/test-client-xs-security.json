@@ -1,8 +1,0 @@
-{
-	"xsappname": "test-client",
-	"tenant-mode": "shared",
-	"authorities": 
-	[
-		"$ACCEPT_GRANTED_AUTHORITIES"
-	]
-}
