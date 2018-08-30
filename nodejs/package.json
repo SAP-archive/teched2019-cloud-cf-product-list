@@ -4,12 +4,15 @@
   "description": "Product list demo app for Cloudfoundry",
   "main": "index.js",
   "scripts": {
-		"start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "node test/test-products-by-param.js"
   },
   "author": "Patrick Spiegel",
   "license": "ISC",
   "dependencies": {
     "restify": "^7.2.1"
+  },
+  "devDependencies": {
+    "request": "^2.88.0"
   }
 }
