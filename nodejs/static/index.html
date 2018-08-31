@@ -43,7 +43,7 @@
 			// Insert the code to increase the memory of the application
 
 			// bind list with template
-	        productList.bindAggregation("items", "/_embedded/products", productItemTemplate, null, null);
+	        productList.bindAggregation("items", "/", productItemTemplate, null, null);
 
 			// create the list page
 			var products = new sap.m.Page("products", {
