@@ -10,7 +10,10 @@
   "author": "Patrick Spiegel",
   "license": "ISC",
   "dependencies": {
-    "restify": "^7.2.1"
+    "@sap/xsenv": "^1.2.9",
+    "@sap/xssec": "^2.1.15",
+    "express": "^4.16.3",
+    "passport": "^0.4.0"
   },
   "devDependencies": {
     "request": "^2.88.0"
