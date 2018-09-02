@@ -34,7 +34,12 @@
 				title : "{name}",
 				description : "{description}",
 				icon : "{pictureUrl}",
-				type : sap.m.ListType.Navigation
+				type : sap.m.ListType.Navigation,
+				press: function (oEvent) {
+					oSelectedItem = oEvent.oSource.getBindingContext().getObject();
+					oDetailsModel.setData(oSelectedItem);
+	        		app.to("details");
+	        	}
 			});
 
 			// create list
