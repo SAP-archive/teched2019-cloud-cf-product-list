@@ -1,0 +1,23 @@
+{
+	"Notebook Basic 15" : {
+		"name": "Notebook Basic 15",
+	 	"description": "Notebook Basic 15 with 1,7GHz - 15\" XGA - 1024MB DDR2 SDRAM - 40GB Hard Disc",
+		"price": 956.00,
+		"currencyCode": "EUR",
+		"pictureUrl": "images/HT-1000.jpg"
+	},
+	"Notebook Professional 15" : {
+		"name": "Notebook Professional 15",
+	 	"description": "Notebook Professional 15 with 2,3GHz - 15\" XGA - 2048MB DDR2 SDRAM - 40GB Hard Disc - DVD-Writer (DVD-R/+R/-RW/-RAM)",
+		"price": 1999.00,
+		"currencyCode": "EUR",
+		"pictureUrl": "images/HT-1010.jpg"
+	},
+	"Ergo Screen" : {
+		"name": "Ergo Screen",
+	 	"description": "17\" Optimum Resolution 1024 x 768 @ 85Hz, Max resolution 1280 x 960 @ 75Hz, Dot Pitch: 0.27mm",
+		"price": 230.00,
+		"currencyCode": "EUR",
+		"pictureUrl": "images/HT-1030.jpg"
+	}
+}
