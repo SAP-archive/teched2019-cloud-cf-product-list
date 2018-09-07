@@ -244,7 +244,6 @@ In order to enable access, the end-users should be assigned the required authori
 <br><br>
 ![Authorizations](/img/security_cockpit_8.png?raw=true)
 <br><br>
-- Before assigning the RoleCollection to the end-user, the user should have logged on to SAP ID Service at least once
 - The logon URL is https://$identityzone.$uaaDomain. This can be identified from the xsuaa binding credentials (`cf env approuter` and look for `xsuaa.credentials.url`)
 - Now, in the `Role Collection Assignment' UI, enter your user id used to logon to the current account and click on button **Show Assignments**
 - It lists the current Role Collection assignment to the user and also allows to add new Role Collections to the user
