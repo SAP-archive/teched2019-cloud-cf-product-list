@@ -7,8 +7,8 @@ LANDSCAPE_APPS_DOMAIN: cfapps.eu10.hana.ondemand.com
 #LANDSCAPE_APPS_DOMAIN: cfapps.us10.hana.ondemand.com
 
 # Option 1: To use the Spring boot implementation of the product list sample, uncomment the line below
-#PATH_PRODUCT_LIST_APP: spring/target/product-list.jar
+PATH_PRODUCT_LIST_APP: spring/target/product-list.jar
 
 # Option 2: To use the Node.js implementation of the product list sample, uncomment the line below
-PATH_PRODUCT_LIST_APP: nodejs
+#PATH_PRODUCT_LIST_APP: nodejs
 
