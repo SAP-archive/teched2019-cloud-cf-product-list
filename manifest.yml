@@ -4,17 +4,20 @@ applications:
 - name: product-list
   instances: 1
   memory: 896M
-  host: product-list-YOUR_BIRTH_DATE
-  path: target/product-list.jar
-  buildpack: https://github.com/cloudfoundry/java-buildpack.git#v4.3
+  routes:
+    - route: product-list-((YOUR_BIRTH_DATE)).((LANDSCAPE_APPS_DOMAIN))
+  path: ((PATH_PRODUCT_LIST_APP))
+
   services:
     - xsuaa
 
 # Application Router
 - name: approuter
-  host: approuter-YOUR_BIRTH_DATE
-  path: src/main/approuter
-  buildpack: nodejs_buildpack
+  routes:
+    - route: approuter-((YOUR_BIRTH_DATE)).((LANDSCAPE_APPS_DOMAIN))
+  path: approuter
+  buildpacks:
+    - nodejs_buildpack
   memory: 128M
   services:
     - xsuaa
@@ -22,7 +25,7 @@ applications:
     destinations: >
       [
         {"name":"products-destination",
-         "url":"https://product-list-YOUR_BIRTH_DATE.cfapps.eu10.hana.ondemand.com",
+         "url":"https://product-list-((YOUR_BIRTH_DATE)).((LANDSCAPE_APPS_DOMAIN))",
          "forwardAuthToken": true}
       ]
 ...
