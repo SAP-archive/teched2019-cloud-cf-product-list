@@ -5,7 +5,7 @@
 :clock4: 60 minutes
 
 ## Objective
-In this exercise, you will learn how to secure the Product List application by using a flexible authorization framework - OAuth 2.0. The Authorization Code grant of OAuth 2.0 provides an excellent security mechanism to grant only authorized users access to your application and its data. The SAP XS Advanced Application Router, the SAP XS UAA OAuth authorization service and Spring Boot are outstanding tools to configure roles, assign them to users and, finally, implement role checks in your application.
+In this exercise, you will learn how to secure the Product List application by using a flexible authorization framework - OAuth 2.0. The Authorization Code grant of OAuth 2.0 provides an excellent security mechanism to grant only authorized users access to your application and its data. The SAP XS Advanced Application Router, the SAP XS UAA OAuth authorization service and an application written using Spring Boot, Node.js or Java are outstanding tools to configure roles, assign them to users and, finally, implement role checks in your application.
 
 # Exercise description
 Microservices deployed on SAP Cloud Platform are freely accessible via the internet. To restrict access to authorized users only each microservice like the Product List application has to implement appropriate security mechanisms like [OAuth 2.0.](https://tools.ietf.org/html/rfc6749)
@@ -20,13 +20,13 @@ The following steps are required to protect the Product List application with OA
 * Step 5: Adding the XS Advanced Application Router
 * Step 6: Configuration of trust
 
-:warning: If not yet done, please [clone](https://github.com/SAP/cloud-cf-product-list-sample/tree/master/exercises/11_clonebranch) the advanced version of the application and import it into Eclipse.
+:warning: If not yet done, please [clone](https://github.com/SAP/cloud-cf-product-list-sample/tree/master/exercises/11_clonebranch) the advanced version of the application.
 
 ### Step 1: Definition of the Application Security Descriptor
 
 **This step is mandatory only if you work on the master branch. For the advanced branch you can go through it to understand what is happening (no need to change anything)**
 
-An Application Security Descriptor defines the details of the authentication methods and authorization types to use for accessing the Product List application. The Product List application uses this information to perform scope checks. With scopes a fine-grained user authorization can be build up. Spring Security allows to check scopes for each HTTP method on all HTTP endpoints. Scopes are carried by [JSON Web Tokens (JWTs)](https://tools.ietf.org/html/rfc7519) which in turn are issued by the [XS UAA Service](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/1.0.12/en-US/17acf1ac0cf84487a3199c51b28feafd.html).
+An Application Security Descriptor defines the details of the authentication methods and authorization types to use for accessing the Product List application. The Product List application uses this information to perform scope checks. With scopes a fine-grained user authorization can be build up. The container security library integrated in Spring, Node.js and Java Web applications allows to check scopes for each HTTP method on all HTTP endpoints. Scopes are carried by [JSON Web Tokens (JWTs)](https://tools.ietf.org/html/rfc7519) which in turn are issued by the [XS UAA Service](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/1.0.12/en-US/17acf1ac0cf84487a3199c51b28feafd.html).
 
 * Create the file `xs-security.json` in `src/main/security/`.
 * Paste the following JSON content
@@ -95,137 +95,13 @@ applications:
     - xsuaa
 ```
 
-### Step 3: Adding required security libraries
-
-**This step is mandatory only if you work on the master branch. For the advanced branch you can go through it to understand what is happening (no need to change anything)**
-
-To secure the application we have to add Spring Security to the classpath. By configuring Spring Security in the application, Spring Boot automatically secures all HTTP endpoints with BASIC authentication. Since we want to use OAuth 2.0 together with [Java Web Tokens (JWT)](https://tools.ietf.org/html/rfc7519) instead, we need to add the Spring OAUTH and Spring JWT dependencies as well.
-
-To enable offline JWT validation the SAP XS Security Libraries need to be added as well. The libraries are stored in `cloud-cf-product-list-sample-advanced/libs`. The latest version can be downloaded from the [Service Marketplace](https://launchpad.support.sap.com/#/softwarecenter/template/products/%20_APP=00200682500000001943&_EVENT=DISPHIER&HEADER=Y&FUNCTIONBAR=N&EVENT=TREE&NE=NAVIGATE&ENR=73555000100200004333&V=MAINT&TA=ACTUAL&PAGE=SEARCH/XS%20JAVA%201). At the time of writing the latest version is `XS_JAVA_4-70001362`.
-
-**Note:** Be aware to adapt the version number in your `pom.xml` in case you are using a newer version of the SAP XS Security Libraries.
-
-* Unzip `cloud-cf-product-list-sample-advanced/libs/XS_JAVA_4-70001362.ZIP`
-* Install SAP XS Security Libraries to your local maven repo by executing:
-
-```shell
-cd cloud-cf-product-list-sample-advanced/libs
-mvn clean install
-```
-* The following dependencies are already added to the advanced `pom.xml` file:
-
-```xml
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-security</artifactId>
-</dependency>
-<dependency>
-    <groupId>org.springframework.security.oauth</groupId>
-    <artifactId>spring-security-oauth2</artifactId>
-</dependency>
-<dependency>
-    <groupId>org.springframework.security</groupId>
-    <artifactId>spring-security-jwt</artifactId>
-</dependency>
-<dependency>
-    <groupId>com.sap.xs2.security</groupId>
-    <artifactId>security-commons</artifactId>
-    <version>0.22.2</version>
-</dependency>
-<dependency>
-    <groupId>com.sap.xs2.security</groupId>
-    <artifactId>java-container-security</artifactId>
-    <version>0.22.2</version>
-</dependency>
-<dependency>
-    <groupId>com.unboundid.components</groupId>
-    <artifactId>json</artifactId>
-    <version>1.0.0</version>
-</dependency>
-<dependency>
-    <groupId>com.sap.security.nw.sso.linuxx86_64.opt</groupId>
-    <artifactId>sapjwt.linuxx86_64</artifactId>
-    <version>1.0.0</version>
-</dependency>
-<dependency>
-    <groupId>com.sap.security.nw.sso.ntamd64.opt</groupId>
-    <artifactId>sapjwt.ntamd64</artifactId>
-    <version>1.0.0</version>
-</dependency>
-<dependency>
-    <groupId>com.sap.security.nw.sso.linuxppc64.opt</groupId>
-    <artifactId>sapjwt.linuxppc64</artifactId>
-    <version>1.0.0</version>
-</dependency>
-<dependency>
-    <groupId>com.sap.security.nw.sso.darwinintel64.opt</groupId>
-    <artifactId>sapjwt.darwinintel64</artifactId>
-    <version>1.0.0</version>
-</dependency>
-```
-
-**Note:** In case you started with the master branch the unit tests will fail. To disable authentication for the unit tests we need to enhance the `ControllerTest` class.
-
-* Add `@AutoConfigureMockMvc(secure = false)` to `ControllerTests` class
-* Build the project in Eclipse (`Context Menu -> Run As -> Maven install`) -> Result: BUILD SUCCESS
-* Run the project as Spring Boot App (`Context Menu -> Run As -> Spring Boot App`)
-* Call `localhost:8080` from your browser -> a window is popping up informing us that authentication is required
-
-All HTTP endpoints are secured and the Product List application is inaccessible. To regain access, we need to configure the Spring Security.
-
-### Step 4: Configuration of the Spring Security framework
-
-**This step is mandatory only if you work on the master branch. For the advanced branch you can go through it to understand what is happening (no need to change anything)**
-
-* In the advanced branch, a new class `com.sap.cp.cf.demoapps.ConfigSecurity.java` was created including the following scope checks and offline token validations.
-
-```java
-package com.sap.cp.cf.demoapps;
-
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
-
-import static org.springframework.http.HttpMethod.GET;
-
-@Configuration
-@EnableWebSecurity
-@EnableResourceServer
-public class ConfigSecurity extends ResourceServerConfigurerAdapter {
-
-  @Value("${vcap.services.xsuaa.credentials.xsappname:product-list}")
-	private String xsAppName;
-
-	// configure Spring Security, demand authentication and specific scopes
-	@Override
-	public void configure(final HttpSecurity http) throws Exception {
-
-		// @formatter:off
-    http.sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.NEVER).and()
-				.authorizeRequests()
-				.antMatchers(GET, "/health").permitAll()
-				.antMatchers(GET, "/**").access(String.format("#oauth2.hasScope('%s.%s')", xsAppName, "read"))
-				.anyRequest().denyAll(); // deny anything not configured above
-		// @formatter:on
-	}
-
-  // offline token validation
-	@Bean
-	protected static SAPOfflineTokenServicesCloud offlineTokenServicesBean() {
-		return new SAPOfflineTokenServicesCloud();
-	}
-}
-```
-
-Now all endpoints are blocked except the health endpoint. You can verify that by:
-* running `Maven Install`
-* right clicking on `product-list` and then `Run As -> Spring Boot App`
-* clicking on the following link http://localhost:8080/health
-
-### Step 5: Adding the XS Advanced Application Router
+### Step 3: Configure your Product List Service
+In the advanced branch, three different implementation options are provided. For this exercise, choose one of the implementations.
+ * Option 1: [Use the Spring Boot implementation of the Product List Sample](Spring.md)
+ * Option 2: [Use the Java implementation (not using Spring) of the Product List Sample](Java.md)
+ * Option 3: [Use the Node.js implementation of the Product List Sample](Node.js.md)
+ 
+### Step 4: Adding the XS Advanced Application Router
 
 **This step is mandatory for both the master and the advanced branch. For the latter, only the 'npm install' step has to be executed. You should still go entirely through it to have a better understanding of what is happening though.**
 
@@ -233,16 +109,16 @@ The [XS Advanced Application Router](https://github.com/SAP/cloud-cf-product-lis
 
 **Note** that the application router does not hide the backend microservices in any way. They are still directly accessible bypassing the application router. So, the backend microservices _must_ protect all their endpoints by validating the JWT token and implementing proper scope checks.
 
-* Download and install the application router in `product-list/src/main/approuter`
-  * Create a new folder: `mkdir product-list/src/main/approuter`
-  * Change directory to: `cd product-list/src/main/approuter`
-  * Create a new file to specify the version of the application router: `vi package.json`
+* Download and install the application router in `approuter`
+  * Create a new folder: `mkdir approuter`
+  * Change directory to: `cd approuter`
+  * Create a new file to specify the version of the application router: `notepad package.json`
 
 ```json
 {
     "name": "approuter",
     "dependencies": {
-        "@sap/approuter": "^2.9.1"
+        "@sap/approuter": "^5.6.4"
     },
     "scripts": {
         "start": "node node_modules/@sap/approuter/approuter.js"
@@ -251,7 +127,7 @@ The [XS Advanced Application Router](https://github.com/SAP/cloud-cf-product-lis
 ```
 
 *  Run `npm install`
-:bulb: For the advanced branch only this command has to be executed from `cloud-cf-product-list-sample-advanced/src/main/approuter`
+:bulb: For the advanced branch only this command has to be executed from `approuter`
 
 ```shell
     approuter$ npm config set @sap:registry https://npm.sap.com
@@ -272,41 +148,57 @@ The [XS Advanced Application Router](https://github.com/SAP/cloud-cf-product-lis
 
 * Add the application router to the `manifest.yml`
 
-```yml
----
+```yml---
 applications:
 # Application
 - name: product-list
   instances: 1
   memory: 896M
-  host: product-list-YOUR_BIRTH_DATE
-  path: target/product-list.jar
-  buildpack: https://github.com/cloudfoundry/java-buildpack.git#v4.3
+  routes:
+    - route: product-list-((YOUR_BIRTH_DATE)).((LANDSCAPE_APPS_DOMAIN))
+  path: ((PATH_PRODUCT_LIST_APP))
+
   services:
-    - postgres
     - xsuaa
-  env:
-    SAP_JWT_TRUST_ACL: '[{"clientid" : "*", "identityzone" : "*"}]'
+
 # Application Router
 - name: approuter
-  host: approuter-YOUR_BIRTH_DATE
-  path: src/main/approuter
-  buildpack: nodejs_buildpack
+  routes:
+    - route: approuter-((YOUR_BIRTH_DATE)).((LANDSCAPE_APPS_DOMAIN))
+  path: approuter
+  buildpacks:
+    - nodejs_buildpack
   memory: 128M
+  services:
+    - xsuaa
   env:
     destinations: >
       [
         {"name":"products-destination",
-         "url":"https://product-list-YOUR_BIRTH_DATE.cfapps.eu10.hana.ondemand.com",
+         "url":"https://product-list-((YOUR_BIRTH_DATE)).((LANDSCAPE_APPS_DOMAIN))",
          "forwardAuthToken": true}
       ]
-  services:
-    - xsuaa
+...
+```
+* The advanced branch uses variable replacement to simplify editing the manifest. Adopt the variables to your example and landscape
+```yml---
+# some data to make the urls unique
+YOUR_BIRTH_DATE: 00-00-00
+
+# Choose cfapps.eu10.hana.ondemand.com for the EU10 landscape, cfapps.us10.hana.ondemand.com for US10
+LANDSCAPE_APPS_DOMAIN: cfapps.eu10.hana.ondemand.com
+#LANDSCAPE_APPS_DOMAIN: cfapps.us10.hana.ondemand.com
+
+# Option 1: To use the Spring boot implementation of the product list sample, uncomment the line below
+PATH_PRODUCT_LIST_APP: spring/target/product-list.jar
+
+# Option 2: To use the Node.js implementation of the product list sample, uncomment the line below
+#PATH_PRODUCT_LIST_APP: nodejs
 ```
 
-* [Push the product list application togehter with a approuter](https://github.com/SAP/cloud-cf-product-list-sample/tree/master/exercises/04_push) to your cloud foundry space: `cf push`
+* [Push the product list application together with a approuter](https://github.com/SAP/cloud-cf-product-list-sample/tree/master/exercises/04_push) to your cloud foundry space: `cf push --vars-file vars.yml`
 
-### Step 6: Trust configuration
+### Step 5: Role Assignment
 
 **This step is mandatory for both master and advanced branch**
 
