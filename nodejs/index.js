@@ -8,13 +8,13 @@ const app = express();
 const port = process.env.port || 8080;
 
 // XSUAA Middleware
-/*passport.use(new JWTStrategy(xsenv.getServices({uaa:{tag:'xsuaa'}}).uaa));
+passport.use(new JWTStrategy(xsenv.getServices({uaa:{tag:'xsuaa'}}).uaa));
 
 app.use(passport.initialize());
-app.use(passport.authenticate('JWT', { session: false }));*/
+app.use(passport.authenticate('JWT', { session: false }));
 
-app.get('/products', /*checkReadScope,*/ getProducts);
-app.get('/productsByParam', /*checkReadScope,*/ getProductsByName);
+app.get('/products', checkReadScope, getProducts);
+app.get('/productsByParam', checkReadScope, getProductsByName);
 
 // Scope check
 function checkReadScope(req, res, next) {
