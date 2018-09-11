@@ -153,11 +153,12 @@ applications:
 # Application
 - name: product-list
   instances: 1
-  memory: 896M
+  memory: ((MEMORY_PRODUCT_LIST_APP))
   routes:
     - route: product-list-((YOUR_BIRTH_DATE)).((LANDSCAPE_APPS_DOMAIN))
   path: ((PATH_PRODUCT_LIST_APP))
-
+  buildpacks:
+    - ((BUILDPACK_PRODUCT_LIST_APP))
   services:
     - xsuaa
 
@@ -178,7 +179,6 @@ applications:
          "url":"https://product-list-((YOUR_BIRTH_DATE)).((LANDSCAPE_APPS_DOMAIN))",
          "forwardAuthToken": true}
       ]
-...
 ```
 * The advanced branch uses variable replacement to simplify editing the manifest. Adopt the variables to your example and landscape
 ```yml---
@@ -189,11 +189,20 @@ YOUR_BIRTH_DATE: 00-00-00
 LANDSCAPE_APPS_DOMAIN: cfapps.eu10.hana.ondemand.com
 #LANDSCAPE_APPS_DOMAIN: cfapps.us10.hana.ondemand.com
 
-# Option 1: To use the Spring boot implementation of the product list sample, uncomment the line below
+# Option 1: To use the Spring boot implementation of the product list sample, uncomment the lines below
 PATH_PRODUCT_LIST_APP: spring/target/product-list.jar
+MEMORY_PRODUCT_LIST_APP: 896M
+BUILDPACK_PRODUCT_LIST_APP: sap_java_buildpack
 
-# Option 2: To use the Node.js implementation of the product list sample, uncomment the line below
+# Option 2: To use the Java implementation of the product list sample, uncomment the lines below
+#PATH_PRODUCT_LIST_APP: java/target/product-list.war
+#MEMORY_PRODUCT_LIST_APP: 896M
+#BUILDPACK_PRODUCT_LIST_APP: sap_java_buildpack
+
+# Option 3: To use the Node.js implementation of the product list sample, uncomment the lines below
 #PATH_PRODUCT_LIST_APP: nodejs
+#MEMORY_PRODUCT_LIST_APP: 128
+#BUILDPACK_PRODUCT_LIST_APP: nodejs_buildpack
 ```
 
 * [Push the product list application together with a approuter](https://github.com/SAP/cloud-cf-product-list-sample/tree/master/exercises/04_push) to your cloud foundry space: `cf push --vars-file vars.yml`
