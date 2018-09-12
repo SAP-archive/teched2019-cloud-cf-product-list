@@ -6,14 +6,6 @@
 4. In the next step of the ```Import Maven Projects``` popup, click ```Browse```, navigate into the ```cloud-cf-product-list-sample-advanced``` project in your student directory folder (```D:\Files\Session\SEC...```), then click ```Finish```.
 5. The project is now imported in Eclipse. You should see the project in the Project Explorer.
 
-**Note:** In case you started with the master branch the unit tests will fail. To disable authentication for the unit tests we need to enhance the `ControllerTest` class.
-
-* Add `@AutoConfigureMockMvc(secure = false)` to `ControllerTests` class
-* Build the project in Eclipse (`Context Menu -> Run As -> Maven install`) -> Result: BUILD SUCCESS
-* Run the project as Spring Boot App (`Context Menu -> Run As -> Spring Boot App`)
-* Call `localhost:8080` from your browser -> a window is popping up informing us that authentication is required
-
-All HTTP endpoints are secured and the Product List application is inaccessible. To regain access, we need to configure the Spring Security.
 
 
 # Step 2: Security configuration
@@ -79,7 +71,4 @@ public class Controller extends HttpServlet {
 }
 ```
 
-Now all endpoints are blocked except the health endpoint. You can verify that by:
-* running `Maven Install`
-* right clicking on `product-list` and then `Run As -> Spring Boot App`
-* clicking on the following link http://localhost:8080/health
+Now all endpoints are blocked.
