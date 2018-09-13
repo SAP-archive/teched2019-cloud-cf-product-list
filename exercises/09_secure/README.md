@@ -180,7 +180,7 @@ applications:
          "forwardAuthToken": true}
       ]
 ```
-* The advanced branch uses variable replacement to simplify editing the manifest. Adopt the variables to your example and landscape
+* The advanced branch uses variable replacement to simplify editing the manifest. Adapt the variables to your example and landscape
 ```yml---
 # some data to make the urls unique
 YOUR_BIRTH_DATE: 00-00-00
