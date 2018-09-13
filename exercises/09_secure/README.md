@@ -201,7 +201,7 @@ BUILDPACK_PRODUCT_LIST_APP: sap_java_buildpack
 
 # Option 3: To use the Node.js implementation of the product list sample, uncomment the lines below
 #PATH_PRODUCT_LIST_APP: nodejs
-#MEMORY_PRODUCT_LIST_APP: 128
+#MEMORY_PRODUCT_LIST_APP: 128M
 #BUILDPACK_PRODUCT_LIST_APP: nodejs_buildpack
 ```
 
