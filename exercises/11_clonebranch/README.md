@@ -19,6 +19,7 @@ In this exercise you'll learn how to download the target version of the Product 
 
 ## 2. Import the sample project into Eclipse
 1. Open the Windows Start menu and enter ```Eclipse...``` in the input field. Under ```Programs``` you will see ```Eclipse Oxygen -...```. Click on this entry to open Eclipse.
+2. If you are prompted for the workspace during startup, select ```D:\Files\Session\SEC366\workspace```.
 2. Now import the target state of the sample project as Maven project into your Eclipse workspace: In the Eclipse menu, chose ```File```> ```Import...```.
 3. In the ```Import``` wizard, select ```Maven``` > ```Existing Maven Projects``` and click ```Next```.
 4. In the next step of the ```Import Maven Projects``` popup, click ```Browse```, navigate into the ```cloud-cf-product-list-sample-advanced``` project in your student directory folder (```D:\Files\Session\CPL...```), then click ```Finish```.
