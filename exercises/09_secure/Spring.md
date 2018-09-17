@@ -1,4 +1,4 @@
-## Step 1 Adding required security libraries
+## Step 1: Adding required security libraries
 
 **This step is mandatory only if you work on the master branch. For the advanced branch you can go through it to understand what is happening (no need to change anything)**
 
@@ -49,7 +49,7 @@ mvn clean install
 </dependency>
 
 ```
-## Step 2 Import the sample project into Eclipse
+## Step 2: Import the sample project into Eclipse
 1. Open the Windows Start menu and enter ```Eclipse...``` in the input field. Under ```Programs``` you will see ```Eclipse Oxygen -...```. Click on this entry to open Eclipse.
 2. Now import the target state of the sample project as Maven project into your Eclipse workspace: In the Eclipse menu, chose ```File```> ```Import...```.
 3. In the ```Import``` wizard, select ```Maven``` > ```Existing Maven Projects``` and click ```Next```.
