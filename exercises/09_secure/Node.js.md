@@ -1,4 +1,4 @@
-# Step 1 Adding required security libraries
+## Step 1: Adding required security libraries
 
 **This step is mandatory only if you work on the master branch. For the advanced branch you can go through it to understand what is happening (no need to change anything)**
 
@@ -31,7 +31,7 @@ The module xsenv is needed to retrieve the configuration of the default services
 
 
 
-# Step 2: Usage of the Security API in the Application
+## Step 2: Usage of the Security API in the Application
 **This step is mandatory only if you work on the master branch. For the advanced branch you can go through it to understand what is happening (no need to change anything)**
 
 *If you use [express](https://www.npmjs.com/package/express) and [passport](https://www.npmjs.com/package/passport), you can easily plug a ready-made authentication strategy.*
