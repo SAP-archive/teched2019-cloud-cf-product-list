@@ -1,4 +1,4 @@
-# Step 1 Adding required security libraries
+## Step 1 Adding required security libraries
 
 **This step is mandatory only if you work on the master branch. For the advanced branch you can go through it to understand what is happening (no need to change anything)**
 
@@ -66,7 +66,7 @@ mvn clean install
 All HTTP endpoints are secured and the Product List application is inaccessible. To regain access, we need to configure the Spring Security.
 
 
-# Step 3: Configuration of the Spring Security framework
+## Step 3: Configuration of the Spring Security framework
 
 **This step is mandatory only if you work on the master branch. For the advanced branch you can go through it to understand what is happening (no need to change anything)**
 
