@@ -61,8 +61,8 @@ An Application Security Descriptor defines the details of the authentication met
 
 **Mandatory for both master and advanced branch**
 
-To grant users access to the Product List application, an instance of the XS UAA service for this application must be created; the XSUAA service instance acts as an OAuth 2.0 client for the bound application.
-* You need to tell the CF CLI which Cloud Foundry you will use. To do this you have to set the API endpoint to the Cloud Controller of the Cloud Foundry region where you created your Cloud Foundry trial using ```cf api CLOUD_FOUNDRY_API_ENDPOINT```.
+To grant users access to the Product List application, an instance of the XSUAA service for this application must be created; the XSUAA service instance acts as an OAuth 2.0 client for the bound application.
+* You need to tell the CF CLI which Cloud Foundry you will use. To do this you have to set the API endpoint to the Cloud Controller of the Cloud Foundry region where you created your Cloud Foundry trial. Open a command prompt, navigate to the folder ```cloud-cf-product-list-sample-advanced``` in the student directory and use the command  ```cf api CLOUD_FOUNDRY_API_ENDPOINT```.
   * If you attend TechEd Las Vegas, target the US10 region API endpoint:
   ```
   cf api https://api.cf.us10.hana.ondemand.com

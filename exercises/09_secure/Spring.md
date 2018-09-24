@@ -51,21 +51,12 @@ mvn clean install
 ```
 ## Step 2: Import the sample project into Eclipse
 1. Open the Windows Start menu and enter ```Eclipse...``` in the input field. Under ```Programs``` you will see ```Eclipse Oxygen -...```. Click on this entry to open Eclipse.
-2. If you are prompted for the workspace during startup, select ```D:\Files\Session\SEC366\workspace```.
+2. If you are prompted for the workspace during startup, select ```<student directory>\workspace```.
 3. Now import the target state of the sample project as Maven project into your Eclipse workspace: In the Eclipse menu, chose ```File```> ```Import...```.
 4. In the ```Import``` wizard, select ```Maven``` > ```Existing Maven Projects``` and click ```Next```.
-5. In the next step of the ```Import Maven Projects``` popup, click ```Browse```, navigate into the ```cloud-cf-product-list-sample-advanced\spring``` project in your student directory folder (```D:\Files\Session\SEC...```), then click ```Finish```.
+5. In the next step of the ```Import Maven Projects``` popup, click ```Browse```, navigate into the ```cloud-cf-product-list-sample-advanced\spring``` project in your student directory folder, then click ```Finish```.
 6. The project is now imported in Eclipse. You should see the project in the Project Explorer.
-
-**Note:** In case you started with the master branch the unit tests will fail. To disable authentication for the unit tests we need to enhance the `ControllerTest` class.
-
-* Add `@AutoConfigureMockMvc(secure = false)` to `ControllerTests` class
-* Build the project in Eclipse (`Context Menu -> Run As -> Maven install`) -> Result: BUILD SUCCESS
-* Run the project as Spring Boot App (`Context Menu -> Run As -> Spring Boot App`)
-* Call `localhost:8080` from your browser -> a window is popping up informing us that authentication is required
-
-All HTTP endpoints are secured and the Product List application is inaccessible. To regain access, we need to configure the Spring Security.
-
+7. Build the project in Eclipse (`Context Menu -> Run As -> Maven install`) -> Result: BUILD SUCCESS
 
 ## Step 3: Configuration of the Spring Security framework
 
