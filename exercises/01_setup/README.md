@@ -31,13 +31,6 @@ In this exercise you'll learn how you can create free trial account on the SAP C
 ![Select Trial Region](/img/go_to_space.png?raw=true)
 <br><br>
 
-
-:bulb: **Note:** If you already started your Cloud Foundry environment trial you won't see *Start Cloud Foundry Trial* button. In this case, simply click on the *Go to Cloud Foundry Trial* button.
-<br><br>
-![GO to trial](/img/go_to_trial_button.png?raw=true)
-<br><br>
-You are now in your Cloud Foundry trial space.
-
 ## Cockpit
 This is a simplified picture of the domain model you have in the Cloud Foundry Environment. If you want to learn more about the different entities, check the [documentation.](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/8ed4a705efa0431b910056c0acdbf377.html)
 

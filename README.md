@@ -109,6 +109,7 @@ In this session you will explore a bit more sophisticated enhancements and opera
 * Explore how you can update applications running in the Cloud-Foundry , using blue/green deployment approach.
 * Create an MTA archive and check how the deployment and update is simplified in case you have a more complex application that consists of multiple modules and uses multiple services.
 * Secure the Product List application and configure the OAuth 2.0 Authorization Code Grant (human to service communication).
+* Choose Spring Boot, Java or Node.js for a Product List backend application
 * Extend the application to consume Connectivity service and access on-premise systems exposed by Cloud Connector
 
 Detailed steps description for this session: [Advanced Hands-on](exercises/advanced-hands-on)
