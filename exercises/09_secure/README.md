@@ -103,13 +103,13 @@ In the advanced branch, three different implementation options are provided. For
  
 ### Step 4: Adding the XS Advanced Application Router
 
-**This step is mandatory for both the master and the advanced branch. For the latter, only the 'npm install' step has to be executed. You should still go entirely through it to have a better understanding of what is happening though.**
+**This step is mandatory for both the master and the advanced branch.**
 
 The [XS Advanced Application Router](https://github.com/SAP/cloud-cf-product-list-sample/blob/advanced/src/main/approuter/README.md) is used to provide a single entry point to a business application that consists of several different apps (microservices). It dispatches requests to backend microservices and acts as a reverse proxy. The rules that determine which request should be forwarded to which _destinations_ are called _routes_. The application router can be configured to authenticate the users and propagate the user information. Finally, the application router can serve static content.
 
 **Note** that the application router does not hide the backend microservices in any way. They are still directly accessible bypassing the application router. So, the backend microservices _must_ protect all their endpoints by validating the JWT token and implementing proper scope checks.
 
-* Download and install the application router in `approuter`
+* Only for master branch: Download and install the application router in `approuter`
   * Create a new folder: `mkdir approuter`
   * Change directory to: `cd approuter`
   * Create a new file to specify the version of the application router: `notepad package.json`
@@ -134,7 +134,7 @@ The [XS Advanced Application Router](https://github.com/SAP/cloud-cf-product-lis
     approuter$ npm install @sap/approuter
 ```
 
-* Configure the application router by defining the destinations and routes: `vi src/main/approuter/xs-app.json`
+* Only for master branch: Configure the application router by defining the destinations and routes: `vi src/main/approuter/xs-app.json`
 
 ```json
 {
@@ -146,7 +146,7 @@ The [XS Advanced Application Router](https://github.com/SAP/cloud-cf-product-lis
 }
 ```
 
-* Add the application router to the `manifest.yml`
+* Only for master branch: Add the application router to the `manifest.yml`
 
 ```yml---
 applications:
@@ -180,7 +180,7 @@ applications:
          "forwardAuthToken": true}
       ]
 ```
-* The advanced branch uses variable replacement to simplify editing the manifest. Adapt the variables to your example and landscape
+* The advanced branch uses variable replacement to simplify editing the manifest. Adapt the variables in file ```vars.yml``` within directory ```cloud-cf-product-list-sample-advanced``` to your example and landscape by using an editor of your choice.
 ```yml---
 # some data to make the urls unique
 YOUR_BIRTH_DATE: 00-00-00
@@ -212,13 +212,16 @@ BUILDPACK_PRODUCT_LIST_APP: sap_java_buildpack
 **This step is mandatory for both master and advanced branch**
 
 Now let us see how to enable access to the application for the business users or end-users.
-- Launch the `approuter` application in the browser and logon with your user credentials
+- Determine the URL of your approuter application by executing `cf apps` in the command prompt. The output lists the URL for the approuter which should have the following format: `approuter-<YOUR_BIRTH_DATE>.<LANDSCAPE_APPS_DOMAIN>`
+- Launch the approuter application in the browser by opening the determined URL
+- Logon with your user credentials
 - You will get an error, Insufficient scope for this resource
 <br><br>
 ![Authorizations](/img/security_cockpit_0.png?raw=true)
 <br><br>
-In order to enable access, the end-users should be assigned the required authorizations. The authorizations of the application is registered with the authorization services, xsuaa, using the security.json. You can view these authorizations for the application in the Cockpit.
-- Navigate to the `Org --> Space --> Applications --> approuter` [this is the front end application]
+
+In order to enable access, the end-users should be assigned the required authorizations. The authorizations of the application is registered with the authorization services, xsuaa, using the security.json. You can view these authorizations for the application in the SAP Cloud Cockpit.
+- Navigate to the `Subaccount --> Space --> Applications --> approuter` [this is the front end application]
 - Expand the `Security` group and navigate to `Roles` UI
 <br><br>
 ![Authorizations](/img/security_cockpit_1.png?raw=true)
@@ -253,7 +256,7 @@ In order to enable access, the end-users should be assigned the required authori
 <br><br>
 ![Authorizations](/img/security_cockpit_8.png?raw=true)
 <br><br>
-- The logon URL is https://$identityzone.$uaaDomain. This can be identified from the xsuaa binding credentials (`cf env approuter` and look for `xsuaa.credentials.url`)
+- Note: The logon URL is https://$identityzone.$uaaDomain. This can be identified from the xsuaa binding credentials (`cf env approuter` and look for `xsuaa.credentials.url`)
 - Now, in the `Role Collection Assignment' UI, enter your user id used to logon to the current account and click on button **Show Assignments**
 - It lists the current Role Collection assignment to the user and also allows to add new Role Collections to the user
 - Click on button **Add Assignment**
