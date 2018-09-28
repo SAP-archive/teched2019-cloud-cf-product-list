@@ -215,9 +215,13 @@ Now let us see how to enable access to the application for the business users or
 - Determine the URL of your approuter application by executing `cf apps` in the command prompt. The output lists the URL for the approuter which should have the following format: `approuter-<YOUR_BIRTH_DATE>.<LANDSCAPE_APPS_DOMAIN>`
 - Launch the approuter application in the browser by opening the determined URL
 - Logon with your user credentials
-- You will get an error, Insufficient scope for this resource
+- If you selected option 1 (Spring) in step 3, you will get the error "Insufficient scope for this resource"
 <br><br>
 ![Authorizations](/img/security_cockpit_0.png?raw=true)
+<br><br>
+- If you selected option 2 (Java) or option 3 (node.js) in step 3, you will get an empty product list
+<br><br>
+![Authorizations](/img/security_cockpit_0b.png?raw=true)
 <br><br>
 
 In order to enable access, the end-users should be assigned the required authorizations. The authorizations of the application is registered with the authorization services, xsuaa, using the security.json. You can view these authorizations for the application in the SAP Cloud Cockpit.
