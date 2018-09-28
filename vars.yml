@@ -9,7 +9,7 @@ LANDSCAPE_APPS_DOMAIN: cfapps.eu10.hana.ondemand.com
 # Option 1: To use the Spring boot implementation of the product list sample, uncomment the lines below
 PATH_PRODUCT_LIST_APP: spring/target/product-list.jar
 MEMORY_PRODUCT_LIST_APP: 896M
-BUILDPACK_PRODUCT_LIST_APP: sap_java_buildpack
+BUILDPACK_PRODUCT_LIST_APP: java_buildpack 
 
 # Option 2: To use the Java implementation of the product list sample, uncomment the lines below
 #PATH_PRODUCT_LIST_APP: java/target/product-list.war
