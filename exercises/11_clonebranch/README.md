@@ -16,3 +16,4 @@ In this exercise you'll learn how to download the target version of the Product 
 2. Click on **Branch: master** dropdown and select **advanced** branch.
 3. Now click on **Clone or download** button and select Download zip
 4. Unzip the downloaded file in your students directory - a new directory ```cloud-cf-product-list-sample-advanced``` will be created.
+
