@@ -15,7 +15,7 @@ Prerequisites:
 ![SAML in Cockpit](./saml/idp.png?raw=true)
 ### 3. Enter a name and a description that make clear that the trust configuration refers to the identity provider.
 ![SAML in Cockpit](./saml/idp_metadata.png?raw=true)
-### 4. Get the metadata from the following URL: https://IAS-Tenant.accounts.ondemand.com/saml2/metadata
+### 4. Get the metadata from the following URL: https://\<IAS Tenant\>.accounts.ondemand.com/saml2/metadata
 Example: 
 https://xs2security.accounts400.ondemand.com/saml2/metadata
 ### 5. Copy the SAML 2.0 metadata and paste it into the Metadata field.
@@ -31,7 +31,7 @@ https://xs2security.accounts400.ondemand.com/saml2/metadata
 To establish trust with an SAML identity provider, you must assign the identity provider’s metadata file and define attribute mappings. The attributes are included in the SAML 2.0 assertion. With the UAA as SAML service provider, they are used for assignment of UAA authorizations based on information maintained in the identity provider.
 
 ### 1. Open the administration console of SAP Cloud Platform Identity Authentication service.
-Example: https://IAS Tenant.accounts.ondemand.com/admin 
+Example: https://\<IAS Tenant\>.accounts.ondemand.com/admin 
 
 ### 2. To add a new SAML 2.0 identity provider, create a new application in Applications section of Applications & Resources by using the + Add button. 
 ![SAML in Cockpit](./saml/ias_add.png?raw=true)
@@ -43,9 +43,9 @@ Use the metadata file of your subaccount. You find the metadata file in the foll
 
 **Note:** Replace subdomain with a corresponding value for your subaccount
 
-**EU10**: https://subdomain.authentication.eu10.hana.ondemand.com/saml/metadata
+**EU10**: https://\<subdomain\>.authentication.eu10.hana.ondemand.com/saml/metadata
 
-**US10**: https://subdomain.authentication.us10.hana.ondemand.com/saml/metadata
+**US10**: https://\<subdomain\>.authentication.us10.hana.ondemand.com/saml/metadata
 ### 5. Choose Name ID Attribute, select E-Mail as the unique attribute, and choose Save.
 ![SAML in Cockpit](./saml/ias_configure_email.png?raw=true)
 ### 6. Choose Assertion Attributes and enter Groups (capitalized) in the Groups user attribute. Save your changes.
@@ -56,6 +56,6 @@ Use the metadata file of your subaccount. You find the metadata file in the foll
 
 **Note:** Replace subdomain with a corresponding value for your subaccount
 
-**EU10**: https://subdomain.authentication.eu10.hana.ondemand.com/config?action=who
+**EU10**: https://\<subdomain\>.authentication.eu10.hana.ondemand.com/config?action=who
   
-**US10**: https://subdomain.authentication.us10.hana.ondemand.com/config?action=who
+**US10**: https://\<subdomain\>.authentication.us10.hana.ondemand.com/config?action=who
