@@ -280,3 +280,4 @@ Besides SAP ID Service, the Cloud Foundry environment also supports custom SAML 
 **Note for Teched participants:**: Contact the instructors for the configuration in the shared Identity Provider
 
 - Assign an IdP user the role collection in the same way as for an SAP Id Service user
+
