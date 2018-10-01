@@ -21,7 +21,7 @@ Clone also the **advanced** branch of the product list application: [clone advan
 
 Secure the Product List application, configure the OAuth 2.0 Client Credentials Grant (service to service communication) and the OAuth 2.0 Authorization Code Grant (human to service communication):  [secure](../09_secure)
 
-:four: **Connectivity**
+:four: **(Optional) Connectivity**
 
 Use Cloud Connector and Connectivity service to retrieve data from on-premise backend systems [connectivity](../10_connectivity)
 
