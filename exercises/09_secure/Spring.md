@@ -48,6 +48,27 @@ mvn clean install
     <version>1.0.0</version>
 </dependency>
 
+<dependency>
+	<groupId>com.sap.security.nw.sso.linuxx86_64.opt</groupId>
+	<artifactId>sapjwt.linuxx86_64</artifactId>
+	<version>1.1.19</version>
+</dependency>
+<dependency>
+	<groupId>com.sap.security.nw.sso.ntamd64.opt</groupId>
+	<artifactId>sapjwt.ntamd64</artifactId>
+	<version>1.1.19</version>
+</dependency>
+<dependency>
+	<groupId>com.sap.security.nw.sso.linuxppc64.opt</groupId>
+	<artifactId>sapjwt.linuxppc64</artifactId>
+	<version>1.1.19</version>
+</dependency>
+<dependency>
+	<groupId>com.sap.security.nw.sso.darwinintel64.opt</groupId>
+	<artifactId>sapjwt.darwinintel64</artifactId>
+	<version>1.1.19</version>
+</dependency>
+
 ```
 ## Step 2: Import the sample project into Eclipse
 1. Open the Windows Start menu and enter ```Eclipse...``` in the input field. Under ```Programs``` you will see ```Eclipse Oxygen -...```. Click on this entry to open Eclipse.
@@ -105,7 +126,9 @@ public class ConfigSecurity extends ResourceServerConfigurerAdapter {
 }
 ```
 
-Now all endpoints are blocked except the health endpoint. You can verify that by:
-* running `Maven Install`
-* right clicking on `product-list` and then `Run As -> Spring Boot App`
-* clicking on the following link http://localhost:8080/health
+To build the project, run the following commands:
+```
+D:
+D:\Files\Session\SEC366\cloud-cf-product-list-sample-advanced\spring
+mvn clean install
+```
