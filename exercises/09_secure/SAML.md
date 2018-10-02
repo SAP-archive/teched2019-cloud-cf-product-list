@@ -33,12 +33,13 @@ To establish trust with an SAML identity provider, you must assign the identity 
 ### 1. Open the administration console of SAP Cloud Platform Identity Authentication service.
 Example: https://\<IAS Tenant\>.accounts.ondemand.com/admin 
 
-### 2. To add a new SAML 2.0 identity provider, create a new application in Applications section of Applications & Resources by using the + Add button. 
+### 2. To add a new SAML 2.0 identity provider, create a new application in Applications section of Applications & Resources by using the "+ Add" button. 
 ![SAML in Cockpit](./saml/ias_add.png?raw=true)
 ### 3. Choose a name for the application that clearly identifies it as your new identity provider and save your changes.
 ![SAML in Cockpit](./saml/ias_add_app.png?raw=true)
 ### 4. Choose SAML 2.0 Configuration and import the relevant metadata file.
 ![SAML in Cockpit](./saml/ias_metadata.png?raw=true)
+
 Use the metadata file of your subaccount. You find the metadata file in the following location:
 
 **Note:** Replace subdomain with a corresponding value for your subaccount
@@ -54,7 +55,7 @@ Use the metadata file of your subaccount. You find the metadata file in the foll
 ![SAML in Cockpit](./saml/ias_groups3.png?raw=true)  
 ### 7. Test the SAML 2.0 configuration, use the following URL:
 
-**Note:** Replace subdomain with a corresponding value for your subaccount
+**Note:** Replace the subdomain with the corresponding value for your subaccount
 
 **EU10**: https://\<subdomain\>.authentication.eu10.hana.ondemand.com/config?action=who
   
