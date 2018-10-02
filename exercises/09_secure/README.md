@@ -274,8 +274,8 @@ In order to enable access, the end-users should be assigned the required authori
 - Now, the user should be able to access the application
 - Launch the application on the browser and login with your credentials. You should be able to see the product list
 ### (optional) Step 6: Role Assignment using a SAML Identity Provider
-Besides SAP ID Service, the Cloud Foundry environment also supports custom SAML Identity Providers. Once a SAML2 Identity Provider has been added, role collections can be assigned to the corresponding users.
-- Configure a SAML IdP as described in [SAML Configuration](./SAML.md)
+Besides SAP ID Service, the Cloud Foundry environment also supports custom SAML Identity Providers. Once an SAML2 Identity Provider has been added, role collections can be assigned to the corresponding users.
+- Configure an SAML IdP as described in [SAML Configuration](./SAML.md)
 
 **Note for Teched participants:**: Contact the instructors for the configuration in the shared Identity Provider
 
