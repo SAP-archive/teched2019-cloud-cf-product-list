@@ -105,7 +105,9 @@ public class ConfigSecurity extends ResourceServerConfigurerAdapter {
 }
 ```
 
-Now all endpoints are blocked except the health endpoint. You can verify that by:
-* running `Maven Install`
-* right clicking on `product-list` and then `Run As -> Spring Boot App`
-* clicking on the following link http://localhost:8080/health
+To build the project, run the following commands:
+```
+D:
+D:\Files\Session\SEC366\cloud-cf-product-list-sample-advanced\spring
+mvn clean install
+```
