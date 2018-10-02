@@ -7,8 +7,7 @@ applications:
   routes:
     - route: product-list-((YOUR_BIRTH_DATE)).((LANDSCAPE_APPS_DOMAIN))
   path: ((PATH_PRODUCT_LIST_APP))
-  buildpacks:
-    - ((BUILDPACK_PRODUCT_LIST_APP))
+  buildpack: ((BUILDPACK_PRODUCT_LIST_APP))
   services:
     - xsuaa
 
