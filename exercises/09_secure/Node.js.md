@@ -74,3 +74,14 @@ app.listen(port, () => {
 ```
 
 Now all endpoints are blocked.
+
+*  Run `npm install`
+
+:bulb: For the advanced branch only this command has to be executed from `nodejs`
+
+```shell
+D:
+cd D:\Files\Session\SEC366\cloud-cf-product-list-sample-advanced\nodejs
+npm config set @sap:registry https://npm.sap.com
+npm install
+```
