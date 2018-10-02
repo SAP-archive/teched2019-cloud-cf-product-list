@@ -86,7 +86,12 @@ To grant users access to the Product List application, an instance of the XSUAA 
 	Password> password for your user
 	```
 * Show the marketplace:  `cf m`
-* Create the XS UAA service instance: `cf create-service xsuaa application xsuaa -c xs-security.json`
+* Create the XS UAA service instance: 
+```
+D:
+cd D:\Files\Session\SEC366\cloud-cf-product-list-sample-advanced
+cf create-service xsuaa application xsuaa -c xs-security.json
+```
 * (**only for master branch**) Add the XS UAA service instance under services to the `manifest.yml`:
 ```
 applications:
