@@ -6,4 +6,4 @@ applications:
   memory: 896M
   host: product-list-YOUR_BIRTH_DATE
   path: target/product-list.jar
-  buildpack: https://github.com/cloudfoundry/java-buildpack.git#v4.3
+  buildpack: https://github.com/cloudfoundry/java-buildpack.git
