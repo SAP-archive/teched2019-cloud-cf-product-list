@@ -26,8 +26,8 @@ import org.springframework.test.web.servlet.request.RequestPostProcessor;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(properties = {
-		"xsuaa.xsappname=java-hello-world",
-		"xsuaa.clientid=sb-java-hello-world",
+		"xsuaa.xsappname=product-list!t22",
+		"xsuaa.clientid=sb-product-list!t22",
 		"xsuaa.url=${mockxsuaaserver.url}" }, classes = { ConfigSecurity.class, Controller.class, Application.class})
 @ActiveProfiles("uaamock")
 @AutoConfigureMockMvc(secure = false)
@@ -48,7 +48,7 @@ public class ControllerTests {
 		org.apache.commons.io.IOUtils a;
 		final String productName = "TestProduct";
 		given(productRepo.findByName(productName)).willReturn(Arrays.asList(new Product(productName)));
-		mvc.perform(get("/productsByParam?name=" + productName).with(bearerToken(jwtGenerator.addScopes(new String[] { "openid","java-hello-world.read"}).getToken().getTokenValue())).accept(MediaType.APPLICATION_JSON))
+		mvc.perform(get("/productsByParam?name=" + productName).with(bearerToken(jwtGenerator.addScopes(new String[] { "openid","product-list!t22.read"}).getToken().getTokenValue())).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk()).andExpect(jsonPath("$[0].name", is(productName)));
 
 	}
