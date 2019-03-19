@@ -4,72 +4,30 @@
 
 To secure the application we have to add Spring Security to the classpath. By configuring Spring Security in the application, Spring Boot automatically secures all HTTP endpoints with BASIC authentication. Since we want to use OAuth 2.0 together with [Java Web Tokens (JWT)](https://tools.ietf.org/html/rfc7519) instead, we need to add the Spring OAUTH and Spring JWT dependencies as well.
 
-To enable offline JWT validation the SAP XS Security Libraries need to be added as well. The latest version can be downloaded from the [Service Marketplace](https://launchpad.support.sap.com/#/softwarecenter/template/products/%20_APP=00200682500000001943&_EVENT=DISPHIER&HEADER=Y&FUNCTIONBAR=N&EVENT=TREE&NE=NAVIGATE&ENR=73555000100200004333&V=MAINT&TA=ACTUAL&PAGE=SEARCH/XS%20JAVA%201). At the time of writing the latest version is `XS_JAVAP_2-70001362.ZIP`. 
-For Teched participants we have stored a copy on `\\students.fair.sap.corp\Studentshare\SEC366\XS_JAVAP_2-70001362.ZIP`.
-
-**Note:** Be aware to adapt the version number in your `pom.xml` in case you are using a newer version of the SAP XS Security Libraries.
-
-* Unzip `XS_JAVAP_2-70001362.ZIP` to `D:\Files\Session\sec366\libs`
-* Install SAP XS Security Libraries to your local maven repo by executing:
-
-```shell
-cd D:\Files\Session\sec366\libs
-D:
-mvn clean install
-```
 * The following dependencies are already added to the advanced `pom.xml` file:
 
 ```xml
 <dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-security</artifactId>
-</dependency>
-<dependency>
-    <groupId>org.springframework.security.oauth</groupId>
-    <artifactId>spring-security-oauth2</artifactId>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-oauth2-jose</artifactId>
 </dependency>
 <dependency>
     <groupId>org.springframework.security</groupId>
-    <artifactId>spring-security-jwt</artifactId>
+    <artifactId>spring-security-config</artifactId>
 </dependency>
 <dependency>
-    <groupId>com.sap.xs2.security</groupId>
-    <artifactId>security-commons</artifactId>
-    <version>0.28.6</version>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-oauth2-resource-server</artifactId>
 </dependency>
 <dependency>
-    <groupId>com.sap.xs2.security</groupId>
-    <artifactId>java-container-security</artifactId>
-    <version>0.28.6</version>
-</dependency>
-<dependency>
-    <groupId>com.unboundid.components</groupId>
-    <artifactId>json</artifactId>
-    <version>1.0.0</version>
-</dependency>
-
-<dependency>
-	<groupId>com.sap.security.nw.sso.linuxx86_64.opt</groupId>
-	<artifactId>sapjwt.linuxx86_64</artifactId>
-	<version>1.1.19</version>
-</dependency>
-<dependency>
-	<groupId>com.sap.security.nw.sso.ntamd64.opt</groupId>
-	<artifactId>sapjwt.ntamd64</artifactId>
-	<version>1.1.19</version>
-</dependency>
-<dependency>
-	<groupId>com.sap.security.nw.sso.linuxppc64.opt</groupId>
-	<artifactId>sapjwt.linuxppc64</artifactId>
-	<version>1.1.19</version>
-</dependency>
-<dependency>
-	<groupId>com.sap.security.nw.sso.darwinintel64.opt</groupId>
-	<artifactId>sapjwt.darwinintel64</artifactId>
-	<version>1.1.19</version>
+    <groupId>com.sap.cloud.security.xsuaa</groupId>
+    <artifactId>spring-xsuaa</artifactId>
+    <version>1.3.0</version>
 </dependency>
 
 ```
+**Additional information:** https://github.com/SAP/cloud-security-xsuaa-integration/tree/master/spring-xsuaa
+
 ## Step 2: Import the sample project into Eclipse
 1. Open the Windows Start menu and enter ```Eclipse...``` in the input field. Under ```Programs``` you will see ```Eclipse Oxygen -...```. Click on this entry to open Eclipse.
 2. If you are prompted for the workspace during startup, select ```<student directory>\workspace```.
@@ -88,41 +46,75 @@ mvn clean install
 ```java
 package com.sap.cp.cf.demoapps;
 
+import com.sap.cloud.security.xsuaa.XsuaaServiceConfigurationDefault;
+import com.sap.cloud.security.xsuaa.XsuaaServicePropertySourceFactory;
+import com.sap.cloud.security.xsuaa.token.TokenAuthenticationConverter;
+import com.sap.cloud.security.xsuaa.token.authentication.XsuaaJwtDecoderBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
 
 import static org.springframework.http.HttpMethod.GET;
 
 @Configuration
 @EnableWebSecurity
-@EnableResourceServer
-public class ConfigSecurity extends ResourceServerConfigurerAdapter {
+@PropertySource(factory = XsuaaServicePropertySourceFactory.class, value = { "" })
+public class ConfigSecurity extends WebSecurityConfigurerAdapter {
 
-  @Value("${vcap.services.xsuaa.credentials.xsappname:product-list}")
+	@Value("${vcap.services.xsuaa.credentials.xsappname:product-list}")
 	private String xsAppName;
 
-	// configure Spring Security, demand authentication and specific scopes
+	@Autowired
+	XsuaaServiceConfigurationDefault xsuaaServiceConfiguration;
+
 	@Override
 	public void configure(final HttpSecurity http) throws Exception {
 
 		// @formatter:off
-    http.sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.NEVER).and()
-				.authorizeRequests()
-				.antMatchers(GET, "/health").permitAll()
-				.antMatchers(GET, "/**").access(String.format("#oauth2.hasScope('%s.%s')", xsAppName, "read"))
-				.anyRequest().denyAll(); // deny anything not configured above
+		http.sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.NEVER)
+				.and()
+					.authorizeRequests()
+					.antMatchers(GET, "/health").permitAll()
+					.antMatchers(GET, "/**").hasAuthority("read")
+					.anyRequest().denyAll() // deny anything not configured above
+				.and()
+					.oauth2ResourceServer()
+					.jwt()
+					.jwtAuthenticationConverter(getJwtAuthenticationConverter());
+
 		// @formatter:on
 	}
 
-  // offline token validation
-	@Bean
-	protected static SAPOfflineTokenServicesCloud offlineTokenServicesBean() {
-		return new SAPOfflineTokenServicesCloud();
+	/**
+	 * Customizes how GrantedAuthority are derived from a Jwt
+	 */
+	Converter<Jwt, AbstractAuthenticationToken> getJwtAuthenticationConverter() {
+		TokenAuthenticationConverter converter = new TokenAuthenticationConverter(xsuaaServiceConfiguration);
+		converter.setLocalScopeAsAuthorities(true);
+		return converter;
 	}
+
+	@Bean
+	JwtDecoder jwtDecoder() {
+		return new XsuaaJwtDecoderBuilder(xsuaaServiceConfiguration).build();
+	}
+
+	@Bean
+	XsuaaServiceConfigurationDefault config() {
+		return new XsuaaServiceConfigurationDefault();
+	}
+
 }
 ```
 
