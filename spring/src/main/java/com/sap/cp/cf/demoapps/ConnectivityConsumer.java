@@ -5,15 +5,10 @@
 	import java.net.HttpURLConnection;
 	import java.net.InetSocketAddress;
 	import java.net.Proxy;
-	import java.net.URI;
 	import java.net.URL;
 
+	import com.sap.cloud.security.xsuaa.token.Token;
 	import org.apache.commons.io.IOUtils;
-	import org.cloudfoundry.identity.client.UaaContext;
-	import org.cloudfoundry.identity.client.UaaContextFactory;
-	import org.cloudfoundry.identity.client.token.GrantType;
-	import org.cloudfoundry.identity.client.token.TokenRequest;
-	import org.cloudfoundry.identity.uaa.oauth.token.CompositeAccessToken;
 	import org.json.JSONArray;
 	import org.json.JSONException;
 	import org.json.JSONObject;
@@ -21,9 +16,13 @@
 	import org.slf4j.LoggerFactory;
 	import org.springframework.security.core.Authentication;
 	import org.springframework.security.core.context.SecurityContextHolder;
-	import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
+	import org.springframework.security.oauth2.client.token.AccessTokenRequest;
+	import org.springframework.security.oauth2.client.token.DefaultAccessTokenRequest;
+	import org.springframework.security.oauth2.client.token.grant.client.ClientCredentialsAccessTokenProvider;
+	import org.springframework.security.oauth2.client.token.grant.client.ClientCredentialsResourceDetails;
+	import org.springframework.security.oauth2.common.OAuth2AccessToken;
+	//import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 
-	import com.sap.xs2.security.container.UserInfoException;
 
 	public class ConnectivityConsumer {
 		private static final Logger logger = LoggerFactory.getLogger(Application.class);
@@ -40,7 +39,7 @@
 				urlConnection = (HttpURLConnection) url.openConnection(proxy);
 
 				// Get connectivity access token and configure the proxy authorization header.
-				CompositeAccessToken accessToken = getAccessToken();
+				String accessToken = null; //getAccessToken();
 				urlConnection.setRequestProperty("Proxy-Authorization", "Bearer " + accessToken);
 
 				// Set connection timeouts.
@@ -48,7 +47,7 @@
 				urlConnection.setReadTimeout(60000);
 
 				// Get the user JWT token and configure the connectivity authentication header.
-				String token = getClientOAuthToken();
+				String token = getUserOAuthToken();
 				urlConnection.setRequestProperty("SAP-Connectivity-Authentication", "Bearer " + token);
 
 				// Execute request, returning the response as a byte array.
@@ -83,33 +82,33 @@
 		}
 
 		// Get JWT token for the connectivity service from UAA
-		private CompositeAccessToken getAccessToken() throws Exception {
+		private OAuth2AccessToken getAccessToken() throws Exception {
 			JSONObject connectivityCredentials = getServiceCredentials("connectivity");
 			String clientId = connectivityCredentials.getString("clientid");
 			String clientSecret = connectivityCredentials.getString("clientsecret");
 
 			// Make request to UAA to retrieve JWT token
 			JSONObject xsuaaCredentials = getServiceCredentials("xsuaa");
-			URI xsUaaUri = new URI(xsuaaCredentials.getString("url"));
+			String xsUaaUrl = xsuaaCredentials.getString("url");
 
-			UaaContextFactory factory = UaaContextFactory.factory(xsUaaUri).authorizePath("/oauth/authorize")
-					.tokenPath("/oauth/token");
-
-			TokenRequest tokenRequest = factory.tokenRequest();
-			tokenRequest.setGrantType(GrantType.CLIENT_CREDENTIALS);
-			tokenRequest.setClientId(clientId);
-			tokenRequest.setClientSecret(clientSecret);
-
-			UaaContext xsUaaContext = factory.authenticate(tokenRequest);
-			return xsUaaContext.getToken();
+			ClientCredentialsResourceDetails resource = new ClientCredentialsResourceDetails();
+			resource.setAccessTokenUri(xsUaaUrl + "/oauth/token");
+			resource.setClientId(clientId);
+			resource.setClientSecret(clientSecret);
+			resource.setGrantType("client_credentials");
+			AccessTokenRequest atr = new DefaultAccessTokenRequest();
+			return new ClientCredentialsAccessTokenProvider().obtainAccessToken(resource,new DefaultAccessTokenRequest());
 		}
 
-		private String getClientOAuthToken() throws Exception {
+		private String getUserOAuthToken() throws Exception {
+
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			if (auth == null) {
 				throw new Exception("User not authenticated");
 			}
-			OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) auth.getDetails();
-			return details.getTokenValue();
+
+			Token token = (Token) auth.getDetails();
+			return token.getAppToken();
 		}
+
 	}

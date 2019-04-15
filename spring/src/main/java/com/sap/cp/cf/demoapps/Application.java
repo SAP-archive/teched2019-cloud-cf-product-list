@@ -26,7 +26,7 @@ public class Application {
 							"17\" Optimum Resolution 1024 x 768 @ 85Hz, Max resolution 1280 x 960 @ 75Hz, Dot Pitch: 0.27mm",
 							"230.00", "EUR", "images/HT-1030.jpg"));
 
-			productRepo.save(products);
+			productRepo.saveAll(products);
 
 			productRepo.findAll().forEach(System.out::println);
 		};
