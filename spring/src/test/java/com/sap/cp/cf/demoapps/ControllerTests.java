@@ -45,7 +45,6 @@ public class ControllerTests {
 	JwtGenerator jwtGenerator = new JwtGenerator("sb-java-hello-world");
 	@Test
 	public void test() throws Exception {
-		org.apache.commons.io.IOUtils a;
 		final String productName = "TestProduct";
 		given(productRepo.findByName(productName)).willReturn(Arrays.asList(new Product(productName)));
 		mvc.perform(get("/productsByParam?name=" + productName).with(bearerToken(jwtGenerator.addScopes(new String[] { "openid","product-list!t22.read"}).getToken().getTokenValue())).accept(MediaType.APPLICATION_JSON))
