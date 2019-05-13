@@ -110,7 +110,7 @@ In the advanced branch, three different implementation options are provided. For
 
 **This step is mandatory for both the master and the advanced branch.**
 
-The [XS Advanced Application Router](https://github.com/SAP/cloud-cf-product-list-sample/blob/advanced/src/main/approuter/README.md) is used to provide a single entry point to a business application that consists of several different apps (microservices). It dispatches requests to backend microservices and acts as a reverse proxy. The rules that determine which request should be forwarded to which _destinations_ are called _routes_. The application router can be configured to authenticate the users and propagate the user information. Finally, the application router can serve static content.
+The [XS Advanced Application Router](https://github.com/SAP/cloud-cf-product-list-sample/blob/advanced/approuter/README.md) is used to provide a single entry point to a business application that consists of several different apps (microservices). It dispatches requests to backend microservices and acts as a reverse proxy. The rules that determine which request should be forwarded to which _destinations_ are called _routes_. The application router can be configured to authenticate the users and propagate the user information. Finally, the application router can serve static content.
 
 **Note** that the application router does not hide the backend microservices in any way. They are still directly accessible bypassing the application router. So, the backend microservices _must_ protect all their endpoints by validating the JWT token and implementing proper scope checks.
 
