@@ -12,18 +12,6 @@ For all these exercises you have the information accessible via both tools: CF C
 
 # Exercise description
 
-Before being able to see logs in Kibana, the service `application-logs` must be bound to the app.
-
-Let's use the CLI to create and bind a service instance to our application.
-
-```
-cf marketplace
-cf create-service application-logs lite myapplogs
-cf services
-cf bind-service product-list myapplogs
-cf restage product-list
-```
-
 ## List applications
 List all applications in the target space with basic information for them.
 ### CF CLI
