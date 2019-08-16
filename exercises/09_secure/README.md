@@ -284,3 +284,15 @@ Besides SAP ID Service, the Cloud Foundry environment also supports custom SAML 
 
 - Assign a role collection to an IdP user in the same way as for an SAP ID Service user
 
+***
+<dl>
+  <dd>
+  <div class="footer">&copy; 2019 SAP SE</div>
+  </dd>
+</dl>
+<hr>
+<a href="/exercises/02_clone/README.md">
+  <img src="/img/arrow_left.png" height="80" border="10" align="left" alt="Previous Exercise" title="Previous Exercise: Clone application">
+</a>
+
+
