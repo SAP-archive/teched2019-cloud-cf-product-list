@@ -1,111 +1,93 @@
-# Cloud Foundry Product List Sample
+# Secure Microservices in Cloud Foundry Environment on SAP Cloud Platform
 
-Sample application running on SAP Cloud Platform Cloud Foundry Environment and using some of the services.
+In this session you will learn how to secure Microservices in Cloud Foundry Environment on SAP Cloud Platform. 
+Secure the Product List application and configure the OAuth 2.0 Authorization Code Grant (human to service communication). 
+
 
 This tutorial shows how to...
 * get access to SAP Cloud Platform Cloud Foundry Environment trial account
-* develop from scratch an application and enhance it with additional functionality using basic concepts of Cloud Foundry like backing services
-* work with your Cloud Foundry trial account and application using the SAP Cloud Platform cockpit and Cloud Foundry Command Line Interface (CF CLI)
-* use application frameworks like Spring and Spring Boot to efficiently develop applications
-* monitor, scale and update your application.
+* secure the Product List application and configure the OAuth 2.0 Authorization Code Grant
 
 # Scenario
 
-Put yourself in the shoes of a developer... Your boss comes one morning and tells you that you need to develop a new eCommerce site so your company can sell products in a modern way. Your company has already selected and uses SAP Cloud Platform but you don't yet have much experience with it and for sure you're pretty new to the recently introduced Cloud Foundry Environment. You've heard that this is the proper choice for cloud-native applications development, so you should get started pretty fast and explore it. Your boss wants to get as soon as possible a prototype of the eCommerce site running on SAP Cloud Platform so that he can show it to the sales department and discuss the next steps. The initial requirements are:
-* Have a basic UI that displays the list of products available in a product catalogue.
-* When you select a product you get a dedicated view about it.
+Secure the Product List application by using a flexible authorization framework - OAuth 2.0. The authorization code grant of OAuth 2.0 provides an excellent security mechanism to grant only authorized users access to your application and its data. With the SAP XS Advanced Application Router, the SAP XS UAA OAuth authorization service and Spring Boot you have outstanding tools at your fingertips to configure roles, assign them to users and, finally, implement role checks in your application.
 
-So you decide you will develop a prototype application with SpringBoot.
+# Understanding OAuth 2.0 Components
 
-You already have experience with such projects that start like PoC and easily evolve into productive application, so you want to explore the options for monitoring and operating the application. You know that once the sales team sees the prototype they will want it released as soon as possible and will of course think it's almost ready for production, but you want to know what will it mean for you to prepare the application for efficient DevOps before it's launched. So you want to see what are the options to observe the application, scale it and update it.
+To better understand the content of this repository, you should gain a rough understanding about the SAP CP OAuth 2.0 components, which are depicted in figure below.
 
-As a next step, you will have to secure the Product List application by using a flexible authorization framework - OAuth 2.0. The authorization code grant of OAuth 2.0 provides an excellent security mechanism to grant only authorized users access to your application and its data. With the SAP XS Advanced Application Router, the SAP XS UAA OAuth authorization service and Spring Boot you have outstanding tools at your fingertips to configure roles, assign them to users and, finally, implement role checks in your application.
-
-Finally, you want to access on-premise systems exposed by the Cloud Connector. You can consume services on those systems by extending the application with the connectivity service.
-
-# Components Overview
 <br><br>
-![Components Overview](/img/overview_components.png?raw=true)
+![OAuth 2.0 Components Overview](/img/overview_oauth2_components.png?raw=true)
 <br><br>
 
-The involved software components shown in the figure above are development  tools and set of components for each session - basic and advanced. You can read more details below.
 
-## Development  & Tools
+#### OAuth Resource Server
+First, we still have a **microservice**, in our case the **Product List application** that we want to secure. In OAuth terminology this is the **Resource Server** that protects the resources by checking the existence and validity of an OAuth2 access token before allowing a request from the Client to succeed.
 
-To go through the exercises you will need these components in your local dev . If you use a TechEd provided laptop then they should be already installed and configured there.
+#### OAuth Access Token (JWT)
+Access and refresh tokens in the form of **JSON Web Token (JWT)** represent the user’s identity and authorization claims. If the access token is compromised, it can be revoked, which forces the generation of a new access token via the user’s refresh token.
 
-Mini CodeJam and Basic Hands-on:
+**Example JWT**
+```json
+{
+  "client_id": "sb-xsapplication!t895",
+  "cid": "sb-xsapplication!t895",
+  "exp": 2147483647,
+  "user_name": "John Doe",
+  "user_id": "P0123456",
+  "email": "johndoe@test.org",
+  "zid": "1e505bb1-2fa9-4d2b-8c15-8c3e6e6279c6",
+  "grant_type": "urn:ietf:params:oauth:grant-type:saml2-bearer",
+  "scope": [ "xsapplication!t895.Display" ],
+  "xs.user.attributes": {
+    "country": [
+      "DE"
+    ]
+  }
+}
+```
+
+#### OAuth Authorization Server
+The **Extended Services for User Account and Authentication (XS UAA service)** is a multi-tenant identity management service. Its primary role is as an **OAuth Authorization Server**, issuing authorization codes and JWT tokens after the user was successfully authenticated by an identity provider with their Cloud Foundry credentials. Furthermore it can act as an SSO service using those credentials (or others). It has endpoints for managing user accounts and for registering OAuth 2.0 clients, as well as various other management functions.
+
+#### OAuth Client
+The **Application Router (approuter)** is an edge service that provides a single entry point to a business application that consists of several backend microservices. It acts as reverse proxy that routes incoming HTTP requests to the configured target microservice, which allows handling Cross-origin resource sharing (CORS) between the microservices. It plays a central role in the OAuth flow.
+
+Just like HTTP, token-based authentication is stateless, and therefore for scalability reasons an OAuth Resource Server must not store a JWT. The consequence would be that the JWT is stored client side as it must be provided with every request. Here, the Application Router takes over this responsibility and acts an **OAuth Client** and is mainly responsible for managing authentication flows.
+
+The Application Router takes incoming, unauthenticated requests from users and initiates an OAuth2 flow with the XSUAA. After the user has successfully logged on the Identity Provider the XSUAA considers this request as authenticated and uses the information of the Bearer Assertion to finally create a JWT containing the authenticated user as well as all scopes that he or she has been granted. Furthermore the Application Router enriches each subsequent request with the JWT, before the request is routed to a dedicated microservice (instance), so that they are freed up from this task.
+
+
+> In this flow it is important to notice that the JWT never appears in the browser as the Application Router acts as OAuth client where the user “authorizes” the approuter to obtain the authorizations - the JWT - from the XSUAA component.
+
+#### Conclusion
+
+You need to configure the Application Router for your business application. Note that the Application Router can be bypassed and the microservice 
+can directly be accessed. So the backend microservices must protect all its endpoints by validating the JWT access token and implementing proper scope checks.
+
+In order to validate an access token, the JWT must be decoded and its signature must be verified with one of the JSON Web Keys (JWK) such as public RSA keys. Furthermore the claims found inside the access token must be validated. For example, the client id (`cid`), the issuer (`iss`), the audience (`aud`), and the expiry time (`exp`).  
+Hence, every microservice has to maintain a service binding to the XSUAA that provides the XSUAA url as part of `VCAP_SERVICES` to get the current JWKs and has to configure the XSUAA as OAuth 2.0 Resource Server with its XSUAA access token validators by making use of one of SAP's Container Security Libraries.
+
+
+# Development  & Tools
+
+To go through the exercises you will need these components in your local development environment. 
+If you use a TechEd provided laptop then they should be already installed and configured there.
+
 - Eclipse
 - CF CLI
 - Maven, Git, Java
 
-Advanced Hands-on:
-- MTA Archive Builder
-- SAP Cloud Connector
+# Exercise Steps
 
-## Basic Hands-on session
+:one: **Setup the environment**
 
-**Product List application**
+In this exercise, you will start a free SAP Cloud Platform Cloud Foundry Environment trial which you can use to deploy and run applications. You will also setup your development environment and tools: [setup](../01_setup)
 
-This is the sample application that will be developed and enhanced during the exercises. It will run on SAP Cloud Platform Cloud Foundry using different services like e.g. PostgreSQL for persistence layer in the cloud, Application Logging, etc. It's a SpringBoot application with a simple UI.
+:two: **Clone the sample application**
 
-**Application Logging service**
+Clone the target version of the application that will be shown during the session. As a result you will have the target version of the application imported in Eclipse in case you need it as a reference or to copy easily some snippets: [clone](../02_clone)
 
-You can create, access, and analyze application logs using the Application Logging service. It is based on the open source logging platform Elasticsearch, Logstash, Kibana (the Elastic Stack). You can have both application logs that originate from the Cloud Foundry components and logs explicitly issued by the application. Your application requires some preparation before application logs can be streamed to the Application Logging service.
+:three: **Secure your app and push it into the cloud**
 
-**Application Autoscaler service**
-
-Application Autoscaler service is used to automatically scale up or scale down bound application instances based on user-defined policies. A dynamic scale up of an application instance ensures that the application does not crash or encounter performance problems as the load increases. As the load reduces, a dynamic scale down ensures that your application utilizes optimal resources.
-
-## Advanced Hands-on session
-
-In addition to the components described above, in the advanced exercises we will explore more services and will see how to consume and configure these to add more sophisticated functionality to the Product List sample application.
-
-**XS UAA service**
-
-The XS User Account and Authentication (UAA) service is a multi-tenant identity management service, used in Cloud Foundry. Its primary role is as an OAuth 2.0 provider, issuing tokens for client applications to use when they act on behalf of Cloud Foundry users. It can also authenticate users with their Cloud Foundry credentials, and can act as an SSO service using those credentials (or others). It has endpoints for managing user accounts and for registering OAuth 2.0 clients, as well as various other management functions.
-
-
-**Application Router**
-
-Business applications embracing microservice architecture, are decomposed into multiple services that can be managed independently. This approach brings some challenges for application developers, like handling security in a consistent way and dealing with same origin policy. The Application Router is a separate component that exposes the endpoint accessed by a browser to access the application and addresses some of these challenges. It provides three major functions:
-- Reverse proxy - provides a single entry point to a business application and forwards user requests to respective backend services
-- Serves static content from the file system
-- Security – provides security related functionality like login, logout, user authentication, authorization and CSRF protection in a central place.
-
-
-**Connectivity service**
-
-The Connectivity service provides a standard HTTP Proxy for on-premise connectivity that is accessible by any application. Proxy host and port are available as  variables. Applications are responsible to propagate the user JWT token via the SAP-Connectivity-Authentication header. This is needed by the connectivity service in order to open a tunnel to the subaccount for which a configuration is made in the Cloud Connector.
-
-# Sessions
-
-There are three different sessions where we use this sample application - mini code jam (1 hour), basic hands-on (2 hours), advanced hands-on (2 hours). You can find detailed exercises for the session you attend following the respective link below.
-
-:one: **Mini CodeJam (1 hour)**
-
-In this session, you will get familiar with the Cockpit and the Cloud Foundry CLI. Specifically, you will learn to:
-- push an application
-- bind a service to an app
-- check app logs
-- change the health check
-- do a blue-green deployment
-
-Detailed steps description for the session: [Mini CodeJam](/exercises/basic-codeJam)
-
-:two: **Basic Hands-on (2 hours)**
-
-In this session, you will develop a simple SpringBoot application, run it locally and then push it to SAP Cloud Platform Cloud Foundry Environment. After you explore what you see for the application and check basic logs and metrics, you will enhance the application with supportability features e.g. integration with Application Logging service. You will also see how you can scale the application.
-
-Detailed steps description for this session: [Basic Hands-on](exercises/basic-hands-on)
-
-:three: **Advanced Hands-on (2 hours)**
-
-In this session you will explore a bit more sophisticated enhancements and operations of the sample Product List application:
-* Explore how you can update applications running in the Cloud-Foundry , using blue/green deployment approach.
-* Create an MTA archive and check how the deployment and update is simplified in case you have a more complex application that consists of multiple modules and uses multiple services.
-* Secure the Product List application and configure the OAuth 2.0 Authorization Code Grant (human to service communication).
-* Choose Spring Boot, Java or Node.js for a Product List backend application
-* Extend the application to consume Connectivity service and access on-premise systems exposed by Cloud Connector
-
-Detailed steps description for this session: [Advanced Hands-on](exercises/advanced-hands-on)
+Secure the Product List application, configure the OAuth 2.0 Client Credentials Grant (service to service communication) and the OAuth 2.0 Authorization Code Grant (human to service communication):  [secure](../09_secure)
