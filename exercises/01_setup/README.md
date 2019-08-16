@@ -80,3 +80,15 @@ Check if maven is correctly configured by running `mvn --version`
 
 ### Git
 Check if git is installed by running `git --version`
+
+ 
+***
+<dl>
+  <dd>
+  <div class="footer">&copy; 2019 SAP SE</div>
+  </dd>
+</dl>
+<hr>
+<a href="/exercises/02_clone/README.md">
+  <img src="https://github.com/SAP/cloud-cf-product-list-sample/blob/teched2019/img/arrow_right.png" height="80" border="10" align="right" alt="Next Exercise" title="Next Exercise: Clone application">
+</a>
