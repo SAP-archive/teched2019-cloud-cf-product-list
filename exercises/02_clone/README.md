@@ -44,3 +44,18 @@ In this exercise you'll learn how you can clone the Product List sample applicat
 <br><br>
 ![Import Maven Project](/img/maven_clean_install.png?raw=true)
 <br><br>
+
+***
+<dl>
+  <dd>
+  <div class="footer">&copy; 2019 SAP SE</div>
+  </dd>
+</dl>
+<hr>
+<a href="/exercises/01_setup/README.md">
+  <img src="/img/arrow_left.png" height="80" border="10" align="left" alt="Previous Exercise" title="Previous Exercise: Setup environment">
+</a>
+<a href="/exercises/09_secure/README.md">
+  <img src="/img/arrow_right.png" height="80" border="10" align="right" alt="Next Exercise" title="Next Exercise: Secure your application">
+</a>
+
