@@ -82,12 +82,18 @@ If you use a TechEd provided laptop then they should be already installed and co
 
 :one: **Setup the environment**
 
-In this exercise, you will start a free SAP Cloud Platform Cloud Foundry Environment trial which you can use to deploy and run applications. You will also setup your development environment and tools: [setup](../01_setup)
+In this exercise, you will start a free SAP Cloud Platform Cloud Foundry Environment trial which you can use to deploy and run applications.
 
-:two: **Clone the sample application**
+[Start the Exercise](../01_setup)
 
-Clone the target version of the application that will be shown during the session. As a result you will have the target version of the application imported in Eclipse in case you need it as a reference or to copy easily some snippets: [clone](../02_clone)
+:two: **Download the sample application**
 
-:three: **Secure your app and push it into the cloud**
+Clone the Product List sample application from Github and import it in into your Eclipse IDE. This sample application is secured along this session. 
 
-Secure the Product List application, configure the OAuth 2.0 Client Credentials Grant (service to service communication) and the OAuth 2.0 Authorization Code Grant (human to service communication):  [secure](../09_secure)
+[Start the Exercise](../02_clone)
+
+:three: **Secure your application and push it into the cloud**
+
+Secure the Product List application, configure the OAuth 2.0 Client Credentials Grant (service to service communication) and the OAuth 2.0 Authorization Code Grant (human to service communication).
+
+[Start the Exercise](../09_secure)
