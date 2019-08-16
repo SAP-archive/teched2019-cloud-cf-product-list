@@ -20,8 +20,6 @@ The following steps are required to protect the Product List application with OA
 * Step 5: Adding the XS Advanced Application Router
 * Step 6: Configuration of trust
 
-:warning: If not yet done, please [clone](https://github.com/SAP/cloud-cf-product-list-sample/tree/master/exercises/11_clonebranch) the advanced version of the application.
-
 ### Step 1: Definition of the Application Security Descriptor
 
 **This step is mandatory only if you work on the master branch. For the advanced branch you can go through it to understand what is happening (no need to change anything)**

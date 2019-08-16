@@ -1,11 +1,11 @@
-# Exercise 03: Push the application to SAP Cloud Platform Cloud Foundry Environment
+# Deploy the application to SAP Cloud Platform Cloud Foundry Environment
 
 ## Estimated time
 
 :clock4: 10 minutes
 
 ## Objective
-In this exercise you'll learn how you can push applications on the SAP Cloud Platform in your trial account for Cloud Foundry Environment. We will use the Cloud Foundry Command Line Interface. Open a command prompt and follow the steps below.
+In this exercise you'll learn how you can push applications to the SAP Cloud Platform in your trial account for Cloud Foundry Environment. We will use the Cloud Foundry Command Line Interface. Open a command prompt and follow the steps below.
 
 # Exercise description
 ## Target & Login

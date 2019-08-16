@@ -1,4 +1,4 @@
-# Cloning sample from Github
+# Cloning sample application from Github
 
 ## Estimated time
 
@@ -6,11 +6,11 @@
 
 ## Objective
 
-In this exercise you'll learn how you can clone the target version of the Product List sample application, import it in your local Eclipse environment and build it. This is the target source code of the Product List application that you will actually develop as part of the basic hands-on session starting from scratch. We will it in the basic hands-on session as a reference or to copy easily some snippets or files.
+In this exercise you'll learn how you can clone the Product List sample application, import it in your local Eclipse environment as Maven Project and build it.
 
 # Exercise description
 
-## 1 Download the sample code as zip
+## 1. Download the sample code as zip
 1. Go to the root of the project in github: https://github.com/SAP/cloud-cf-product-list-sample
 2. Click on **Clone or download** button and select Download zip
 <br><br>
