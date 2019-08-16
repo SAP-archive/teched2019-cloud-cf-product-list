@@ -1,0 +1,22 @@
+---
+# some data to make the urls unique
+YOUR_BIRTH_DATE: 00-00-00
+
+# Choose cfapps.eu10.hana.ondemand.com for the EU10 landscape, cfapps.us10.hana.ondemand.com for US10
+#LANDSCAPE_APPS_DOMAIN: cfapps.eu10.hana.ondemand.com
+LANDSCAPE_APPS_DOMAIN: cfapps.us10.hana.ondemand.com
+
+# Option 1: To use the Spring boot implementation of the product list sample, uncomment the lines below
+PATH_PRODUCT_LIST_APP: spring/target/product-list.jar
+MEMORY_PRODUCT_LIST_APP: 896M
+BUILDPACK_PRODUCT_LIST_APP: java_buildpack 
+
+# Option 2: To use the Java implementation of the product list sample, uncomment the lines below
+#PATH_PRODUCT_LIST_APP: java/target/product-list.war
+#MEMORY_PRODUCT_LIST_APP: 896M
+#BUILDPACK_PRODUCT_LIST_APP: sap_java_buildpack
+
+# Option 3: To use the Node.js implementation of the product list sample, uncomment the lines below
+#PATH_PRODUCT_LIST_APP: nodejs
+#MEMORY_PRODUCT_LIST_APP: 128M
+#BUILDPACK_PRODUCT_LIST_APP: nodejs_buildpack
