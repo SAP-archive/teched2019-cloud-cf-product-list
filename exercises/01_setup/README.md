@@ -51,7 +51,7 @@ In case you already used the trial account quota, you have to clean-up applicati
 - navigate to the list of Applications running in your Space and delete all or stop all running applications;
 - go to the Service Instances and delete all.   
 
-## Local development environment
+## [Optional] Local development environment
 
 :bulb: **Note:** If you use the TechEd provided laptops then your local development environment tools listed below are already installed. In this case no need to install anything additional. If you are using your own laptop, then make sure you install and setup the tools listed below in case you don't have them.
 
