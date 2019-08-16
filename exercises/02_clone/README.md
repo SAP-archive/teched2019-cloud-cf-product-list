@@ -1,4 +1,4 @@
-# Cloning sample application from Github
+# Cloning sample application git from Github
 
 ## Estimated time
 

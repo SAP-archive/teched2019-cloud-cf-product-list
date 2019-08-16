@@ -47,11 +47,7 @@ Advanced Hands-on:
 
 **Product List application**
 
-This is the sample application that will be developed and enhanced during the exercises. It will run on SAP Cloud Platform Cloud Foundry  using different services like e.g. PostgreSQL for persistence layer in the cloud, Application Logging, etc. It's a SpringBoot application with a simple UI.
-
-**PostgreSQL**
-
-PostgreSQL, the open source object-relational database management system. It is an enterprise-class, ACID compliant database. It is available for consumption as a backing service in the Cloud Foundry Environment.
+This is the sample application that will be developed and enhanced during the exercises. It will run on SAP Cloud Platform Cloud Foundry using different services like e.g. PostgreSQL for persistence layer in the cloud, Application Logging, etc. It's a SpringBoot application with a simple UI.
 
 **Application Logging service**
 
