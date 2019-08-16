@@ -142,7 +142,7 @@ These are environment variables that Cloud Foundry makes available to your appli
 - `VCAP_APPLICATION`
 - `VCAP_SERVICES`
 
-The last one (`VCAP_SERVICES`) is important if your application is using bindable services because Cloud Foundry adds connection details to it when you restage your application after a service has been bound to it. The following example is taken from an app that has a postgresql service bound to it.
+The last one (`VCAP_SERVICES`) is important if your application is using bindable services because Cloud Foundry adds connection details to it when you restage your application after a service has been bound to it.
 
 ## Health Checks
 An application health check is a monitoring process that continually checks the status of a running Cloud Foundry app. In Cloud Foundry, the default timeout is 60 seconds and the maximum configurable timeout is 180 seconds. There are three types of health checks available in Cloud Foundry:

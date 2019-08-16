@@ -106,19 +106,20 @@ So far we have used representation of the products in the memory of the Java Vir
 
 1. List the services available for your user with ```cf marketplace```
 You should see a list of services, short description and information for the service plans.
-2. In our example we will use a PostgreSQL. To list more information about concrete service, use `cf marketplace -s SERVICE`:
+
+2. In our example we will use a XSUAA as User Account and Authentication service. To list more information about the service plans, use `cf marketplace -s SERVICE`:
 
   ```
-  cf marketplace -s postgresql
+  cf marketplace -s xsuaa
   ```
 
-3. Before your application can use a service, you need to create a service instance. Create a PostgreSQL service instance with `cf create-service SERVICE PLAN SERVICE_INSTANCE`:
+3. Before your application can use a service, you need to create a service instance. Create a XSUAA service instance with `cf create-service SERVICE PLAN SERVICE_INSTANCE`:
 
   ```
-  cf create-service postgresql v9.6-dev postgres
+  cf create-service xsuaa application 
   ```
 
-4. You should now see your newly created postgresql service. Type in the command prompt:
+4. You should now see your newly created XSUAA service. Type in the command prompt:
 
   ```
   cf services
@@ -127,17 +128,17 @@ You should see in the output the list of services within your space.
 
 5. The last step is to bind the service instance to your application. You can do it with command in CF CLI `cf bind-service APP_NAME SERVICE_INSTANCE`:
 ```
- cf bind-service product-list postgres
+ cf bind-service product-list xsuaa
 ```
-6. Now that we already have the backing service to ensure that our application environment gets updated we re-stage our application so that the app is wired to use PostgreSQL for persistence. Use the following command `cf restage APP_NAME`:
+6. Now that we already have the backing service to ensure that our application environment gets updated we re-stage our application so that the app is wired to use XSUAA as identity management service. Use the following command `cf restage APP_NAME`:
 
   ```
   cf restage product-list
   ```
 
-If you list now again the services with ```cf services```, you will see that the PostgreSQL instance is bund to the product list application.
+If you list now again the services with ```cf services```, you will see that the XSUAA instance is bound to the product list application.
 
-You can again request the application once it's restaged though there will be no difference now that it uses PostgreSQL.
+You can again request the application once it's restaged though there will be no difference now that it uses XSUAA.
 
 :bulb: **Note** An alternative to bind services to your application is via the application manifest. When you use manifest.yml to bind services you have to push the application again so that the environment gets updated and the app can use the service. E.g. for this sample you have to add this snippet and then cf push the application again:
 ```Config
@@ -145,4 +146,5 @@ services:
  - SERVICE_INSTANCE_NAME
 ```
 
-Usually at this point you will have to consume the service instance and adapt your application code. The information how to access the service instance is available now in your application environment as an environment variable VCAP_SERVICES. In our case the SpringBoot framework provides a mechanism to detect this wired PostgreSQL service and start working with it, so that's why no need to change the application code.
+Usually at this point you will have to consume the service instance and adapt your application code. The information how to access the service instance is available now in your application environment as an environment variable VCAP_SERVICES. 
+
