@@ -64,9 +64,13 @@ When you push an application to the Cloud Foundry Environment you can either pro
    memory: 896M
    host: product-list-YOUR-BIRTHDATE-DAY-MONTH-YEAR
    path: target/my-product-list-0.0.1-SNAPSHOT.jar
-   buildpack: https://github.com/cloudfoundry/java-buildpack.git#v4.3
+   buildpack: https://github.com/cloudfoundry/java-buildpack.git
 ```
+
 **Save** the file after editing.
+
+Note: In case you make use of the Community Java Buildpack it is recommended to specify the **version of the buildpack** e.g. `buildpack: https://github.com/cloudfoundry/java-buildpack.git#v4.19.1`, you can get the current version using `cf buildpacks` and on Github there must be a so-called `release` for every released buildpack version.
+
 
 ## Push
 - At the command prompt, go to the root directory of your SpringBoot application where you just created the manifest.yml file. Type the following command:
