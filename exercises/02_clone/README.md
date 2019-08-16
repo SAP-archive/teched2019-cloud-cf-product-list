@@ -17,18 +17,18 @@ In this exercise you'll learn how you can clone the Product List sample applicat
 ![Download ZIP](/img/github_download_zip.png?raw=true)
 <br><br>
 
-3.  Unzip the downloaded file in your students directory - a new directory ```cloud-cf-product-list-sample``` will be created.
+3.  Unzip the downloaded file in your students directory - a new directory ```cloud-cf-product-list-sample-teched2019``` will be created.
 
 ## 2. Import the sample project into Eclipse
 1. Open the Windows Start menu and enter ```CPL...``` in the input field. Under ```Programs``` you will see ```ABAP in Eclipse - CPL...```. Click on this entry to open Eclipse.
-2. Now import the target state of the sample project as Maven project into your Eclipse workspace: In the Eclipse menu, chose ```File```> ```Import...```.
+2. Now import the two sample projects as Maven project into your Eclipse workspace: In the Eclipse menu, chose ```File```> ```Import...```.
 3. In the ```Import``` wizard, select ```Maven``` > ```Existing Maven Projects``` and click ```Next```.
 <br><br>
 ![Import Maven Project](/img/import_maven_project.png?raw=true)
 <br><br>
 
-4. In the next step of the ```Import Maven Projects``` popup, click ```Browse```, navigate into the unziped root folder of ```cloud-cf-product-list-sample-master``` project in your student directory folder (```D:\Files\Session\CPL...```), then click ```Finish```.
-5. The project is now imported in Eclipse. You should see the project in the Project Explorer like in the screenshot below.  
+4. In the next step of the ```Import Maven Projects``` popup, click ```Browse```, navigate into the unziped root folder of ```cloud-cf-product-list-sample-teched2019``` project in your student directory folder (```D:\Files\Session\CPL...```). In the wizard select both projects (java and spring) and finally click ```Finish```.
+5. Both projects are now imported in Eclipse. You should see them in the Project Explorer like in the screenshot below.  
 <br><br>
 ![Import Maven Project](/img/imported_project_eclipse.png?raw=true)
 <br><br>
