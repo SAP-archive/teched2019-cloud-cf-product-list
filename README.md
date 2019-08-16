@@ -97,3 +97,6 @@ Clone the Product List sample application from Github and import it in into your
 Secure the Product List application, configure the OAuth 2.0 Client Credentials Grant (service to service communication) and the OAuth 2.0 Authorization Code Grant (human to service communication).
 
 [Start the Exercise](/exercises/09_secure/README.md)
+
+# Further References
+- JSON Web Token [rfc7519](https://tools.ietf.org/html/rfc7519)

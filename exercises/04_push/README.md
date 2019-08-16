@@ -15,6 +15,7 @@ In this exercise you'll learn how you can push applications to the SAP Cloud Pla
 	- type ```cmd``` into the input field and press the return key
 
 1. You need to tell the CF CLI which Cloud Foundry you will use. To do this you have to set the API endpoint to the Cloud Controller of the Cloud Foundry region where you created your Cloud Foundry trial using ```cf api CLOUD_FOUNDRY_API_ENDPOINT```.
+
  - If you attend TechEd Las Vegas, target the US10 region API endpoint:
 ```
 cf api https://api.cf.us10.hana.ondemand.com
