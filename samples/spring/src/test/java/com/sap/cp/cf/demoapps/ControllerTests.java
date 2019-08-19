@@ -8,13 +8,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.Arrays;
 
+import com.sap.cloud.security.xsuaa.XsuaaServiceConfiguration;
 import com.sap.cloud.security.xsuaa.test.JwtGenerator;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
@@ -23,14 +24,14 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.RequestPostProcessor;
+import org.springframework.util.Assert;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(properties = {
 		"xsuaa.xsappname=product-list!t22",
-		"xsuaa.clientid=sb-product-list!t22",
-		"xsuaa.url=${mockxsuaaserver.url}" }, classes = { ConfigSecurity.class, Controller.class, Application.class})
+		"xsuaa.clientid=sb-product-list!t22"}, classes = { SecurityConfiguration.class, Controller.class, Application.class})
 @ActiveProfiles("uaamock")
-@AutoConfigureMockMvc(secure = false)
+@AutoConfigureMockMvc
 public class ControllerTests {
 
 	@Autowired
@@ -39,18 +40,45 @@ public class ControllerTests {
 	@MockBean
 	private CommandLineRunner runner;
 
+	@Autowired
+	private XsuaaServiceConfiguration xsuaaServiceConfiguration;
+
 	@MockBean
 	private ProductRepo productRepo;
 
-	JwtGenerator jwtGenerator = new JwtGenerator("sb-java-hello-world");
+	private static final String PRODUCT_NAME = "TestProduct";
+
+	@Before
+	public void setup() {
+		given(productRepo.findByName(PRODUCT_NAME)).willReturn(Arrays.asList(new Product(PRODUCT_NAME)));
+	}
+
 	@Test
 	public void test() throws Exception {
-		final String productName = "TestProduct";
-		given(productRepo.findByName(productName)).willReturn(Arrays.asList(new Product(productName)));
-		mvc.perform(get("/productsByParam?name=" + productName).with(bearerToken(jwtGenerator.addScopes(new String[] { "openid","product-list!t22.read"}).getToken().getTokenValue())).accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk()).andExpect(jsonPath("$[0].name", is(productName)));
+		String jwtRead = new JwtGenerator(xsuaaServiceConfiguration.getClientId())
+				.addScopes(new String[] { "openid", getGlobalScope("read")})
+				.getTokenForAuthorizationHeader();
 
+		mvc.perform(get("/productsByParam?name=" + PRODUCT_NAME).with(bearerToken(jwtRead))
+				.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$[0].name", is(PRODUCT_NAME)));
 	}
+
+	@Test
+	public void test_unauthorized_403() throws Exception {
+		String jwtWithoutScopes = new JwtGenerator(xsuaaServiceConfiguration.getClientId())
+				.getTokenForAuthorizationHeader();
+		mvc.perform(get("/productsByParam?name=" + PRODUCT_NAME).with(bearerToken(jwtWithoutScopes))
+				.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isForbidden());
+	}
+
+	private String getGlobalScope(String localScope) {
+		Assert.hasText(xsuaaServiceConfiguration.getAppId(), "make sure that xsuaa.xsappname is configured properly.");
+		return xsuaaServiceConfiguration.getAppId() + "." + localScope;
+	}
+
 	private static class BearerTokenRequestPostProcessor implements RequestPostProcessor {
 		private String token;
 
@@ -60,7 +88,7 @@ public class ControllerTests {
 
 		@Override
 		public MockHttpServletRequest postProcessRequest(MockHttpServletRequest request) {
-			request.addHeader("Authorization", "Bearer " + this.token);
+			request.addHeader("Authorization", this.token);
 			return request;
 		}
 	}

@@ -195,8 +195,11 @@ You should be able to see the product list.
 :bulb: The logon URL is https://$identityzone.$uaaDomain. This can be identified from the xsuaa binding credentials (`cf env approuter` and look for `xsuaa.credentials.url`)
 
 - Test the following endpoints:  
-  * `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/products/` - GET request that provides XSUAA user token details, but only if token matches.
-
+  * `https://product-list-<ID>.<LANDSCAPE_APPS_DOMAIN>/actuator/health` - GET request that is not secured and provides the information whether the product list is up and running.
+  * `https://product-list-<ID>.<LANDSCAPE_APPS_DOMAIN>/all` - GET request that is secured and provides `401` (unauthenticated) in case no JWT access token is provided.
+  * `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/products/all` - GET request that provides list of products.
+  * `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/products/productsByParam?name=Notebook Basic 2015` - 
+  
 - You can have a look into the logs with:
     ```
     cf logs product-list --recent

@@ -16,22 +16,28 @@ package com.sap.cp.cf.demoapps;
 	@RestController
 	public class Controller {
 
-		private static final Logger logger = LoggerFactory.getLogger(Application.class);
+		private static final Logger logger = LoggerFactory.getLogger(Controller.class);
 
 		@Autowired
 		private ProductRepo productRepo;
 
+		@GetMapping("/all")
+		public Collection<Product> getAllProducts() {
+			logger.info("***First - Retrieving all products");
+			return productRepo.findAll();
+		}
+
 		@GetMapping("/productsByParam")
-		public Collection<Product> getProductByName(@RequestParam(value = "name") final String name) {
+		public Collection<Product> getProductByName(@RequestParam(value = "name") String name) {
 			logger.info("***First - Retrieving details for '{}'.", name);
-			logger.info("***Second - Retrieving details for '{}'.", name);
 			return productRepo.findByName(name);
 		}
 
 		@ResponseBody
 		@GetMapping(value = "/images/{imageFile:.+}", produces = MediaType.IMAGE_JPEG_VALUE)
 		public byte[] getIcon(@PathVariable String imageFile) throws IOException {
-			ConnectivityConsumer connConsumer = new ConnectivityConsumer();
-			return connConsumer.getImageFromBackend(imageFile);
+//			ConnectivityConsumer connConsumer = new ConnectivityConsumer();
+//			return connConsumer.getImageFromBackend(imageFile);
+			return null;
 		}
 	}

@@ -3,6 +3,8 @@ package com.sap.cp.cf.demoapps;
 import java.util.Arrays;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,10 +13,12 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class Application {
 
+	private static final Logger logger = LoggerFactory.getLogger(Application.class);
+
 	@Bean
 	CommandLineRunner runner(final ProductRepo productRepo) {
 		return strings -> {
-
+			logger.info("setup products");
 			final List<Product> products = Arrays.asList(
 					new Product("Notebook Basic 15",
 							"Notebook Basic 15 with 1,7GHz - 15\" XGA - 1024MB DDR2 SDRAM - 40GB Hard Disc", "956.00",
