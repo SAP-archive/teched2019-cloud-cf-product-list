@@ -20,7 +20,7 @@
 	"role-collections": [
 		{
 			"name": "ProductListViewer",
-			"description": "Product List User",
+			"description": "Product List Viewer",
 			"role-template-references": [
 				"$XSAPPNAME.Viewer"
 			]

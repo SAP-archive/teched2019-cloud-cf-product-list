@@ -20,8 +20,7 @@ The following steps are required to protect the Product List application with OA
 * Step 5: Deployment of the Product List Application and Approuter
 * Step 6: Cockpit administration task: Assign Role Collection to your User
 * Step 7: Access the Application
-* [Optional] Step 8: Role Assignment using a SAML Identity Provider
-* Step 9: Clean up
+* Step 8: Clean up
 
 ### Step 1: Definition of the Application Security Descriptor
 
@@ -30,7 +29,7 @@ The Product List application uses this information to perform scope checks. With
 The container security library integrated in Spring, Node.js and Java Web applications allows to check scopes for each HTTP method on all HTTP endpoints. 
 Scopes are carried by [JSON Web Tokens (JWTs)](https://tools.ietf.org/html/rfc7519) which in turn are issued by the [XS UAA Service](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/1.0.12/en-US/17acf1ac0cf84487a3199c51b28feafd.html).
 
-* Find in the `/samples` folder the file `xs-security.json`.
+* Find `xs-security.json` in the `/samples` folder: 
 
 ```json
 {
@@ -95,7 +94,7 @@ To grant users access to the Product List application, an instance of the XSUAA 
 * Create the XS UAA service instance: 
     ```
     D:
-    cd D:\Files\Session\SEC364\cloud-cf-product-list-sample-teched2019
+    cd D:\Files\Session\SEC364\cloud-cf-product-list-sample-teched2019\samples
     cf create-service xsuaa application xsuaa -c xs-security.json
     ```
 
@@ -104,11 +103,11 @@ To grant users access to the Product List application, an instance of the XSUAA 
 The [Application Router](https://github.com/SAP/cloud-cf-product-list-sample/blob/advanced/approuter/README.md) is used to provide a single entry point to a business application that consists of several different apps (microservices). It dispatches requests to backend microservices and acts as a reverse proxy. The rules that determine which request should be forwarded to which _destinations_ are called _routes_. The application router can be configured to authenticate the users and propagate the user information. Finally, the application router can serve static content.
 
 * You can find all files that are required to install and configure the Application Router in the `/samples/approuter` folder.
-  * `.npmrc`  
+  * [`.npmrc`](/samples/approuter/.npmrc)  
   With this the node modules are downloaded by the NPM package manager from the https://npm.sap.com SAP external NPM repository (aka registry) into a subdirectory `node_modules/@sap/approuter`. 
-  * `package.json`  
+  * [`package.json`](/samples/approuter/package.json)
   Declares version and package (`node_modules`) of the Application Router, that is a Node.JS application.
-  * `xs-app.json`  
+  * [xs-app.json`](/samples/approuter/xs-app.json)  
   Configures the Application Router by defining the destinations and routes:
 
     ```json
@@ -120,7 +119,7 @@ The [Application Router](https://github.com/SAP/cloud-cf-product-list-sample/blo
       }]
     }
     ```
-
+**Note** the "products-destination" points to the product-list application. The destination URL is configured in the `manifest.yml`. 
 
 ### Step 4: Secure the Product List application using XS UAA client libraries
 **Note** that the application router does not hide the backend microservices in any way. 
@@ -128,69 +127,47 @@ They are still directly accessible bypassing the application router.
 So, the backend microservices _must_ protect all their endpoints by validating the JWT token and implementing proper scope checks.
 
 Three different implementation options are provided. For this exercise, choose one of the implementations.
- * Option 1: [Use the Spring Boot implementation of the Product List Sample](Spring.md)
- * Option 2: [Use the Java implementation (not using Spring) of the Product List Sample](Java.md)
- * Option 3: [Use the Node.js implementation of the Product List Sample](Node.js.md)
+ * Option 1: [Use the **Spring Boot** implementation of the Product List Sample](Spring.md)
+ * Option 2: [Use the **Java** implementation (not using Spring) of the Product List Sample](Java.md)
+ * Option 3: [Use the **Node.js** implementation of the Product List Sample](Node.js.md)
 
 
 ### Step 5: Deploy Approuter and Application to Cloud Foundry
-* We use placeholder to simplify the personalisation of the [Cloud Foundry application descriptor](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html), the `manifest.yml`. 
-Adapt the variables in file [`vars.yml`](/samples/vars.yaml) by using an editor of your choice.
+* We use placeholder to simplify the personalisation of the [Cloud Foundry application descriptor](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html), the `manifest.yml`.  
+Adapt the variables `ID`, `LANDSCAPE_APPS_DOMAIN` and the others variables in the file [`/samples/vars.yml`](/samples/vars.yaml) according to the application chosen (SpringBoot, Java, NodeJs) by using an editor of your choice.
 
-```yml---
-# some data to make the urls unique
-YOUR_BIRTH_DATE: 00-00-00
+* Push the product-list together with the approuter application to your cloud foundry space:  
+    ```
+    D:
+    cd D:\Files\Session\SEC364\cloud-cf-product-list-sample-teched2019\samples
+    cf push --vars-file vars.yml
+    ```
 
-# Choose cfapps.eu10.hana.ondemand.com for the EU10 landscape, cfapps.us10.hana.ondemand.com for US10
-LANDSCAPE_APPS_DOMAIN: cfapps.eu10.hana.ondemand.com
-#LANDSCAPE_APPS_DOMAIN: cfapps.us10.hana.ondemand.com
-# Option 1: To use the Spring boot implementation of the product list sample, uncomment the lines below
-PATH_PRODUCT_LIST_APP: spring/target/product-list.jar
-MEMORY_PRODUCT_LIST_APP: 896M
-BUILDPACK_PRODUCT_LIST_APP: sap_java_buildpack
-
-# Option 2: To use the Java implementation of the product list sample, uncomment the lines below
-#PATH_PRODUCT_LIST_APP: java/target/product-list.war
-#MEMORY_PRODUCT_LIST_APP: 896M
-#BUILDPACK_PRODUCT_LIST_APP: sap_java_buildpack
-
-# Option 3: To use the Node.js implementation of the product list sample, uncomment the lines below
-#PATH_PRODUCT_LIST_APP: nodejs
-#MEMORY_PRODUCT_LIST_APP: 128M
-#BUILDPACK_PRODUCT_LIST_APP: nodejs_buildpack
-```
-
-* [Push the product list application together with a approuter](/exercises/04_push/README.md) to your cloud foundry space: 
-```
-cf push --vars-file vars.yml
-```
+**Note** find further details in this [Exercise: Deploy the application to SAP Cloud Platform Cloud Foundry Environment](/exercises/04_push).
 
 ### Step 6: Cockpit administration task: Assign Role Collection to your User
 
-**This step is mandatory for both master and advanced branch**
-
 Now let us see how to enable access to the application for the business users or end-users.
-- Determine the URL of your approuter application by executing `cf apps` in the command prompt. The output lists the URL for the approuter which should have the following format: `approuter-<YOUR_BIRTH_DATE>.<LANDSCAPE_APPS_DOMAIN>`
-- Launch the approuter application in the browser by opening the determined URL
-- Logon with your user credentials
-- If you selected option 1 (Spring) in step 3, you will get the error "Insufficient scope for this resource"
+- Determine the URL of your approuter application by executing `cf apps` in the command prompt. The output lists the URL for the approuter which should have the following format: `approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>`.
+- Launch the approuter application in the browser by opening the determined URL, e.g.  `https://approuter-<ID>.cfapps.eu10.hana.ondemand.com/products`.
+- Logon with your user credentials.
+- If you selected option 1 (Spring Boot) in step 4, you will get an error with HTTP status code `403` ("unauthorized"´, "forbidden") which states that your user is valid and could be successfully authenticated but has no access to the applications `products` endpoint.
 <br><br>
 ![Authorizations](/img/security_cockpit_0.png?raw=true)
 <br><br>
-- If you selected option 2 (Java) or option 3 (node.js) in step 3, you will get an empty product list
+- If you selected option 2 (Java) or option 3 (Node.js) in step 4, you will get an empty product list
 <br><br>
 ![Authorizations](/img/security_cockpit_0b.png?raw=true)
 <br><br>
 
-In order to enable access, the end-users should be assigned the required authorizations. 
+In order to enable access, the end-users should be assigned the required authorizations.  
 Therefore the Role Collection needs to be assigned to the user.
-- Navigate to the `Subaccount --> Trust Configuration` [expand the security group to see this entry]
-- Click on the link **SAP ID Service** - the default trust configuration
+- In the cockpit, navigate to your trial `Subaccount`. Choose `Security` --> `Trust Configuration`.
+- Click on the link **SAP ID Service** - the default trust configuration.
 <br><br>
 ![Authorizations](/img/security_cockpit_8.png?raw=true)
 <br><br>
-- Note: The logon URL is https://$identityzone.$uaaDomain. This can be identified from the xsuaa binding credentials (`cf env approuter` and look for `xsuaa.credentials.url`)
-- Now, in the `Role Collection Assignment' UI, enter your user id used to logon to the current account and click on button **Show Assignments**
+- Now, in the `Role Collection Assignment` UI, enter your user id used to logon to the current account and click on button **Show Assignments**
 - It lists the current Role Collection assignment to the user and also allows to add new Role Collections to the user
 - Click on button **Add Assignment**
 <br><br>
@@ -201,34 +178,34 @@ Therefore the Role Collection needs to be assigned to the user.
 ![Authorizations](/img/security_cockpit_10.png?raw=true)
 <br><br>
 - Now, the user should be able to access the application.
-- Launch the application on the browser and login with your credentials. You should be able to see the product list
+
+Further up-to-date information you can get on sap.help.com:
+- [Maintain Role Collections](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/d5f1612d8230448bb6c02a7d9c8ac0d1.html)
+- [Maintain Roles for Applications](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/7596a0bdab4649ac8a6f6721dc72db19.html).
 
 ### Step 7: Access the Application
+According to the Role Collection(s) you've assigned to your user you should have read access to the product list endpoints.
 
-After deployment, the AppRouter will trigger authentication automatically when you access one of the following URLs:
+You need to logon again to your application so that the authorities are assigned to your user's JWT. You can provoke a logon screen when clearing your cache.
+Call again your application endpoints via the approuter Uri using the `Postman` Chrome plugin as explained [here](#testDeployedApp-1). You should now be authorized to create, read and delete advertisements.
 
-* `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/products/sayHello` - GET request that provides XSUAA user token details, but only if token matches.
-* `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/v1/method` - GET request executes a method secured with Spring Global Method Security.
-* `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/v1/getAdminData` - GET request to read sensitive data via Global Method Security. You will get a `403` (UNAUTHORIZED), in case you do not have `Admin` scope.
-* `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/v2/sayHello` - GET request that logs generic Jwt info, but only if token matches. 
+- Launch the approuter application in the browser again and login with your credentials. In order to provoke a logon-screen you may need to delete the cache or alternatively start a new private (incognito) browser window. 
+You should be able to see the product list.
 
-Have a look into the logs with:
-```
-cf logs product-list --recent
-```
+:bulb: The logon URL is https://$identityzone.$uaaDomain. This can be identified from the xsuaa binding credentials (`cf env approuter` and look for `xsuaa.credentials.url`)
 
-> Note: https://spring-security-xsuaa-usage-web-<ID>.<LANDSCAPE_APPS_DOMAIN> points to the url of the AppRouter. Get all app routes with `cf apps`.
+- Test the following endpoints:  
+  * `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/products/` - GET request that provides XSUAA user token details, but only if token matches.
+
+- You can have a look into the logs with:
+    ```
+    cf logs product-list --recent
+    ```
+
+> Note: https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN> points to the url of the AppRouter. Get all app routes with `cf apps`.
 
 
-### [Optional] Step 8: Role Assignment using a SAML Identity Provider
-Besides SAP ID Service, the Cloud Foundry environment also supports custom SAML Identity Providers. Once an SAML2 Identity Provider has been added, role collections can be assigned to the corresponding users.
-- Configure an SAML IdP as described in [SAML Configuration](./SAML.md)
-
-**Note for Teched participants:**: Contact the instructors for the configuration in the shared Identity Provider
-
-- Assign a role collection to an IdP user in the same way as for an SAP ID Service user
-
-### Step 9: Clean-Up
+### Step 8: Clean-Up
 Finally delete your application and your service instances using the following commands:
 ```
 cf delete -f product-list

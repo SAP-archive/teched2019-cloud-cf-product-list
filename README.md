@@ -94,7 +94,7 @@ Clone the Product List sample application from Github and import it in into your
 
 :three: **Secure your application and push it into the cloud**
 
-Secure the Product List application, configure the OAuth 2.0 Client Credentials Grant (service to service communication) and the OAuth 2.0 Authorization Code Grant (human to service communication).
+Secure the Product List application.
 
 [Start the Exercise](/exercises/09_secure/README.md)
 
