@@ -74,6 +74,15 @@ public class ControllerTests {
 				.andExpect(status().isForbidden());
 	}
 
+	@Test
+	public void test_healthcheck_without_authentication() throws Exception {
+		String jwtWithoutScopes = new JwtGenerator(xsuaaServiceConfiguration.getClientId())
+				.getTokenForAuthorizationHeader();
+		mvc.perform(get("/actuator/health").with(bearerToken(jwtWithoutScopes))
+				.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk());
+	}
+
 	private String getGlobalScope(String localScope) {
 		Assert.hasText(xsuaaServiceConfiguration.getAppId(), "make sure that xsuaa.xsappname is configured properly.");
 		return xsuaaServiceConfiguration.getAppId() + "." + localScope;

@@ -5,9 +5,9 @@
 	<meta charset="utf-8">
 	<title>Products App</title>
 	<script src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
-		id="sap-ui-bootstrap"
-		data-sap-ui-theme="sap_belize"
-		data-sap-ui-libs="sap.m">
+			id="sap-ui-bootstrap"
+			data-sap-ui-theme="sap_belize"
+			data-sap-ui-libs="sap.m">
 	</script>
 	<script type="text/javascript">
 		sap.ui.getCore().attachInit(function () {
@@ -20,9 +20,10 @@
 			// create model for the list view
 			var oListModel = new sap.ui.model.json.JSONModel();
 			sap.ui.getCore().setModel(oListModel);
-			var productsUrl = document.defaultView.location.origin + "/products"
+			var productsUrl = "/products";
 			oListModel.loadData(productsUrl);
 			console.log(productsUrl);
+			console.log(oListModel);
 
 			// create a model for the details view
 			var oDetailsModel = new sap.ui.model.json.JSONModel();
@@ -37,13 +38,13 @@
 				press: function (oEvent) {
 					oSelectedItem = oEvent.oSource.getBindingContext().getObject();
 					oDetailsModel.setData(oSelectedItem);
-	        			app.to("details");
-	        		}
+					app.to("details");
+				}
 			});
 
 			// create list
-	        var productList = new sap.m.List({title: "Products"});
-			
+			var productList = new sap.m.List({title: "Products"});
+
 			// Insert the code to increase the memory of the application
 
 			// bind list with template
@@ -73,10 +74,10 @@
 					})
 				})
 			});
-			
+
 			// add list and details to the app
 			app.addPage(products).addPage(details);
-			
+
 			// place the app into the HTML document
 			app.placeAt("content");
 		});
