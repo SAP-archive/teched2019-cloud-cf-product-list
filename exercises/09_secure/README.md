@@ -167,13 +167,13 @@ Therefore the Role Collection needs to be assigned to the user.
 <br><br>
 ![Authorizations](/img/security_cockpit_8.png?raw=true)
 <br><br>
-- Now, in the `Role Collection Assignment` UI, enter your user id used to logon to the current account and click on button **Show Assignments**
-- It lists the current Role Collection assignment to the user and also allows to add new Role Collections to the user
-- Click on button **Add Assignment**
+- Now, in the `Role Collection Assignment` UI, enter your user id used to logon to the current account and click on button **Show Assignments**.  
+It lists the current Role Collection assignment to the user and also allows to add new Role Collections to the user
+- Click on button **Add Assignment**:
 <br><br>
 ![Authorizations](/img/security_cockpit_9.png?raw=true)
 <br><br>
-- In the pop-up dialog, choose the Role Collection `ProductListViewer` you have defined as part of `xs-security.json` and click on button **Add Assignment**
+- In the pop-up dialog, choose the Role Collection `ProductListViewer` you have defined as part of `xs-security.json` and click on button **Add Assignment**:
 <br><br>
 ![Authorizations](/img/security_cockpit_10.png?raw=true)
 <br><br>
@@ -195,18 +195,16 @@ You should be able to see the product list.
 :bulb: The logon URL is https://$identityzone.$uaaDomain. This can be identified from the xsuaa binding credentials (`cf env approuter` and look for `xsuaa.credentials.url`)
 
 - Test the following endpoints:  
-  * `https://product-list-<ID>.<LANDSCAPE_APPS_DOMAIN>/actuator/health` - GET request that is not secured and provides the information whether the product list is up and running.
-  * `https://product-list-<ID>.<LANDSCAPE_APPS_DOMAIN>/all` - GET request that is secured and provides `401` (unauthenticated) in case no JWT access token is provided.
-  * `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/products/all` - GET request that provides list of products.
-  * `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/products/productsByParam?name=Notebook Basic 2015` - 
+  * `https://product-list-<ID>.<LANDSCAPE_APPS_DOMAIN>/actuator/health` - GET request that is not secured and provides the information whether the product-list app is up and running.
+  * `https://product-list-<ID>.<LANDSCAPE_APPS_DOMAIN>/products` - GET request that provides the list of products. It is secured and provides `401` (unauthenticated) in case no JWT access token is provided.
+  * `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/products/` - Points to the url of the AppRouter URI. With `/products` path the request is routed to the `index.html` of the product-list app. 
+  * `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/products/products` - GET request that provides list of products (see `https://product-list-<ID>.<LANDSCAPE_APPS_DOMAIN>/products`).
+  * `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/products/productsByParam?name=Notebook Basic 2015` - - GET request that provides list of products filtered by name.
   
 - You can have a look into the logs with:
     ```
     cf logs product-list --recent
     ```
-
-> Note: https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN> points to the url of the AppRouter. Get all app routes with `cf apps`.
-
 
 ### Step 8: Clean-Up
 Finally delete your application and your service instances using the following commands:
@@ -215,6 +213,11 @@ cf delete -f product-list
 cf delete -f approuter
 cf delete-service -f xsuaa
 ```
+
+### Further Samples 
+You can further sample applications here:
+- https://github.com/SAP/cloud-security-xsuaa-integration/tree/master/samples
+- https://github.com/SAP/cloud-application-security-sample
 
 ***
 <dl>
