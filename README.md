@@ -10,7 +10,7 @@ This tutorial shows how to...
 
 # Scenario
 
-Secure the Product List application by using a flexible authorization framework - OAuth 2.0. The authorization code grant of OAuth 2.0 provides an excellent security mechanism to grant only authorized users access to your application and its data. With the SAP XS Advanced Application Router, the SAP XS UAA OAuth authorization service and Spring Boot you have outstanding tools at your fingertips to configure roles, assign them to users and, finally, implement role checks in your application.
+Secure the Product List application by using a flexible authorization framework - OAuth 2.0. The authorization code grant of OAuth 2.0 provides an excellent security mechanism to grant only authorized users access to your application and its data. With the SAP XS Advanced Application Router, the SAP XSUAA OAuth authorization service and Spring Boot you have outstanding tools at your fingertips to configure roles, assign them to users and, finally, implement role checks in your application.
 
 # Understanding OAuth 2.0 Components
 
@@ -48,7 +48,7 @@ Access and refresh tokens in the form of **JSON Web Token (JWT)** represent the 
 ```
 
 #### OAuth Authorization Server
-The **Extended Services for User Account and Authentication (XS UAA service)** is a multi-tenant identity management service. Its primary role is as an **OAuth Authorization Server**, issuing authorization codes and JWT tokens after the user was successfully authenticated by an identity provider with their Cloud Foundry credentials. Furthermore it can act as an SSO service using those credentials (or others). It has endpoints for managing user accounts and for registering OAuth 2.0 clients, as well as various other management functions.
+The **Extended Services for User Account and Authentication (XSUAA service)** is a multi-tenant identity management service. Its primary role is as an **OAuth Authorization Server**, issuing authorization codes and JWT tokens after the user was successfully authenticated by an identity provider with their Cloud Foundry credentials. Furthermore it can act as an SSO service using those credentials (or others). It has endpoints for managing user accounts and for registering OAuth 2.0 clients, as well as various other management functions.
 
 #### OAuth Client
 The **Application Router (approuter)** is an edge service that provides a single entry point to a business application that consists of several backend microservices. It acts as reverse proxy that routes incoming HTTP requests to the configured target microservice, which allows handling Cross-origin resource sharing (CORS) between the microservices. It plays a central role in the OAuth flow.
