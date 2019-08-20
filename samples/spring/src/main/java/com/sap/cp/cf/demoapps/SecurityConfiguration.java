@@ -27,7 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
         .and()
 			.authorizeRequests()
-			.antMatchers(GET, "/health").permitAll()
+			.antMatchers(GET, "/actuator/**").permitAll()
 			.antMatchers(GET, "/**").hasAuthority("read")
 			.anyRequest().denyAll() // deny anything not configured above
         .and()
