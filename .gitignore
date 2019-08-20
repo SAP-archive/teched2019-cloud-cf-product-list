@@ -33,7 +33,7 @@ nbdist/
 .nb-gradle/
 
 ### Node.js ###
-src/main/approuter/node_modules
+node_modules
 *-lock.json
 
 ### Binaries ###
