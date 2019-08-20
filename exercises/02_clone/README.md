@@ -40,7 +40,8 @@ In this exercise you'll learn how you can clone the Product List sample applicat
 ![Import Maven Project](/img/run_maven_build.png?raw=true)
 <br><br>
 
-2. In the ```Edit Configuration```popup, enter ```clean install``` into the ```Goals```field and click ```Run```. The Maven build should finish without errors.
+2. In the ```Edit Configuration```popup, enter ```clean install``` into the ```Goals```field and click ```Run```. 
+The Maven build should finish with some JUnit Test errors which will be fixed along this Exercise. 
 <br><br>
 ![Import Maven Project](/img/maven_clean_install.png?raw=true)
 <br><br>

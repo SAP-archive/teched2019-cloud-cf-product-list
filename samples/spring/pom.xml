@@ -54,12 +54,8 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-		<!-- security -->
-		<dependency>
-			<groupId>com.sap.cloud.security.xsuaa</groupId>
-			<artifactId>xsuaa-spring-boot-starter</artifactId>
-			<version>1.6.0</version>
-		</dependency>
+		<!-- security TODO see https://github.com/SAP/cloud-cf-product-list-sample/blob/teched2019/exercises/09_secure/Spring.md -->
+
 		<!-- testing -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

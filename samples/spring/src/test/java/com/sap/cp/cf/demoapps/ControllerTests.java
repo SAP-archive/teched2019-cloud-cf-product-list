@@ -76,9 +76,7 @@ public class ControllerTests {
 
 	@Test
 	public void test_healthcheck_without_authentication() throws Exception {
-		String jwtWithoutScopes = new JwtGenerator(xsuaaServiceConfiguration.getClientId())
-				.getTokenForAuthorizationHeader();
-		mvc.perform(get("/actuator/health").with(bearerToken(jwtWithoutScopes))
+		mvc.perform(get("/actuator/health")
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk());
 	}
