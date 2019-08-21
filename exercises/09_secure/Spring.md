@@ -51,31 +51,28 @@ A Spring boot application needs a security configuration class that enables the 
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	XsuaaServiceConfiguration xsuaaServiceConfiguration;
+    @Autowired
+    XsuaaServiceConfiguration xsuaaServiceConfiguration;
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		// @formatter:off
-        http
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
-        .and()
-			.authorizeRequests()
-			.antMatchers(GET, "/actuator/**").anonymous()
-			.antMatchers(GET, "/**").hasAuthority("read")
-			.anyRequest().denyAll() // deny anything not configured above
-        .and()
-            .oauth2ResourceServer()
-            .jwt()
-            .jwtAuthenticationConverter(getJwtAuthoritiesConverter());
-        // @formatter:on
-	}
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
+            .and()
+                .authorizeRequests()
+		.antMatchers(GET, "/actuator/**").anonymous()
+		.antMatchers(GET, "/**").hasAuthority("read")
+		.anyRequest().denyAll() // deny anything not configured above
+            .and()
+                .oauth2ResourceServer()
+                .jwt()
+                .jwtAuthenticationConverter(getJwtAuthoritiesConverter());
+    }
 
-	Converter<Jwt, AbstractAuthenticationToken> getJwtAuthoritiesConverter() {
-		TokenAuthenticationConverter converter = new TokenAuthenticationConverter(xsuaaServiceConfiguration);
-		converter.setLocalScopeAsAuthorities(true);
-		return converter;
-	}
+    Converter<Jwt, AbstractAuthenticationToken> getJwtAuthoritiesConverter() {
+	TokenAuthenticationConverter converter = new TokenAuthenticationConverter(xsuaaServiceConfiguration);
+	converter.setLocalScopeAsAuthorities(true);
+	return converter;
+    }
 }
 ```
 
