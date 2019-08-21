@@ -1,12 +1,12 @@
-## Step 1: Prerequisite
+## Step 4.1: Prerequisite
 Make sure that you've imported the Product List sample application (Spring) as part of this [Exercise](/exercises/02_clone/README.md).
 Within Eclipse IDE you should see the `product-list` project in the Project Explorer View.
 
 * Build the project in Eclipse (`Context Menu -> Run As -> Maven install`) -> Result: **BUILD FAILURE**
 
-> The build fails as the `ControllerTests` JUnit test expects that the `XsuaaServiceConfiguration` bean exists and the `products` endpoints of the Product-List are secured.   
+> The build fails as the `ControllerTests` JUnit test expects that a bean of `XsuaaServiceConfiguration` class exists and all `GET` endpoints of the Product-List are secured.   
 
-## Step 2: Adding required security libraries
+## Step 4.2: Adding required security libraries
 
 To secure the application we have to add **XSUAA Spring Security library** to the classpath. 
 This library enhances the [spring-security](https://github.com/spring-projects/spring-security/) project. As of version 5 of spring-security, this includes the OAuth resource-server functionality. 
@@ -42,7 +42,7 @@ A Spring boot application needs a security configuration class that enables the 
     ```
 
 
-## Step 3: Configuration of the (XSUAA) Spring Security framework
+## Step 4.3: Configuration of the (XSUAA) Spring Security framework
 
 * Create a new class `com.sap.cp.cf.demoapps.SecurityConfiguration.java` including the following scope checks and offline token validations.
 
@@ -79,7 +79,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 }
 ```
 
-## Step 4: Build the Project
+## Step 4.4: Build the Project
 * Build the project in Eclipse (`Context Menu -> Run As -> Maven install`) -> Result: **BUILD SUCCESS**
   * Or, alternatively build the project on the console with the following commands:
     ```
@@ -100,6 +100,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 </dl>
 <hr>
 <a href="/exercises/09_secure/README.md#step-5-deploy-approuter-and-application-to-cloud-foundry">
-  <img src="/img/arrow_left.png" height="80" border="10" align="left" alt="Previous Exercise" title="Previous Exercise: Secure application">
+  <img src="/img/arrow_left.png" height="80" border="10" align="left" alt="Continue Exercise" title="Continue Exercise: Secure application">
 </a>
 
