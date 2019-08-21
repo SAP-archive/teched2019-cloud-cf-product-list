@@ -196,10 +196,10 @@ You should be able to see the product list.
 
 - Test the following endpoints:  
   * `https://product-list-<ID>.<LANDSCAPE_APPS_DOMAIN>/actuator/health` - GET request that is not secured and provides the information whether the product-list app is up and running.
-  * `https://product-list-<ID>.<LANDSCAPE_APPS_DOMAIN>/products` - GET request that provides the list of products. It is secured and provides `401` (unauthenticated) in case no JWT access token is provided.
-  * `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/products/` - Points to the url of the AppRouter URI. With `/products` path the request is routed to the `index.html` of the product-list app. 
+  * `https://product-list-<ID>.<LANDSCAPE_APPS_DOMAIN>/products` - GET request that provides the list of products. It is secured and provides `401` (unauthenticated) in case no JWT access token is provided with `Authorization` header.
+  * `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/products/` - Points to the url of the AppRouter URI. With `/products` path the request is routed to the `index.html` of the product-list app. It should show you three products with details view.
   * `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/products/products` - GET request that provides list of products (see `https://product-list-<ID>.<LANDSCAPE_APPS_DOMAIN>/products`).
-  * `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/products/productsByParam?name=Notebook Basic 2015` - - GET request that provides list of products filtered by name.
+  * `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/products/productsByParam?name=Notebook Basic 2015` - GET request that provides list of products filtered by name.
   
 - You can have a look into the logs with:
     ```
