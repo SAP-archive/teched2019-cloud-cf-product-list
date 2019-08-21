@@ -19,14 +19,14 @@ In this exercise you'll learn how you can create free trial account on the SAP C
 <br><br>
 ![Start Cloud Foundry Trial](/img/start_cf_trial.png?raw=true)
 <br><br>
-2. Click on the *Start Cloud Foundry Trial* button – a pop-up will appear. Select a region from the dropdown for your trial and click OK
+2. Click on the *Start Cloud Foundry Trial* button – a pop-up will appear. Enter your Verification Code, you've received on your mobile phone. This will trigger a logout, so you need to re-logon.
+3. Click again on the *Start Cloud Foundry Trial* button – another pop-up will appear. Select a region from the dropdown for your trial and click OK
 - If you attend TechEd Las Vegas or TechEd Bangalore select US East (VA) region.
 - If you attend TechEd Barcelona, select Europe (Frankfurt) region. 
 <br><br>
 ![Select Trial Region](/img/select_trial_region.png?raw=true)
 <br><br>
-
-3. Wait for the procedure to finish. You will get a Global Account, Subaccount, Organization and Space in the region you selected. Once these are created you can navigate to your new Space (click on Go to Space button)
+4. Wait for the procedure to finish. You will get a Global Account, Subaccount, Organization and Space in the region you selected. Once these are created you can navigate to your new Space (click on Go to Space button)
 <br><br>
 ![Select Trial Region](/img/go_to_space.png?raw=true)
 <br><br>
