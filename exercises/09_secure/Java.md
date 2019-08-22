@@ -1,16 +1,13 @@
 
-## Step 1: Import the sample project into Eclipse
-1. Open the Windows Start menu and enter ```Eclipse...``` in the input field. Under ```Programs``` you will see ```Eclipse Oxygen -...```. Click on this entry to open Eclipse.
-2. If you are prompted for the workspace during startup, select ```<student directory>\workspace```.
-3. Now import the target state of the sample project as Maven project into your Eclipse workspace: In the Eclipse menu, chose ```File```> ```Import...```.
-4. In the ```Import``` wizard, select ```Maven``` > ```Existing Maven Projects``` and click ```Next```.
-5. In the next step of the ```Import Maven Projects``` popup, click ```Browse```, navigate into the ```cloud-cf-product-list-sample-advanced\java``` project in your student directory folder, then click ```Finish```.
-6. The project is now imported in Eclipse. You should see the project in the Project Explorer.
-7. Build the project in Eclipse (`Context Menu -> Run As -> Maven install`) -> Result: BUILD SUCCESS
+## Step 4.1: Prerequisite
+Make sure that you've imported the Product List sample application (Spring) as part of this [Exercise](/exercises/02_clone/README.md).
+Within Eclipse IDE you should see the `product-list-java` project in the Project Explorer View.
 
-## Step 2: Security configuration
+* Build the project in Eclipse (`Context Menu -> Run As -> Maven install`) -> Result: **BUILD FAILURE**
 
-**This step is mandatory only if you work on the master branch. For the advanced branch you can go through it to understand what is happening (no need to change anything)**
+> The build fails as the `ControllerTests` JUnit test expects that all `GET` endpoints of the Product-List are secured.  
+
+## Step 4.2: Security configuration
 
 The web.xml of the application must use auth-method with value XSUAA. This enables authentication of requests using incoming OAuth authentication tokens.
 
