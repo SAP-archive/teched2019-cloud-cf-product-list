@@ -73,3 +73,15 @@ public class Controller extends HttpServlet {
 ```
 
 Now all endpoints are blocked.
+
+
+## Step 4.3: Build the Project
+* Build the project in Eclipse (`Context Menu -> Run As -> Maven install`) -> Result: **BUILD SUCCESS**
+  * Or, alternatively build the project on the console with the following commands:
+    ```
+    D:
+    cd D:\Files\Session\SEC364\cloud-cf-product-list-sample-teched2019\samples\java
+    mvn clean install
+    ```
+* Finally, make sure that the folder `D:\Files\Session\SEC364\cloud-cf-product-list-sample-teched2019\samples\java\target` contains a `product-list.jar` file. 
+
