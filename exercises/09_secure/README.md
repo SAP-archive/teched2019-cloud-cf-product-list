@@ -100,7 +100,7 @@ To grant users access to the Product List application, an instance of the XSUAA 
 
 ### Step 3: Configuration of the Application Router
 
-The [Application Router](https://github.com/SAP/cloud-cf-product-list-sample/blob/advanced/approuter/README.md) is used to provide a single entry point to a business application that consists of several different apps (microservices). It dispatches requests to backend microservices and acts as a reverse proxy. The rules that determine which request should be forwarded to which _destinations_ are called _routes_. The application router can be configured to authenticate the users and propagate the user information. Finally, the application router can serve static content.
+The Application Router is used to provide a single entry point to a business application that consists of several different apps (microservices). It dispatches requests to backend microservices and acts as a reverse proxy. The rules that determine which request should be forwarded to which _destinations_ are called _routes_. The application router can be configured to authenticate the users and propagate the user information. Finally, the application router can serve static content.
 
 * You can find all files that are required to install and configure the Application Router in the `/samples/approuter` folder.
   * [`.npmrc`](/samples/approuter/.npmrc)  
