@@ -93,7 +93,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 }
 ```
 
-## Step 4.4
+## Step 4.4: Apply Method Security
 
 After the previous step still one JUnit test will fail as the `/productsByParam` endpoint is not protected with scope checks.
 With `@EnableGlobalMethodSecurity` annotation (see `SecurityConfiguration` class) Spring Method Security is enabled. Now you can apply fine granular authorization checks on method level. 
