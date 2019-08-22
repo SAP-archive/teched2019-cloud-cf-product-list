@@ -1,7 +1,5 @@
 ## Step 1: Adding required security libraries
 
-**This step is mandatory only if you work on the master branch. For the advanced branch you can go through it to understand what is happening (no need to change anything)**
-
 To enable offline JWT validation of the XS Advanced container security API the module "sap-xssec" needs to be added to the dependencies section of the package.json.
 The module xsenv is needed to retrieve the configuration of the default services (which are read from environment variable VCAP_SERVICES or if not set, from the default configuration file).
 
@@ -32,7 +30,6 @@ The module xsenv is needed to retrieve the configuration of the default services
 
 
 ## Step 2: Usage of the Security API in the Application
-**This step is mandatory only if you work on the master branch. For the advanced branch you can go through it to understand what is happening (no need to change anything)**
 
 *If you use [express](https://www.npmjs.com/package/express) and [passport](https://www.npmjs.com/package/passport), you can easily plug a ready-made authentication strategy.*
 
@@ -77,11 +74,11 @@ Now all endpoints are blocked.
 
 *  Run `npm install`
 
-:bulb: For the advanced branch only this command has to be executed from `nodejs`
+:bulb: This command has to be executed from `nodejs`
 
 ```shell
 D:
-cd D:\Files\Session\SEC366\cloud-cf-product-list-sample-advanced\nodejs
+cd D:\Files\Session\SEC366\cloud-cf-product-list-sample-teched2019\nodejs
 npm config set @sap:registry https://npm.sap.com
 npm install
 ```
