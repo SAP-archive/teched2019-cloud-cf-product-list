@@ -83,5 +83,5 @@ Now all endpoints are blocked.
     cd D:\Files\Session\SEC364\cloud-cf-product-list-sample-teched2019\samples\java
     mvn clean install
     ```
-* Finally, make sure that the folder `D:\Files\Session\SEC364\cloud-cf-product-list-sample-teched2019\samples\java\target` contains a `product-list.jar` file. 
+* Finally, make sure that the folder `D:\Files\Session\SEC364\cloud-cf-product-list-sample-teched2019\samples\java\target` contains a `product-list.war` file. 
 
