@@ -27,7 +27,7 @@ First, we still have a **microservice**, in our case the **Product List applicat
 #### OAuth Access Token (JWT)
 Access and refresh tokens in the form of **JSON Web Token (JWT)** represent the user’s identity and authorization claims. If the access token is compromised, it can be revoked, which forces the generation of a new access token via the user’s refresh token.
 
-**Example JWT**
+**Example JWT** [[rfc7519](https://tools.ietf.org/html/rfc7519)]
 ```json
 {
   "client_id": "sb-xsapplication!t895",
@@ -99,4 +99,5 @@ Secure the Product List application.
 [Start the Exercise](/exercises/09_secure/README.md)
 
 # Further References
-- JSON Web Token [rfc7519](https://tools.ietf.org/html/rfc7519)
+- [sap.help.com: Authorization and Trust Management](https://help.sap.com/viewer/product/DRAFT/CP_AUTHORIZ_TRUST_MNG/Validation/en-US)
+- [sap.help.com: Authorization and Trust Management - Tutorials](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/902ae800c1d04c7388e407b7815e5cc8.html)
