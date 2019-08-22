@@ -44,11 +44,27 @@ A Spring boot application needs a security configuration class that enables the 
 
 ## Step 4.3: Configuration of the (XSUAA) Spring Security framework
 
-* Create a new class `com.sap.cp.cf.demoapps.SecurityConfiguration.java` including the following scope checks and offline token validations.
+* Update `com.sap.cp.cf.demoapps.SecurityConfiguration.java` class including the following scope checks and offline token validations.
 
 ```java
+import com.sap.cloud.security.xsuaa.XsuaaServiceConfiguration;
+import com.sap.cloud.security.xsuaa.token.TokenAuthenticationConverter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.security.authentication.AbstractAuthenticationToken;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.jwt.Jwt;
+
+import static org.springframework.http.HttpMethod.GET;
+
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -59,9 +75,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
             .and()
                 .authorizeRequests()
-		.antMatchers(GET, "/actuator/**").anonymous()
-		.antMatchers(GET, "/**").hasAuthority("read")
-		.anyRequest().denyAll() // deny anything not configured above
+                    .antMatchers(GET, "/actuator/**").anonymous() // accepts unauthenticated user (w/o JWT)
+                    .antMatchers(GET, "/products/**").hasAuthority("read") // scope check
+                    .antMatchers(GET, "/productsByParam").authenticated()  // find scope check in ProductRepo using @PreAuthorize
+                    .anyRequest().denyAll() // deny anything not configured above
             .and()
                 .oauth2ResourceServer()
                 .jwt()
@@ -69,14 +86,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     Converter<Jwt, AbstractAuthenticationToken> getJwtAuthoritiesConverter() {
-	TokenAuthenticationConverter converter = new TokenAuthenticationConverter(xsuaaServiceConfiguration);
-	converter.setLocalScopeAsAuthorities(true);
-	return converter;
+        TokenAuthenticationConverter converter = new TokenAuthenticationConverter(xsuaaServiceConfiguration);
+        converter.setLocalScopeAsAuthorities(true);
+        return converter;
     }
 }
 ```
 
-## Step 4.4: Build the Project
+## Step 4.4
+
+After the previous step still one JUnit test will fail as the `/productsByParam` endpoint is not protected with scope checks.
+With `@EnableGlobalMethodSecurity` annotation (see `SecurityConfiguration` class) Spring Method Security is enabled. Now you can apply fine granular authorization checks on method level. 
+
+* Annotate the `ProductRepo`.`findByName(String)` method with:
+```
+@PreAuthorize("hasAuthority('read')")
+```
+
+## Step 4.5: Build the Project
 * Build the project in Eclipse (`Context Menu -> Run As -> Maven install`) -> Result: **BUILD SUCCESS**
   * Or, alternatively build the project on the console with the following commands:
     ```

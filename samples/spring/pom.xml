@@ -28,6 +28,11 @@
 	</properties>
 
 	<dependencies>
+		<!-- building rest apis -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 		<!-- accessing data with jpa  -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -37,11 +42,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
-		</dependency>
-		<!-- building rest apis -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<!-- database drivers -->
 		<dependency>
@@ -55,7 +55,6 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		<!-- security TODO see https://github.com/SAP/cloud-cf-product-list-sample/blob/teched2019/exercises/09_secure/Spring.md -->
-
 		<!-- testing -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -74,13 +73,7 @@
 			<version>1.6.0</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- Connectivity -->
-		<dependency>
-		      <groupId>commons-io</groupId>
-		      <artifactId>commons-io</artifactId>
-		      <version>2.6</version>
-		</dependency>
-	</dependencies>
+    </dependencies>
 	<build>
       <finalName>product-list</finalName>
 		<plugins>
