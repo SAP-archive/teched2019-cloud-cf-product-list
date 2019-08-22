@@ -13,7 +13,7 @@ The web.xml of the application must use auth-method with value XSUAA. This enabl
 
 ```
 <web-app>
-<display-name>sample</display-name>
+<display-name>Products App</display-name>
   <login-config> 
     <auth-method>XSUAA</auth-method>
   </login-config> 
