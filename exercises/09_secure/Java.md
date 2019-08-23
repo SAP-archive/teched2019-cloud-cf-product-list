@@ -11,7 +11,7 @@ Within Eclipse IDE you should see the `product-list-java` project in the Project
 
 The web.xml of the application must use auth-method with value XSUAA. This enables authentication of requests using incoming OAuth authentication tokens.
 
-```
+```xml
 <web-app>
 <display-name>Products App</display-name>
   <login-config> 
@@ -21,7 +21,7 @@ The web.xml of the application must use auth-method with value XSUAA. This enabl
 ```
 
 In the Java coding, use the @ServletSecurity annotations:
-```
+```java
 package com.sap.cp.cf.demoapps;
 
 import java.io.IOException;
