@@ -52,6 +52,17 @@ public class ControllerTests {
 	}
 
 	@Test
+	public void getIndex_authorized_200() throws Exception {
+		String jwtRead = new JwtGenerator(xsuaaServiceConfiguration.getClientId())
+				.addScopes(new String[] { "openid", getGlobalScope("read") })
+				.getTokenForAuthorizationHeader();
+
+		mvc.perform(get("/").with(bearerToken(jwtRead))
+				.accept(MediaType.TEXT_HTML_VALUE))
+				.andExpect(status().isOk());
+	}
+
+	@Test
 	public void getProducts_authorized_200() throws Exception {
 		String jwtRead = new JwtGenerator(xsuaaServiceConfiguration.getClientId())
 				.addScopes(new String[] { "openid", getGlobalScope("read") })

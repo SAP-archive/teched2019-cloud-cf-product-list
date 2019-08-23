@@ -76,7 +76,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and()
                 .authorizeRequests()
                     .antMatchers(GET, "/actuator/**").anonymous() // accepts unauthenticated user (w/o JWT)
-                    .antMatchers(GET, "/products/**").hasAuthority("read") // scope check
+                    .antMatchers(GET, "/", "/products/**").hasAuthority("read") // scope check
                     .antMatchers(GET, "/productsByParam").authenticated()  // find scope check in ProductRepo using @PreAuthorize
                     .anyRequest().denyAll() // deny anything not configured above
             .and()
@@ -98,10 +98,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 After the previous step still one JUnit test will fail as the `/productsByParam` endpoint is not protected with scope checks.
 With `@EnableGlobalMethodSecurity` annotation (see `SecurityConfiguration` class) Spring Method Security is enabled. Now you can apply fine granular authorization checks on method level. 
 
-* Annotate the `ProductRepo`.`findByName(String)` method with:
-```
-@PreAuthorize("hasAuthority('read')")
-```
+* In the `ProductRepo` class annotate the `findByName(String)` method with:
+    ```java
+    @PreAuthorize("hasAuthority('read')")
+    ```  
+  ... and fix the missing import issue.
 
 ## Step 4.5: Build the Project
 * Build the project in Eclipse (`Context Menu -> Run As -> Maven install`) -> Result: **BUILD SUCCESS**
