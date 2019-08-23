@@ -11,7 +11,8 @@ In this exercise you'll learn how you can clone the Product List sample applicat
 # Exercise description
 
 ## 1. Download the sample code as zip
-1. Go to the root of the project in github: https://github.com/SAP/cloud-cf-product-list-sample and the branch: ```teched2019```
+1. Go to the root of the project in github: https://github.com/SAP/cloud-cf-product-list-sample. Make sure that you are in the right branch: ```teched2019```.
+
 2. Click on **Clone or download** button and select ```Download ZIP```
 <br><br>
 ![Download ZIP](/img/github_download_zip.png?raw=true)
