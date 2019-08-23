@@ -107,7 +107,7 @@ The Application Router is used to provide a single entry point to a business app
   With this the node modules are downloaded by the NPM package manager from the https://npm.sap.com SAP external NPM repository (aka registry) into a subdirectory `node_modules/@sap/approuter`. 
   * [`package.json`](/samples/approuter/package.json)
   Declares version and package (`node_modules`) of the Application Router, that is a Node.JS application.
-  * [xs-app.json`](/samples/approuter/xs-app.json)  
+  * [`xs-app.json`](/samples/approuter/xs-app.json)  
   Configures the Application Router by defining the destinations and routes:
 
     ```json
