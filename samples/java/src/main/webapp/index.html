@@ -20,7 +20,13 @@
 			// create model for the list view
 			var oListModel = new sap.ui.model.json.JSONModel();
 			sap.ui.getCore().setModel(oListModel);
-			var productsUrl = document.defaultView.location.origin + "/products"
+			//var productsUrl = document.defaultView.location.origin + "/products"
+			//similar to spring packet
+			var productsUrl = "/products/products"; // contains approuter
+			if (document.defaultView.location.origin.includes("localhost")) {
+				productsUrl = "/products";
+			}
+			//
 			oListModel.loadData(productsUrl);
 			console.log(productsUrl);
 			console.log(oListModel);
