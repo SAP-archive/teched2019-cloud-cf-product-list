@@ -187,7 +187,7 @@ Further up-to-date information you can get on sap.help.com:
 According to the Role Collection(s) you've assigned to your user you should have read access to the product list endpoints.
 
 You need to logon again to your application so that the authorities are assigned to your user's JWT. You can provoke a logon screen when clearing your cache.
-Call again your application endpoints via the approuter Uri using the `Postman` Chrome plugin as explained [here](#testDeployedApp-1). You should now be authorized to create, read and delete advertisements.
+Call again your application endpoints via the approuter Uri using the Chrome browser. You should now be authorized to create, read and delete advertisements.
 
 - Launch the approuter application in the browser again and login with your credentials. In order to provoke a logon-screen you may need to delete the cache or alternatively start a new private (incognito) browser window. 
 You should be able to see the product list.
