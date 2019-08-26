@@ -14,8 +14,12 @@ public class Controller {
 
 	private static final Logger logger = LoggerFactory.getLogger(Controller.class);
 
+	private final ProductRepo productRepo;
+
 	@Autowired
-	private ProductRepo productRepo;
+	public Controller(ProductRepo productRepo) {
+		this.productRepo = productRepo;
+	}
 
 	@GetMapping("/productsByParam")
 	public Collection<Product> getProductByName(@RequestParam(value = "name") String name) {
