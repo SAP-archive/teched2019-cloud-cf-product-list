@@ -5,7 +5,7 @@ The module xsenv is needed to retrieve the configuration of the default services
 
 ```json
 {
-  "name": "cloud-cf-product-list-sample",
+  "name": "cloud-cf-product-list",
   "version": "1.0.0",
   "description": "Product list demo app for Cloudfoundry",
   "main": "index.js",
@@ -78,7 +78,7 @@ Now all endpoints are blocked.
 
 ```shell
 D:
-cd D:\Files\Session\SEC366\cloud-cf-product-list-sample-teched2019\nodejs
+cd D:\Files\Session\SEC366\cloud-cf-product-list-teched2019\nodejs
 npm config set @sap:registry https://npm.sap.com
 npm install
 ```

@@ -66,7 +66,7 @@ Scopes are carried by [JSON Web Tokens (JWTs)](https://tools.ietf.org/html/rfc75
 ### Step 2: Creation and configuration of the XSUAA service
 
 To grant users access to the Product List application, an instance of the XSUAA service for this application must be created; the XSUAA service instance acts as an OAuth 2.0 client for the bound application.
-* You need to tell the CF CLI which Cloud Foundry you will use. To do this you have to set the API endpoint to the Cloud Controller of the Cloud Foundry region where you created your Cloud Foundry trial. Open a command prompt, navigate to the folder ```cloud-cf-product-list-sample-teched2019``` in the student directory and use the command  ```cf api CLOUD_FOUNDRY_API_ENDPOINT```.
+* You need to tell the CF CLI which Cloud Foundry you will use. To do this you have to set the API endpoint to the Cloud Controller of the Cloud Foundry region where you created your Cloud Foundry trial. Open a command prompt, navigate to the folder ```cloud-cf-product-list-teched2019``` in the student directory and use the command  ```cf api CLOUD_FOUNDRY_API_ENDPOINT```.
 
   * If you attend TechEd Las Vegas, target the US10 region API endpoint:
   ```
@@ -94,7 +94,7 @@ To grant users access to the Product List application, an instance of the XSUAA 
 * Create the XSUAA service instance: 
     ```
     D:
-    cd D:\Files\Session\SEC364\cloud-cf-product-list-sample-teched2019\samples
+    cd D:\Files\Session\SEC364\cloud-cf-product-list-teched2019\samples
     cf create-service xsuaa application xsuaa -c xs-security.json
     ```
 
@@ -139,7 +139,7 @@ Adapt the variables `ID`, `LANDSCAPE_APPS_DOMAIN` and the others variables in th
 * Push the product-list together with the approuter application to your cloud foundry space:  
     ```
     D:
-    cd D:\Files\Session\SEC364\cloud-cf-product-list-sample-teched2019\samples
+    cd D:\Files\Session\SEC364\cloud-cf-product-list-teched2019\samples
     cf push --vars-file vars.yml
     ```
 

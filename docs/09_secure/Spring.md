@@ -113,10 +113,10 @@ With `@EnableGlobalMethodSecurity` annotation (see `SecurityConfiguration` class
   * Or, alternatively build the project on the console with the following commands:
     ```
     D:
-    cd D:\Files\Session\SEC364\cloud-cf-product-list-sample-teched2019\samples\spring
+    cd D:\Files\Session\SEC364\cloud-cf-product-list-teched2019\samples\spring
     mvn clean install
     ```
-* Finally, make sure that the folder `D:\Files\Session\SEC364\cloud-cf-product-list-sample-teched2019\samples\spring\target` contains a `product-list.jar` file. 
+* Finally, make sure that the folder `D:\Files\Session\SEC364\cloud-cf-product-list-teched2019\samples\spring\target` contains a `product-list.jar` file. 
 
 ## Further References
 - Github XSUAA Spring Security library: https://github.com/SAP/cloud-security-xsuaa-integration/tree/master/spring-xsuaa

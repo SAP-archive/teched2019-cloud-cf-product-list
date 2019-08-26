@@ -90,5 +90,5 @@ Check if git is installed by running `git --version`
 </dl>
 <hr>
 <a href="/docs/02_clone/README.md">
-  <img src="https://github.com/SAP/cloud-cf-product-list-sample/blob/teched2019/docs/img/arrow_right.png" height="80" border="10" align="right" alt="Next Exercise" title="Next Exercise: Clone application">
+  <img src="https://github.com/SAP-samples/cloud-cf-product-list/blob/teched2019/docs/img/arrow_right.png" height="80" border="10" align="right" alt="Next Exercise" title="Next Exercise: Clone application">
 </a>

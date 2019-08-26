@@ -80,8 +80,8 @@ Now all endpoints are blocked.
   * Or, alternatively build the project on the console with the following commands:
     ```
     D:
-    cd D:\Files\Session\SEC364\cloud-cf-product-list-sample-teched2019\samples\java
+    cd D:\Files\Session\SEC364\cloud-cf-product-list-teched2019\samples\java
     mvn clean install
     ```
-* Finally, make sure that the folder `D:\Files\Session\SEC364\cloud-cf-product-list-sample-teched2019\samples\java\target` contains a `product-list.war` file. 
+* Finally, make sure that the folder `D:\Files\Session\SEC364\cloud-cf-product-list-teched2019\samples\java\target` contains a `product-list.war` file. 
 

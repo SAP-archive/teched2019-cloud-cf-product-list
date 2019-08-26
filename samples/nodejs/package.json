@@ -1,5 +1,5 @@
 {
-  "name": "cloud-cf-product-list-sample",
+  "name": "cloud-cf-product-list",
   "version": "1.0.0",
   "description": "Product list demo app for Cloudfoundry",
   "main": "index.js",

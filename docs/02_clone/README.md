@@ -11,14 +11,14 @@ In this exercise you'll learn how you can clone the Product List sample applicat
 # Exercise description
 
 ## 1. Download the sample code as zip
-1. Go to the root of the project in github: https://github.com/SAP/cloud-cf-product-list-sample. Make sure that you are in the right branch: ```teched2019```.
+1. Go to the root of the project in github: https://github.com/SAP-samples/cloud-cf-product-list. Make sure that you are in the right branch: ```teched2019```.
 
 2. Click on **Clone or download** button and select ```Download ZIP```
 <br><br>
 ![Download ZIP](/docs/img/github_download_zip.png?raw=true)
 <br><br>
 
-3.  Unzip the downloaded file in your students directory - a new directory ```cloud-cf-product-list-sample-teched2019``` will be created.
+3.  Unzip the downloaded file in your students directory - a new directory ```cloud-cf-product-list-teched2019``` will be created.
 
 ## 2. Import the sample project into Eclipse
 1. Open the Windows Start menu and enter ```CPL...``` in the input field. Under ```Programs``` you will see ```ABAP in Eclipse - CPL...```. Click on this entry to open Eclipse.
@@ -28,7 +28,7 @@ In this exercise you'll learn how you can clone the Product List sample applicat
 ![Import Maven Project](/docs/img/import_maven_project.png?raw=true)
 <br><br>
 
-4. In the next step of the ```Import Maven Projects``` popup, click ```Browse```, navigate into the unziped root folder of ```cloud-cf-product-list-sample-teched2019``` project in your student directory folder (```D:\Files\Session\CPL...```). In the wizard select both projects (java and spring) and finally click ```Finish```.
+4. In the next step of the ```Import Maven Projects``` popup, click ```Browse```, navigate into the unziped root folder of ```cloud-cf-product-list-teched2019``` project in your student directory folder (```D:\Files\Session\CPL...```). In the wizard select both projects (java and spring) and finally click ```Finish```.
 5. Both projects are now imported in Eclipse. You should see them in the Project Explorer like in the screenshot below.  
 <br><br>
 ![Import Maven Project](/docs/img/imported_project_eclipse.png?raw=true)
