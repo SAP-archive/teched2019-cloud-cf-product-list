@@ -17,30 +17,30 @@ In this exercise you'll learn how you can create free trial account on the SAP C
 
 1. Then in [SAP Cloud Platform cockpit](https://account.hana.ondemand.com/#/home/welcome) navigate to your user home. You should see a button *Start Cloud Foundry Trial*.  
 <br><br>
-![Start Cloud Foundry Trial](/img/start_cf_trial.png?raw=true)
+![Start Cloud Foundry Trial](/docs/img/start_cf_trial.png?raw=true)
 <br><br>
 2. Click on the *Start Cloud Foundry Trial* button – a pop-up will appear. Enter your Verification Code, you've received on your mobile phone. This will trigger a logout, so you need to re-logon.
 3. Click again on the *Start Cloud Foundry Trial* button – another pop-up will appear. Select a region from the dropdown for your trial and click OK
 - If you attend TechEd Las Vegas or TechEd Bangalore select US East (VA) region.
 - If you attend TechEd Barcelona, select Europe (Frankfurt) region. 
 <br><br>
-![Select Trial Region](/img/select_trial_region.png?raw=true)
+![Select Trial Region](/docs/img/select_trial_region.png?raw=true)
 <br><br>
 4. Wait for the procedure to finish. You will get a Global Account, Subaccount, Organization and Space in the region you selected. Once these are created you can navigate to your new Space (click on Go to Space button)
 <br><br>
-![Select Trial Region](/img/go_to_space.png?raw=true)
+![Select Trial Region](/docs/img/go_to_space.png?raw=true)
 <br><br>
 
 ## Cockpit
 This is a simplified picture of the domain model you have in the Cloud Foundry Environment. If you want to learn more about the different entities, check the [documentation.](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/8ed4a705efa0431b910056c0acdbf377.html)
 
 <br><br>
-![Domain Model Overview](/img/domain_model.png?raw=true)
+![Domain Model Overview](/docs/img/domain_model.png?raw=true)
 <br><br>
 
 This is what you see now in Cockpit:
 <br><br>
-![Cockpit Domain Model Overview](/img/cockpit_domain_model.png?raw=true)
+![Cockpit Domain Model Overview](/docs/img/cockpit_domain_model.png?raw=true)
 <br><br>
 
 ## Clean-up
@@ -89,6 +89,6 @@ Check if git is installed by running `git --version`
   </dd>
 </dl>
 <hr>
-<a href="/exercises/02_clone/README.md">
-  <img src="https://github.com/SAP/cloud-cf-product-list-sample/blob/teched2019/img/arrow_right.png" height="80" border="10" align="right" alt="Next Exercise" title="Next Exercise: Clone application">
+<a href="/docs/02_clone/README.md">
+  <img src="https://github.com/SAP/cloud-cf-product-list-sample/blob/teched2019/docs/img/arrow_right.png" height="80" border="10" align="right" alt="Next Exercise" title="Next Exercise: Clone application">
 </a>

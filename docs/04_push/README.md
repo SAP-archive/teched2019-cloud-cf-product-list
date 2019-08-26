@@ -90,19 +90,19 @@ Now you have the application running in the SAP Cloud Platform Cloud Foundry Env
 - You should land in your user home. If you are not there, click on Home.
 - Click on Go to Cloud Foundry Trial button
 <br><br>
-![GO to trial](/img/go_to_trial_button.png?raw=true)
+![GO to trial](/docs/img/go_to_trial_button.png?raw=true)
 <br><br>
 - You will land in your trial Global Account -> Click on the subaccount (usually the name is trial) -> Click on Spaces in the left hand navigation --> click on the name of your space (it's usually dev)
 <br><br>
-![GO to space](/img/cockpit_CF_space_org.png?raw=true)
+![GO to space](/docs/img/cockpit_CF_space_org.png?raw=true)
 <br><br>
 - You are now in your trial space where you can see the running applications - in our case it should be your Product List application that you just pushed to the cloud. You can click on the application name:
 <br><br>
-![Running applications in cockpit](/img/running_app_cockpit.png?raw=true)
+![Running applications in cockpit](/docs/img/running_app_cockpit.png?raw=true)
 <br><br>
 A dedicated application view will open where you will see the Application Routes - click on the URL to see your application running in a browser.
 <br><br>
-![Application Routes](/img/application_routes_cockpit.png?raw=true)
+![Application Routes](/docs/img/application_routes_cockpit.png?raw=true)
 <br><br>
 
 

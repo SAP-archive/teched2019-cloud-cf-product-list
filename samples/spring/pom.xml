@@ -54,7 +54,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-		<!-- security TODO see https://github.com/SAP/cloud-cf-product-list-sample/blob/teched2019/exercises/09_secure/Spring.md -->
+		<!-- security TODO see https://github.com/SAP/cloud-cf-product-list-sample/blob/teched2019/docs/09_secure/Spring.md -->
 		<!-- testing -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

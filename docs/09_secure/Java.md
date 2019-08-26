@@ -1,6 +1,6 @@
 
 ## Step 4.1: Prerequisite
-Make sure that you've imported the Product List sample application (Spring) as part of this [Exercise](/exercises/02_clone/README.md).
+Make sure that you've imported the Product List sample application (Spring) as part of this [Exercise](/docs/02_clone/README.md).
 Within Eclipse IDE you should see the `product-list-java` project in the Project Explorer View.
 
 * Build the project in Eclipse (`Context Menu -> Run As -> Maven install`) -> Result: **BUILD FAILURE**

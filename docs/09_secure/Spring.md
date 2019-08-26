@@ -1,5 +1,5 @@
 ## Step 4.1: Prerequisite
-Make sure that you've imported the Product List sample application (Spring) as part of this [Exercise](/exercises/02_clone/README.md).
+Make sure that you've imported the Product List sample application (Spring) as part of this [Exercise](/docs/02_clone/README.md).
 Within Eclipse IDE you should see the `product-list` project in the Project Explorer View.
 
 * Build the project in Eclipse (`Context Menu -> Run As -> Maven install`) -> Result: **BUILD FAILURE**
@@ -128,7 +128,7 @@ With `@EnableGlobalMethodSecurity` annotation (see `SecurityConfiguration` class
   </dd>
 </dl>
 <hr>
-<a href="/exercises/09_secure/README.md#step-5-deploy-approuter-and-application-to-cloud-foundry">
-  <img src="/img/arrow_left.png" height="80" border="10" align="left" alt="Continue Exercise" title="Continue Exercise: Secure application">
+<a href="/docs/09_secure/README.md#step-5-deploy-approuter-and-application-to-cloud-foundry">
+  <img src="/docs/img/arrow_left.png" height="80" border="10" align="left" alt="Continue Exercise" title="Continue Exercise: Secure application">
 </a>
 

@@ -8,6 +8,6 @@ import java.util.Collection;
 @RepositoryRestResource // path = "products"
 public interface ProductRepo extends JpaRepository<Product, String> {
 
-	// TODO see https://github.com/SAP/cloud-cf-product-list-sample/blob/teched2019/exercises/09_secure/Spring.md
+	// TODO see https://github.com/SAP/cloud-cf-product-list-sample/blob/teched2019/docs/09_secure/Spring.md
 	public Collection<Product> findByName(String name);
 }

@@ -21,7 +21,7 @@ cf apps
 ### Cockpit
 Navigate to your trial space that was created as part of Start Cloud Foundry Trial and click on **Applications** in the left-hand navigation menu.
 <br><br>
-![List Applications](/img/running_app_cockpit.png?raw=true)
+![List Applications](/docs/img/running_app_cockpit.png?raw=true)
 <br><br>
 
 ## List Services
@@ -33,7 +33,7 @@ cf services
 ### Cockpit
 In the left-hand navigation you have the services menu and if you select the **Service Instances** you will see all instances created in your space and basic info about them.
 <br><br>
-![List Services](/img/cockpit_services.png?raw=true)
+![List Services](/docs/img/cockpit_services.png?raw=true)
 <br><br>
 
 ## Logs
@@ -55,7 +55,7 @@ cf logs product-list --recent
 ### Cockpit
 To view application logs in Cockpit you navigate again to the list of applications in your space and select the application you pushed and is now started (click on the application name). Then in the left-hand navigation click on **Logs** and you will see a table displaying the recent application logs. In case your application has more than one application instance running you can select with a drop-down for which instance you want to see logs.
 <br><br>
-![Logs in cockpit](/img/cockpit_logs.png?raw=true)
+![Logs in cockpit](/docs/img/cockpit_logs.png?raw=true)
 <br><br>
 ## Metrics
 Display health and status for an application including information for CPU, memory and disk usage.
@@ -67,7 +67,7 @@ cf app product-list
 ### Cockpit
 If you are already in the concrete application view in the left-hand navigation select **Overview** and this is where you see similar information for your running application.
 <br><br>
-![Metrics in cockpit](/img/cockpit_overview_app.png?raw=true)
+![Metrics in cockpit](/docs/img/cockpit_overview_app.png?raw=true)
 <br><br>
 
 ## Events
@@ -79,7 +79,7 @@ cf events APP_NAME
 ### Cockpit
 Show events in Cockpit - in the dedicated application view, select in the left-hand navigation **Events**.
 <br><br>
-![Metrics in cockpit](/img/cockpit_events.png?raw=true)
+![Metrics in cockpit](/docs/img/cockpit_events.png?raw=true)
 <br><br>
 
 ## Environment Variables
@@ -91,7 +91,7 @@ cf env product-list
 ```
 or the Cockpit by going to the dedicated application view and selecting from the left-hand navigation **Environment Variables**.
 <br><br>
-![Environment variables](/img/cockpit_env_vars.png?raw=true)
+![Environment variables](/docs/img/cockpit_env_vars.png?raw=true)
 <br><br>
 
 The following examples show how to access environment variables from an application programatically: Java, NodeJS and Ruby samples.
@@ -119,7 +119,7 @@ or by writing them directly into the manifest:
 ```
 or using cockpit:
 <br><br>
-![Metrics in cockpit](/img/user_provided_vars.png?raw=true)
+![Metrics in cockpit](/docs/img/user_provided_vars.png?raw=true)
 <br><br>
 
 ### System Environment Variables

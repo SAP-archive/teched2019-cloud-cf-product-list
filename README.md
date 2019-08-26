@@ -17,7 +17,7 @@ Secure the Product List application by using a flexible authorization framework 
 To better understand the content of this repository, you should gain a rough understanding about the SAP CP OAuth 2.0 components, which are depicted in figure below.
 
 <br><br>
-![OAuth 2.0 Components Overview](/img/overview_oauth2_components.png?raw=true)
+![OAuth 2.0 Components Overview](/docs/img/overview_oauth2_components.png?raw=true)
 <br><br>
 
 
@@ -84,19 +84,19 @@ If you use a TechEd provided laptop then they should be already installed and co
 
 In this exercise, you will start a free SAP Cloud Platform Cloud Foundry Environment trial which you can use to deploy and run applications.
 
-[Start the Exercise](/exercises/01_setup/README.md)
+[Start the Exercise](/docs/01_setup/README.md)
 
 :two: **Download the sample application**
 
 Clone the Product List sample application from Github and import it in into your Eclipse IDE. This sample application is secured along this session. 
 
-[Start the Exercise](/exercises/02_clone/README.md)
+[Start the Exercise](/docs/02_clone/README.md)
 
 :three: **Secure your application and push it into the cloud**
 
 Secure the Product List application.
 
-[Start the Exercise](/exercises/09_secure/README.md)
+[Start the Exercise](/docs/09_secure/README.md)
 
 # Further References
 - [sap.help.com: Authorization and Trust Management](https://help.sap.com/viewer/product/DRAFT/CP_AUTHORIZ_TRUST_MNG/Validation/en-US)

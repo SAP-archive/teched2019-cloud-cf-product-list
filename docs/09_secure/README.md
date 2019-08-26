@@ -143,7 +143,7 @@ Adapt the variables `ID`, `LANDSCAPE_APPS_DOMAIN` and the others variables in th
     cf push --vars-file vars.yml
     ```
 
-**Note** find further details in this [Exercise: Deploy the application to SAP Cloud Platform Cloud Foundry Environment](/exercises/04_push).
+**Note** find further details in this [Exercise: Deploy the application to SAP Cloud Platform Cloud Foundry Environment](/docs/04_push).
 
 ### Step 6: Cockpit administration task: Assign Role Collection to your User
 
@@ -153,11 +153,11 @@ Now let us see how to enable access to the application for the business users or
 - Logon with your user credentials.
 - If you selected option 1 (Spring Boot) in step 4, you will get an error with HTTP status code `403` ("unauthorized"´, "forbidden") which states that your user is valid and could be successfully authenticated but has no access to the applications `products` endpoint.
 <br><br>
-![Authorizations](/img/security_cockpit_0.png?raw=true)
+![Authorizations](/docs/img/security_cockpit_0.png?raw=true)
 <br><br>
 - If you selected option 2 (Java) or option 3 (Node.js) in step 4, you will get an empty product list
 <br><br>
-![Authorizations](/img/security_cockpit_0b.png?raw=true)
+![Authorizations](/docs/img/security_cockpit_0b.png?raw=true)
 <br><br>
 
 In order to enable access, the end-users should be assigned the required authorizations.  
@@ -165,17 +165,17 @@ Therefore the Role Collection needs to be assigned to the user.
 - In the cockpit, navigate to your trial `Subaccount`. Choose `Security` --> `Trust Configuration`.
 - Click on the link **SAP ID Service** - the default trust configuration.
 <br><br>
-![Authorizations](/img/security_cockpit_8.png?raw=true)
+![Authorizations](/docs/img/security_cockpit_8.png?raw=true)
 <br><br>
 - Now, in the `Role Collection Assignment` UI, enter your user id used to logon to the current account and click on button **Show Assignments**.  
 It lists the current Role Collection assignment to the user and also allows to add new Role Collections to the user
 - Click on button **Add Assignment**:
 <br><br>
-![Authorizations](/img/security_cockpit_9.png?raw=true)
+![Authorizations](/docs/img/security_cockpit_9.png?raw=true)
 <br><br>
 - In the pop-up dialog, choose the Role Collection `ProductListViewer` you have defined as part of `xs-security.json` and click on button **Add Assignment**:
 <br><br>
-![Authorizations](/img/security_cockpit_10.png?raw=true)
+![Authorizations](/docs/img/security_cockpit_10.png?raw=true)
 <br><br>
 - Now, the user should be able to access the application.
 
@@ -226,8 +226,8 @@ You can further sample applications here:
   </dd>
 </dl>
 <hr>
-<a href="/exercises/02_clone/README.md">
-  <img src="/img/arrow_left.png" height="80" border="10" align="left" alt="Previous Exercise" title="Previous Exercise: Clone application">
+<a href="/docs/02_clone/README.md">
+  <img src="/docs/img/arrow_left.png" height="80" border="10" align="left" alt="Previous Exercise" title="Previous Exercise: Clone application">
 </a>
 
 
