@@ -67,8 +67,12 @@ import static org.springframework.http.HttpMethod.GET;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    private final XsuaaServiceConfiguration xsuaaServiceConfiguration;
+        
     @Autowired
-    XsuaaServiceConfiguration xsuaaServiceConfiguration;
+    public SecurityConfiguration(XsuaaServiceConfiguration xsuaaServiceConfiguration) {
+        this.xsuaaServiceConfiguration = xsuaaServiceConfiguration;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
