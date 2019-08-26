@@ -5,7 +5,7 @@
 :clock4: 60 minutes
 
 ## Objective
-In this exercise, you will learn how to secure the Product List application by using a flexible authorization framework - OAuth 2.0. The Authorization Code grant of OAuth 2.0 provides an excellent security mechanism to grant only authorized users access to your application and its data. The SAP XS Advanced Application Router, the SAP XS UAA OAuth authorization service and an application written using Spring Boot, Node.js or Java are outstanding tools to configure roles, assign them to users and, finally, implement role checks in your application.
+In this exercise, you will learn how to secure the Product List application by using a flexible authorization framework - OAuth 2.0. The Authorization Code grant of OAuth 2.0 provides an excellent security mechanism to grant only authorized users access to your application and its data. The SAP XS Advanced Application Router, the SAP XSUAA OAuth authorization service and an application written using Spring Boot, Node.js or Java are outstanding tools to configure roles, assign them to users and, finally, implement role checks in your application.
 
 # Exercise description
 Microservices deployed on SAP Cloud Platform are freely accessible via the internet. To restrict access to authorized users only each microservice like the Product List application has to implement appropriate security mechanisms like [OAuth 2.0.](https://tools.ietf.org/html/rfc6749)
@@ -14,9 +14,9 @@ Microservices deployed on SAP Cloud Platform are freely accessible via the inter
 The following steps are required to protect the Product List application with OAuth 2.O on the SAP Cloud Platform:
 
 * Step 1: Definition of the Application Security Descriptor
-* Step 2: Creation and configuration of the XS UAA service
+* Step 2: Creation and configuration of the XSUAA service
 * Step 3: Configuration of the Application Router
-* Step 4: Secure the Product List application using XS UAA client libraries
+* Step 4: Secure the Product List application using XSUAA client libraries
 * Step 5: Deployment of the Product List Application and Approuter
 * Step 6: Cockpit administration task: Assign Role Collection to your User
 * Step 7: Access the Application
@@ -27,7 +27,7 @@ The following steps are required to protect the Product List application with OA
 An Application Security Descriptor defines the details of the authentication methods and authorization types to use for accessing the Product List application. 
 The Product List application uses this information to perform scope checks. With scopes a fine-grained user authorization can be build up. 
 The container security library integrated in Spring, Node.js and Java Web applications allows to check scopes for each HTTP method on all HTTP endpoints. 
-Scopes are carried by [JSON Web Tokens (JWTs)](https://tools.ietf.org/html/rfc7519) which in turn are issued by the [XS UAA Service](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/1.0.12/en-US/17acf1ac0cf84487a3199c51b28feafd.html).
+Scopes are carried by [JSON Web Tokens (JWTs)](https://tools.ietf.org/html/rfc7519) which in turn are issued by the [XSUAA Service](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/1.0.12/en-US/17acf1ac0cf84487a3199c51b28feafd.html).
 
 * Find `xs-security.json` in the `/samples` folder: 
 
@@ -63,7 +63,7 @@ Scopes are carried by [JSON Web Tokens (JWTs)](https://tools.ietf.org/html/rfc75
 }
 ```
 
-### Step 2: Creation and configuration of the XS UAA service
+### Step 2: Creation and configuration of the XSUAA service
 
 To grant users access to the Product List application, an instance of the XSUAA service for this application must be created; the XSUAA service instance acts as an OAuth 2.0 client for the bound application.
 * You need to tell the CF CLI which Cloud Foundry you will use. To do this you have to set the API endpoint to the Cloud Controller of the Cloud Foundry region where you created your Cloud Foundry trial. Open a command prompt, navigate to the folder ```cloud-cf-product-list-sample-teched2019``` in the student directory and use the command  ```cf api CLOUD_FOUNDRY_API_ENDPOINT```.
@@ -91,7 +91,7 @@ To grant users access to the Product List application, an instance of the XSUAA 
 	Password> password for your user
 	```
 * Show the marketplace:  `cf m`
-* Create the XS UAA service instance: 
+* Create the XSUAA service instance: 
     ```
     D:
     cd D:\Files\Session\SEC364\cloud-cf-product-list-sample-teched2019\samples
@@ -121,7 +121,7 @@ The Application Router is used to provide a single entry point to a business app
     ```
 **Note** the "products-destination" points to the product-list application. The destination URL is configured in the `manifest.yml`. 
 
-### Step 4: Secure the Product List application using XS UAA client libraries
+### Step 4: Secure the Product List application using XSUAA client libraries
 **Note** that the application router does not hide the backend microservices in any way. 
 They are still directly accessible bypassing the application router. 
 So, the backend microservices _must_ protect all their endpoints by validating the JWT token and implementing proper scope checks.
