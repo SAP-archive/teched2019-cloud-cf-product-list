@@ -1,0 +1,23 @@
+site_name: SAP TechEd SEC364 Hands-On: Secure Microservices in Cloud Foundry Environment on SAP Cloud Platform
+site_url: https://github.com/SAP-samples/cloud-cf-product-list
+nav:
+    - Overview: 
+      - Home: README.md
+      - Prepare Trial Account: 01_setup/README.md
+      - Download Application: 02_clone/README.md
+      - Secure Application: 09_secure/README.md
+        - Flavor 1: Cloud native Spring Boot Application: 09_secure/Spring.md
+        - Option 2: SAP Java Web Application: 09_secure/Java.md
+        - Option 3: Cloud native Node.JS Application: 09_secure/Node.js.md
+theme:
+    name: 'material'
+    custom_dir: theme
+    palette:
+        primary: 'teal'
+        accent: 'teal'
+    feature:
+      tabs: true
+docs_dir: docs
+site_dir: docs-gen
+repo_url: https://github.com/SAP-samples/cloud-cf-product-list
+edit_uri: edit/master/docs/
