@@ -79,10 +79,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
             .and()
                 .authorizeRequests()
-                    .antMatchers(GET, "/actuator/**").anonymous() // accepts unauthenticated user (w/o JWT)
-                    .antMatchers(GET, "/", "/products/**").hasAuthority("read") // scope check
-                    .antMatchers(GET, "/productsByParam").authenticated()  // find scope check in ProductRepo using @PreAuthorize
-                    .anyRequest().denyAll() // deny anything not configured above
+                .antMatchers(GET, "/actuator/**").anonymous() // accepts unauthenticated user (w/o JWT)​
+                .antMatchers(GET, "/", "/products/**").hasAuthority("read") // checks scope $XSAPPNAME.read​
+                .antMatchers(GET, "/productsByParam").authenticated() // TODO: apply scope check at method level using @PreAuthorize​
+                .anyRequest().denyAll() // denies anything not configured above
             .and()
                 .oauth2ResourceServer()
                 .jwt()
