@@ -10,14 +10,10 @@ nav:
         - Option 2: SAP Java Web Application: 09_secure/Java.md
         - Option 3: Cloud native Node.JS Application: 09_secure/Node.js.md
 theme:
-    name: 'material'
-    custom_dir: theme
-    palette:
-        primary: 'teal'
-        accent: 'teal'
-    feature:
-      tabs: true
+  name: readthedocs
+  highlightjs: true
+  hljs_languages:
+    - yaml
+    - rust
 docs_dir: docs
-site_dir: docs-gen
 repo_url: https://github.com/SAP-samples/cloud-cf-product-list
-edit_uri: edit/master/docs/
