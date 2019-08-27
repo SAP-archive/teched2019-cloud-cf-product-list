@@ -101,3 +101,6 @@ Secure the Product List application.
 # Further References
 - [sap.help.com: Authorization and Trust Management](https://help.sap.com/viewer/product/DRAFT/CP_AUTHORIZ_TRUST_MNG/Validation/en-US)
 - [sap.help.com: Authorization and Trust Management - Tutorials](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/902ae800c1d04c7388e407b7815e5cc8.html)
+
+# License
+Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the SAP Sample Code License, except as noted otherwise in the [LICENSE](LICENSE) file.
