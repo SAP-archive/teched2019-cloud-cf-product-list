@@ -134,7 +134,7 @@ Three different implementation options are provided. For this exercise, choose o
 
 ### Step 5: Deploy Approuter and Application to Cloud Foundry
 * We use placeholder to simplify the personalisation of the [Cloud Foundry application descriptor](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html), the `manifest.yml`.  
-Adapt the variables `ID`, `LANDSCAPE_APPS_DOMAIN` and the others variables in the file [`/samples/vars.yml`](/samples/vars.yaml) according to the application chosen (SpringBoot, Java, NodeJs) by using an editor of your choice.
+Adapt the variables `ID`, `LANDSCAPE_APPS_DOMAIN` and the others variables in the file [`/samples/vars.yml`](/samples/vars.yml) according to the application chosen (SpringBoot, Java, NodeJs) by using an editor of your choice.
 
 * Push the product-list together with the approuter application to your cloud foundry space:  
     ```
