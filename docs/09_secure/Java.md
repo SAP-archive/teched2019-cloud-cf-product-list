@@ -85,3 +85,16 @@ Now all endpoints are blocked.
     ```
 * Finally, make sure that the folder `D:\Files\Session\SEC364\cloud-cf-product-list-teched2019\samples\java\target` contains a `product-list.war` file. 
 
+## Further References
+- Java Web Application Sample: https://github.com/SAP/cloud-security-xsuaa-integration/tree/master/samples/sap-java-buildpack-api-usage
+
+***
+<dl>
+  <dd>
+  <div class="footer">&copy; 2019 SAP SE</div>
+  </dd>
+</dl>
+<hr>
+<a href="/docs/09_secure/README.md#step-5-deploy-approuter-and-application-to-cloud-foundry">
+  <img src="/docs/img/arrow_left.png" height="80" border="10" align="left" alt="Continue Exercise" title="Continue Exercise: Secure application">
+</a>
