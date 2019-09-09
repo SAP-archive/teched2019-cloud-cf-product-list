@@ -7,7 +7,7 @@ Within Eclipse IDE you should see the `product-list-java` project in the Project
 
 ## Step 4.2: Security configuration
 
-The `web.xml of` the application must use auth-method with value XSUAA. This enables authentication of requests using incoming OAuth authentication tokens.
+The `web.xml` of the application must use auth-method with value XSUAA. This enables authentication of requests using incoming OAuth authentication tokens.
 
 ```xml
 <web-app>
