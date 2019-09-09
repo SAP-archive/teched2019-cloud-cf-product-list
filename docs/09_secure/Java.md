@@ -18,7 +18,7 @@ The `web.xml of` the application must use auth-method with value XSUAA. This ena
 </web-app> 
 ```
 
-In the Java coding, use the `@ServletSecurity` annotations:
+In the Java coding, add the `@ServletSecurity` annotations:
 ```java
 package com.sap.cp.cf.demoapps;
 
