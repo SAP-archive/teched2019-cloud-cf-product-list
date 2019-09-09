@@ -1,15 +1,13 @@
 
 ## Step 4.1: Prerequisite
-Make sure that you've imported the Product List sample application (Spring) as part of this [Exercise](/docs/02_clone/README.md).
+Make sure that you've imported the Product List sample application (Java) as part of this [Exercise](/docs/02_clone/README.md).
 Within Eclipse IDE you should see the `product-list-java` project in the Project Explorer View.
 
-* Build the project in Eclipse (`Context Menu -> Run As -> Maven install`) -> Result: **BUILD FAILURE**
-
-> The build fails as the `ControllerTests` JUnit test expects that all `GET` endpoints of the Product-List are secured.  
+* Build the project in Eclipse (`Context Menu -> Run As -> Maven install`) -> Result: **BUILD SUCCESS**
 
 ## Step 4.2: Security configuration
 
-The web.xml of the application must use auth-method with value XSUAA. This enables authentication of requests using incoming OAuth authentication tokens.
+The `web.xml of` the application must use auth-method with value XSUAA. This enables authentication of requests using incoming OAuth authentication tokens.
 
 ```xml
 <web-app>
@@ -20,7 +18,7 @@ The web.xml of the application must use auth-method with value XSUAA. This enabl
 </web-app> 
 ```
 
-In the Java coding, use the @ServletSecurity annotations:
+In the Java coding, use the `@ServletSecurity` annotations:
 ```java
 package com.sap.cp.cf.demoapps;
 
