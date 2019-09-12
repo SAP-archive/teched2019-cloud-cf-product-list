@@ -175,7 +175,7 @@ It lists the current Role Collection assignment to the user and also allows to a
 <br><br>
 - In the pop-up dialog, choose the Role Collection `ProductListViewer` you have defined as part of `xs-security.json` and click on button **Assign Role Collection**:
 <br><br>
-![Authorizations](/docs/img/security_cockpit_12.png?raw=true)
+![Authorizations](/docs/img/security_cockpit_12_1.png?raw=true)
 <br><br>
 - Now, the user should be able to access the application.
 
