@@ -169,13 +169,13 @@ Therefore the Role Collection needs to be assigned to the user.
 <br><br>
 - Now, in the `Role Collection Assignment` UI, enter your user id used to logon to the current account and click on button **Show Assignments**.  
 It lists the current Role Collection assignment to the user and also allows to add new Role Collections to the user
-- Click on button **Add Assignment**:
+- Click on button **Assign Role Collection**:
 <br><br>
-![Authorizations](/docs/img/security_cockpit_9.png?raw=true)
+![Authorizations](/docs/img/security_cockpit_11.png?raw=true)
 <br><br>
-- In the pop-up dialog, choose the Role Collection `ProductListViewer` you have defined as part of `xs-security.json` and click on button **Add Assignment**:
+- In the pop-up dialog, choose the Role Collection `ProductListViewer` you have defined as part of `xs-security.json` and click on button **Assign Role Collection**:
 <br><br>
-![Authorizations](/docs/img/security_cockpit_10.png?raw=true)
+![Authorizations](/docs/img/security_cockpit_12_1.png?raw=true)
 <br><br>
 - Now, the user should be able to access the application.
 
