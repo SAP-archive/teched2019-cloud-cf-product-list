@@ -62,18 +62,14 @@ Scopes are carried by [JSON Web Tokens (JWTs)](https://tools.ietf.org/html/rfc75
 	]
 }
 ```
-> Note: Please not that $XSAPPNAME is not a placeholder. It gets replaced by the unique application name. You can find further information about the syntax of the Application Security Descriptor on [SAP.help](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/2.0.03/en-US/df31a08a2c164520bb7e558103dd5adf.html).
+> Note: Please not that `$XSAPPNAME` is not a placeholder. It gets replaced by the unique application name. You can find further information about the syntax of the Application Security Descriptor on [SAP.help](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/2.0.03/en-US/df31a08a2c164520bb7e558103dd5adf.html).
 
 ### Step 2: Creation and configuration of the XSUAA service
 
 To grant users access to the Product List application, an instance of the XSUAA service for this application must be created; the XSUAA service instance acts as an OAuth 2.0 client for the bound application.
 * You need to tell the CF CLI which Cloud Foundry you will use. To do this you have to set the API endpoint to the Cloud Controller of the Cloud Foundry region where you created your Cloud Foundry trial. Open a command prompt, navigate to the folder ```cloud-cf-product-list-teched2019``` in the student directory and use the command  ```cf api CLOUD_FOUNDRY_API_ENDPOINT```.
 
-  * If you attend TechEd Las Vegas, target the US10 region API endpoint:
-  ```
-  cf api https://api.cf.us10.hana.ondemand.com
-  ```
-  * If you attend TechEd Barcelona, target the EU10 region API endpoint:
+  * If you attend TechEd and use the prepared subaccounts, target the EU10 region API endpoint:
   ```
   cf api https://api.cf.eu10.hana.ondemand.com
   ```
@@ -88,16 +84,17 @@ To grant users access to the Product List application, an instance of the XSUAA 
 	You will be prompted to fill in the e-mail and password you used when you registered for the SAP Cloud Platform trial account:
 
 	```
-	Email> enter your e-mail
+	Email> enter your e-mail, e.g. sec360-XXX@teched.cloud.sap
 	Password> password for your user
 	```
-* Show the marketplace:  `cf m`
+* Show the marketplace:  `cf marketplace` or `cf m`
 * Create the XSUAA service instance: 
     ```
     D:
     cd D:\Files\Session\SEC364\cloud-cf-product-list-teched2019\samples
     cf create-service xsuaa application xsuaa -c xs-security.json
     ```
+* Display the service instances within your space using the following command: `cf service` or `cf s`.
 
 ### Step 3: Configuration of the Application Router
 
