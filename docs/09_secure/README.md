@@ -140,6 +140,7 @@ Adapt the variables `ID`, `LANDSCAPE_APPS_DOMAIN` and the others variables in th
     cd D:\Files\Session\SEC364\cloud-cf-product-list-teched2019\samples
     cf push --vars-file vars.yml
     ```
+* Check with `cf apps` the status of your applications that are deployed in your Cloud Foundry space.
 
 **Note** find further details in this [Exercise: Deploy the application to SAP Cloud Platform Cloud Foundry Environment](/docs/04_push).
 
@@ -198,7 +199,7 @@ You should be able to see the product list.
   * `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/products/` - Points to the url of the AppRouter URI. With `/products` path the request is routed to the `index.html` of the product-list app. It should show you three products with details view.
   * `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/products/products` - GET request that provides list of products (see `https://product-list-<ID>.<LANDSCAPE_APPS_DOMAIN>/products`).
   
-- For the **Spring** Option of **Step 4** following endpoints are also available to test:
+- If you selected option 1 (Spring Boot) in step 4, the following endpoints are also available to test:
  
   * `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/products/productsByParam?name=Notebook Basic 2015` - GET request that provides list of products filtered by name.
   * `https://product-list-<ID>.<LANDSCAPE_APPS_DOMAIN>/actuator/health` - GET request that is not secured and provides the information whether the product-list app is up and running.
