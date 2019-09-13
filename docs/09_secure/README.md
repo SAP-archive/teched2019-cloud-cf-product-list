@@ -202,7 +202,7 @@ You should be able to see the product list.
 - If you selected option 1 (Spring Boot) in step 4, the following endpoints are also available to test:
  
   * `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/products/productsByParam?name=Notebook Basic 15` - GET request that provides list of products filtered by name.
-  * `https://product-list-<ID>.<LANDSCAPE_APPS_DOMAIN>/actuator/health` - GET request that is not secured and provides the information whether the product-list app is up and running.
+  * `https://product-list-<ID>.<LANDSCAPE_APPS_DOMAIN>/actuator/health` - GET request that is not secured and can be directly accessed. It provides the information whether the product-list app is up and running.
   
 - You can have a look into the logs with:
     ```
