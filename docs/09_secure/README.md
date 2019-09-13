@@ -62,6 +62,7 @@ Scopes are carried by [JSON Web Tokens (JWTs)](https://tools.ietf.org/html/rfc75
 	]
 }
 ```
+> Note: Please not that $XSAPPNAME is not a placeholder. It gets replaced by the unique application name. You can find further information about the syntax of the Application Security Descriptor on [SAP.help](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/2.0.03/en-US/df31a08a2c164520bb7e558103dd5adf.html).
 
 ### Step 2: Creation and configuration of the XSUAA service
 
