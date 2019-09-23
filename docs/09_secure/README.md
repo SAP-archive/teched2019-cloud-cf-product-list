@@ -196,7 +196,7 @@ You should be able to see the product list.
 
 - Test the following endpoints:   
 
-  * `https://product-list-<ID>.<LANDSCAPE_APPS_DOMAIN>/products` - GET request that provides the list of products. It is secured and provides `401` (unauthenticated) in case no JWT access token is provided with `Authorization` header.
+  * `https://product-list-<ID>.<LANDSCAPE_APPS_DOMAIN>/products` - GET request that provides the list of products. It is secured and provides `401` ("Unauthorized") in case no JWT access token is provided with `Authorization` header. Even though it shows `Unauthorized` (and not "`Unauthenticated`") it indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
   * `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/products/` - Points to the url of the AppRouter URI. With `/products` path the request is routed to the `index.html` of the product-list app. It should show you three products with details view.
   * `https://approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>/products/products` - GET request that provides list of products (see `https://product-list-<ID>.<LANDSCAPE_APPS_DOMAIN>/products`).
   
