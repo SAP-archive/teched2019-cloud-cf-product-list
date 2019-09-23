@@ -1,9 +1,9 @@
 ## Step 4.1: Prerequisite
-Make sure that you've imported the Product List sample application (Java) as part of this [Exercise](/docs/02_clone/README.md).
+Make sure that you've cloned the Product List sample application (Node.js) as part of this [Exercise](/docs/02_clone/README.md).
 
 ## Step 4.2: Adding required security libraries
 
-To enable offline JWT validation of the XS Advanced container security API the `sap-xssec` module needs to be added to the `dependencies` section of the package.json`.
+In order to enable offline JWT validation of the XS Advanced container security API the `sap-xssec` module needs to be added to the `dependencies` section of the `package.json` file.
 The module `xsenv` module is needed to retrieve the configuration of the default services (which are read from environment variable `VCAP_SERVICES` or if not set, from the default configuration file).
 
 ```json
@@ -16,7 +16,7 @@ The module `xsenv` module is needed to retrieve the configuration of the default
 
 ## Step 4.3: Usage of the Security API in the application
 
-If you use [express](https://www.npmjs.com/package/express) and [passport](https://www.npmjs.com/package/passport), you can easily plug a ready-made authentication strategy.
+If you use [express](https://www.npmjs.com/package/express) and [passport](https://www.npmjs.com/package/passport), you can easily plug a ready-made authentication strategy:
 
 ```js
 const express = require('express');
@@ -54,6 +54,7 @@ app.listen(port, () => {
 	console.log('%s listening at %s', app.name, port);
 })
 ```
+> You can find the above code in the `index.js` file.
 
 ## Step 4.4: Build the Project
 * Build the project on the console with the following commands:
@@ -63,8 +64,7 @@ app.listen(port, () => {
     npm config set @sap:registry https://npm.sap.com
     npm install
     ```
-    ```
-* Finally, make sure that the folder `D:\Files\Session\SEC364\teched2019-cloud-cf-product-list-teched2019\samples\Node.js\node_modules\@sap` contains these three modules: `node-jwt`, `xsenv` and `xssec. 
+* Finally, make sure that the folder `D:\Files\Session\SEC364\teched2019-cloud-cf-product-list-teched2019\samples\Node.js\node_modules\@sap` contains these three modules: `node-jwt`, `xsenv` and `xssec`. 
 
 
 
