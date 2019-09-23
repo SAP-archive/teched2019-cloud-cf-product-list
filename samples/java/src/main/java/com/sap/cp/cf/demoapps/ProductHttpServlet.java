@@ -18,8 +18,8 @@ import com.google.gson.Gson;
 public class ProductHttpServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private Gson gson = new Gson();
-    private ProductService productService = new ProductService();
+    private static final Gson GSON = new Gson();
+    private static final ProductService PRODUCT_SERVICE = new ProductService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -28,10 +28,9 @@ public class ProductHttpServlet extends HttpServlet {
         String productsJson;
         if (request.getParameter("name") != null) {
             String name = request.getParameter("name");
-            productsJson = this.gson.toJson(productService.getProductByName(name));
-
+            productsJson = GSON.toJson(PRODUCT_SERVICE.getProductByName(name));
         } else {
-            productsJson = this.gson.toJson(productService.getProducts());
+            productsJson = GSON.toJson(PRODUCT_SERVICE.getProducts());
         }
 
         response.setContentType("application/json");
