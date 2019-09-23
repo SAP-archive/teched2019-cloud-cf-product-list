@@ -172,6 +172,7 @@ It lists the current Role Collection assignment to the user and also allows to a
 <br><br>
 ![Authorizations](/docs/img/security_cockpit_11.png?raw=true)
 <br><br>
+> Note: In case you get a pop-up from Identity Provider, confirm it.
 - In the pop-up dialog, choose the Role Collection `ProductListViewer` you have defined as part of `xs-security.json` and click on button **Assign Role Collection**:
 <br><br>
 ![Authorizations](/docs/img/security_cockpit_12_1.png?raw=true)
