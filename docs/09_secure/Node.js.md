@@ -39,14 +39,14 @@ app.get('/productsByParam', checkReadScope, getProductsByName);
 
 // Scope check
 function checkReadScope(req, res, next) {
+        // configure servlet to check against scope "$XSAPPNAME.read"
 	if (req.authInfo.checkLocalScope('read')) {
 		return next();
 	} else {
-    	console.log('Missing the expected scope');
-    	res.status(403).end('Forbidden');
+    		console.log('Missing the expected scope');
+    		res.status(403).end('Forbidden');
 	}
 }
-
 // Serve static files
 app.use('/', express.static('static/'));
 
