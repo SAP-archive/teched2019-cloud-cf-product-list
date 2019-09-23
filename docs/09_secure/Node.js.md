@@ -1,37 +1,22 @@
-## Step 1: Adding required security libraries
+## Step 4.1: Prerequisite
+Make sure that you've imported the Product List sample application (Java) as part of this [Exercise](/docs/02_clone/README.md).
 
-To enable offline JWT validation of the XS Advanced container security API the module "sap-xssec" needs to be added to the dependencies section of the package.json.
-The module xsenv is needed to retrieve the configuration of the default services (which are read from environment variable VCAP_SERVICES or if not set, from the default configuration file).
+## Step 4.2: Adding required security libraries
+
+To enable offline JWT validation of the XS Advanced container security API the `sap-xssec` module needs to be added to the `dependencies` section of the package.json`.
+The module `xsenv` module is needed to retrieve the configuration of the default services (which are read from environment variable `VCAP_SERVICES` or if not set, from the default configuration file).
 
 ```json
-{
-  "name": "cloud-cf-product-list",
-  "version": "1.0.0",
-  "description": "Product list demo app for Cloudfoundry",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "test": "node test/test-products-by-param.js"
-  },
-  "author": "Patrick Spiegel",
-  "license": "ISC",
-  "dependencies": {
+"dependencies": {
     "@sap/xsenv": "^1.2.9",
     "@sap/xssec": "^2.1.15",
-    "express": "^4.16.3",
-    "passport": "^0.4.0"
-  },
-  "devDependencies": {
-    "request": "^2.88.0"
-  }
+    ...
 }
 ```
 
+## Step 4.3: Usage of the Security API in the application
 
-
-## Step 2: Usage of the Security API in the Application
-
-*If you use [express](https://www.npmjs.com/package/express) and [passport](https://www.npmjs.com/package/passport), you can easily plug a ready-made authentication strategy.*
+If you use [express](https://www.npmjs.com/package/express) and [passport](https://www.npmjs.com/package/passport), you can easily plug a ready-made authentication strategy.
 
 ```js
 const express = require('express');
@@ -70,15 +55,16 @@ app.listen(port, () => {
 })
 ```
 
-Now all endpoints are blocked.
+## Step 4.4: Build the Project
+* Build the project on the console with the following commands:
+    ```shell
+    D:
+    cd D:\Files\Session\SEC366\teched2019-cloud-cf-product-list-teched2019\nodejs
+    npm config set @sap:registry https://npm.sap.com
+    npm install
+    ```
+    ```
+* Finally, make sure that the folder `D:\Files\Session\SEC364\teched2019-cloud-cf-product-list-teched2019\samples\Node.js\node_modules\@sap` contains these three modules: `node-jwt`, `xsenv` and `xssec. 
 
-*  Run `npm install`
 
-:bulb: This command has to be executed from `nodejs`
 
-```shell
-D:
-cd D:\Files\Session\SEC366\teched2019-cloud-cf-product-list-teched2019\nodejs
-npm config set @sap:registry https://npm.sap.com
-npm install
-```
