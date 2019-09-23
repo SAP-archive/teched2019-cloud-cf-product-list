@@ -119,7 +119,10 @@ With `@EnableGlobalMethodSecurity` annotation (see `SecurityConfiguration` class
 * Finally, make sure that the folder `D:\Files\Session\SEC364\teched2019-cloud-cf-product-list-teched2019\samples\spring\target` contains a `product-list.jar` file. 
 
 ## Further References
-- Github XSUAA Spring Security library: https://github.com/SAP/cloud-security-xsuaa-integration
+- Github XSUAA Spring Security library:  
+https://github.com/SAP/cloud-security-xsuaa-integration
+- XSUAA Token Client and Token Flow API:  
+https://github.com/SAP/cloud-security-xsuaa-integration/tree/master/token-client
 
 ***
 <dl>
