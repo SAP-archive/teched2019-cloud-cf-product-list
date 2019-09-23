@@ -5,8 +5,7 @@ Within Eclipse IDE you should see the `product-list-java` project in the Project
 
 * Build the project in Eclipse (`Context Menu -> Run As -> Maven install`) -> Result: **BUILD SUCCESS**
 
-## Step 4.2: Security configuration
-
+## Step 4.2: Security Configuration
 The `web.xml` of the application must use auth-method with value XSUAA. This enables authentication of requests using incoming OAuth authentication tokens.
 
 ```xml
@@ -17,58 +16,22 @@ The `web.xml` of the application must use auth-method with value XSUAA. This ena
   </login-config> 
 </web-app> 
 ```
-In the Java coding, add the `@ServletSecurity` annotations in class `ProductHttpServlet`:
+
+## Step 4.3.: Usage of the Security API in the application
+In the Java coding, add the `@ServletSecurity` annotation to the Servlet `com.sap.cp.cf.demoapps.ProductHttpServlet` in order to apply scope checks to its endpoints:
 ```java
-package com.sap.cp.cf.demoapps;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.ServletSecurity;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.annotation.HttpConstraint;
-
-import com.google.gson.Gson;
 
 @WebServlet({ "/products/*", "/productsByParam" })
 // configure servlet to check against scope "$XSAPPNAME.read"
 @ServletSecurity(@HttpConstraint(rolesAllowed = { "read" }))
 public class ProductHttpServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
-    private Gson gson = new Gson();
-    private ProductService productService = new ProductService();
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        String productsJson;
-        if (request.getParameter("name") != null) {
-            String name = request.getParameter("name");
-            productsJson = this.gson.toJson(productService.getProductByName(name));
-
-        } else {
-            productsJson = this.gson.toJson(productService.getProducts());
-        }
-
-        response.setContentType("application/json");
-        PrintWriter out = response.getWriter();
-        out.print(productsJson);
-        out.flush();
-
-    }
+    ...
 }
 
 ```
 
-Now all endpoints are blocked.
-
-
-## Step 4.3: Build the Project
+## Step 4.4: Build the Project
 * Build the project in Eclipse (`Context Menu -> Run As -> Maven install`) -> Result: **BUILD SUCCESS**
   * Or, alternatively build the project on the console with the following commands:
     ```
@@ -79,7 +42,10 @@ Now all endpoints are blocked.
 * Finally, make sure that the folder `D:\Files\Session\SEC364\teched2019-cloud-cf-product-list-teched2019\samples\java\target` contains a `product-list.war` file. 
 
 ## Further References
-- Java Web Application Sample: https://github.com/SAP/cloud-security-xsuaa-integration/tree/master/samples/sap-java-buildpack-api-usage
+- Java Web Application Sample:  
+https://github.com/SAP/cloud-security-xsuaa-integration/tree/master/samples/sap-java-buildpack-api-usage
+- XSUAA Token Client and Token Flow API:  
+https://github.com/SAP/cloud-security-xsuaa-integration/tree/master/token-client
 
 ***
 <dl>
