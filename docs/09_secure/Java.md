@@ -73,10 +73,10 @@ Now all endpoints are blocked.
   * Or, alternatively build the project on the console with the following commands:
     ```
     D:
-    cd D:\Files\Session\SEC364\cloud-cf-product-list-teched2019\samples\java
+    cd D:\Files\Session\SEC364\teched2019-cloud-cf-product-list-teched2019\samples\java
     mvn clean install
     ```
-* Finally, make sure that the folder `D:\Files\Session\SEC364\cloud-cf-product-list-teched2019\samples\java\target` contains a `product-list.war` file. 
+* Finally, make sure that the folder `D:\Files\Session\SEC364\teched2019-cloud-cf-product-list-teched2019\samples\java\target` contains a `product-list.war` file. 
 
 ## Further References
 - Java Web Application Sample: https://github.com/SAP/cloud-security-xsuaa-integration/tree/master/samples/sap-java-buildpack-api-usage
