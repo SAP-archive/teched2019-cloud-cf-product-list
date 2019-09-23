@@ -3,7 +3,6 @@ package com.sap.cp.cf.demoapps;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,8 +21,9 @@ public class ProductHttpServlet extends HttpServlet {
     private Gson gson = new Gson();
     private ProductService productService = new ProductService();
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
 
         String productsJson;
         if (request.getParameter("name") != null) {
@@ -38,6 +38,5 @@ public class ProductHttpServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.print(productsJson);
         out.flush();
-
     }
 }
