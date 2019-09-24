@@ -39,7 +39,7 @@ app.get('/productsByParam', checkReadScope, getProductsByName);
 
 // Scope check
 function checkReadScope(req, res, next) {
-        // configure servlet to check against scope "$XSAPPNAME.read"
+    // check scope "$XSAPPNAME.read"
 	if (req.authInfo.checkLocalScope('read')) {
 		return next();
 	} else {

@@ -134,7 +134,7 @@ Three different implementation options are provided. For this exercise, choose o
 * We use placeholder to simplify the personalisation of the [Cloud Foundry application descriptor](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html), the `manifest.yml`.  
 Adapt the variables `ID`, `LANDSCAPE_APPS_DOMAIN` and the others variables in the file [`/samples/vars.yml`](/samples/vars.yml) according to the application chosen (SpringBoot, Java, NodeJs) by using an editor of your choice.
 
-* Push the product-list together with the approuter application to your cloud foundry space:  
+* In the `samples` folder push the product-list together with the approuter application to your cloud foundry space:  
     ```
     D:
     cd D:\Files\Session\SEC364\teched2019-cloud-cf-product-list-teched2019\samples
@@ -150,18 +150,19 @@ Now let us see how to enable access to the application for the business users or
 - Determine the URL of your approuter application by executing `cf apps` in the command prompt. The output lists the URL for the approuter which should have the following format: `approuter-<ID>.<LANDSCAPE_APPS_DOMAIN>`.
 - Launch the approuter application in the browser by opening the determined URL, e.g.  `https://approuter-<ID>.cfapps.eu10.hana.ondemand.com/products`.
 - Logon with your user credentials.
-- If you selected option 1 (Spring Boot) in step 4, you will get an error with HTTP status code `403` ("unauthorized"´, "forbidden") which states that your user is valid and could be successfully authenticated but has no access to the applications `products` endpoint.
+- If you've selected option 1 (Spring Boot) in step 4, you will get an error with HTTP status code `403` ("forbidden") which states that your user is valid and could be successfully authenticated but has no access to the applications `products` endpoint because of missing scopes.
 <br><br>
 ![Authorizations](/docs/img/security_cockpit_0.png?raw=true)
 <br><br>
-- If you selected option 2 (Java) or option 3 (Node.js) in step 4, you will get an empty product list
+- If you've selected option 2 (Java) or option 3 (Node.js) in step 4, you will get an empty product list.   
+> You can open the Developers Tools in your browser and find a failing HTTP request (status code 403) in the `Network` view (you need to refresh the page).
 <br><br>
 ![Authorizations](/docs/img/security_cockpit_0b.png?raw=true)
 <br><br>
 
 In order to enable access, the end-users should be assigned the required authorizations.  
 Therefore the Role Collection needs to be assigned to the user.
-- In the cockpit, navigate to your trial `Subaccount`. Choose `Security` --> `Trust Configuration`.
+- In the cockpit, e.g. [https://account.hana.ondemand.com/cockpit/#/home/allaccounts]() navigate to your `Subaccount`. Choose `Security` --> `Trust Configuration`.
 - Click on the link **SAP ID Service** - the default trust configuration.
 <br><br>
 ![Authorizations](/docs/img/security_cockpit_8.png?raw=true)
