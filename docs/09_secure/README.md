@@ -180,9 +180,7 @@ It lists the current Role Collection assignment to the user and also allows to a
 <br><br>
 - Now, the user should be able to access the application.
 
-Further up-to-date information you can get on sap.help.com:
-- [Maintain Role Collections](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/d5f1612d8230448bb6c02a7d9c8ac0d1.html)
-- [Maintain Roles for Applications](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/7596a0bdab4649ac8a6f6721dc72db19.html).
+Further up-to-date information you can get on [sap.help.com: Authorization and Trust Management in the Cloud Foundry Environment](https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/6373bb7a96114d619bfdfdc6f505d1b9.html).
 
 ### Step 7: Access the Application
 According to the Role Collection(s) you've assigned to your user you should have read access to the product list endpoints.
