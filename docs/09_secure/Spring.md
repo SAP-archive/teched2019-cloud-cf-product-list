@@ -20,7 +20,7 @@ A Spring boot application needs a security configuration class that enables the 
     <dependency>
         <groupId>com.sap.cloud.security.xsuaa</groupId>
         <artifactId>xsuaa-spring-boot-starter</artifactId>
-        <version>1.6.0</version>
+        <version>2.0.0</version>
     </dependency>
     ```
 * After you've added the Maven dependencies, don't forget to update your Maven project (`ALT-F5`)! 
@@ -30,13 +30,13 @@ A Spring boot application needs a security configuration class that enables the 
     <dependency>
         <groupId>com.sap.cloud.security.xsuaa</groupId>
         <artifactId>spring-xsuaa-test</artifactId>
-        <version>1.6.0</version>
+        <version>2.0.0</version>
         <scope>test</scope>
     </dependency>
     <dependency>
         <groupId>com.sap.cloud.security.xsuaa</groupId>
         <artifactId>spring-xsuaa-mock</artifactId>
-        <version>1.6.0</version>
+        <version>2.0.0</version>
         <scope>test</scope>
     </dependency>
     ```
