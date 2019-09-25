@@ -111,8 +111,8 @@ The Application Router is used to provide a single entry point to a business app
     ```json
     {
       "routes": [{
-        "source": "^/",
-        "target": "/products",
+        "source": "^/products",
+        "target": "/",
         "destination": "products-destination"
       }]
     }
