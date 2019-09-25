@@ -66,5 +66,16 @@ app.listen(port, () => {
     ```
 * Finally, make sure that the folder `D:\Files\Session\SEC364\teched2019-cloud-cf-product-list-teched2019\samples\Node.js\node_modules\@sap` contains these three modules: `node-jwt`, `xsenv` and `xssec`. 
 
+***
+<dl>
+  <dd>
+  <div class="footer">&copy; 2019 SAP SE</div>
+  </dd>
+</dl>
+<hr>
+<a href="/docs/09_secure/README.md#step-5-deploy-approuter-and-application-to-cloud-foundry">
+  <img src="/docs/img/arrow_left.png" height="80" border="10" align="left" alt="Continue Exercise" title="Continue Exercise: Secure application">
+</a>
+
 
 
