@@ -60,7 +60,7 @@ app.listen(port, () => {
 * Build the project on the console with the following commands:
     ```shell
     D:
-    cd D:\Files\Session\SEC366\teched2019-cloud-cf-product-list-teched2019\nodejs
+    cd D:\Files\Session\SEC366\teched2019-cloud-cf-product-list-teched2019\samples\nodejs
     npm config set @sap:registry https://npm.sap.com
     npm install
     ```
