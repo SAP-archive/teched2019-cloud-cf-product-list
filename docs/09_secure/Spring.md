@@ -47,6 +47,8 @@ A Spring boot application needs a security configuration class that enables the 
 * Update `com.sap.cp.cf.demoapps.SecurityConfiguration.java` class including the following scope checks and offline token validations.
 
 ```java
+package com.sap.cp.cf.demoapps;
+
 import com.sap.cloud.security.xsuaa.XsuaaServiceConfiguration;
 import com.sap.cloud.security.xsuaa.token.TokenAuthenticationConverter;
 import org.springframework.beans.factory.annotation.Autowired;
