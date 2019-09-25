@@ -20,22 +20,23 @@ In this exercise you'll learn how you can clone the Product List sample applicat
 
 3.  Unzip the downloaded file in your students directory - a new directory ```teched2019-cloud-cf-product-list-teched2019``` will be created.
 
-## 2. Import the sample project into Eclipse
-1. Open the Windows Start menu and enter ```CPL...``` in the input field. Under ```Programs``` you will see ```ABAP in Eclipse - CPL...```. Click on this entry to open Eclipse.
+## 2. Import the sample project into Eclipse (not for Node.JS)
+In case you like to develop a Java or Spring application.
+1. Open the Windows Start menu and enter ```Eclipse``` in the input field. Under ```Programs``` you will see ```Eclipse (Java Oxygen)```. Click on this entry to open Eclipse.
 2. Now import the two sample projects as Maven project into your Eclipse workspace: In the Eclipse menu, chose ```File```> ```Import...```.
 3. In the ```Import``` wizard, select ```Maven``` > ```Existing Maven Projects``` and click ```Next```.
 <br><br>
 ![Import Maven Project](/docs/img/import_maven_project.png?raw=true)
 <br><br>
 
-4. In the next step of the ```Import Maven Projects``` popup, click ```Browse```, navigate into the unziped root folder of ```teched2019-cloud-cf-product-list-teched2019``` project in your student directory folder (```D:\Files\Session\CPL...```). In the wizard select both projects (java and spring) and finally click ```Finish```.
+4. In the next step of the ```Import Maven Projects``` popup, click ```Browse```, navigate into the unziped root folder of ```teched2019-cloud-cf-product-list-teched2019``` project in your student directory folder (```D:\Files\Session\SEC364```). In the wizard select both projects (java and spring) and finally click ```Finish```.
 5. Both projects are now imported in Eclipse. You should see them in the Project Explorer like in the screenshot below.  
 <br><br>
 ![Import Maven Project](/docs/img/imported_project_eclipse.png?raw=true)
 <br><br>
 
-## 3. Build the project in Eclipse using Maven  
-
+## 3. Build the project in Eclipse using Maven (not for Node.JS)
+In case you like to develop a Java or Spring application.
 1. Now build the project in Eclipse: Select the project in the Project Explorer, open its context menu and click on ```Run As``` > ```Maven build...```.
 <br><br>
 ![Import Maven Project](/docs/img/run_maven_build.png?raw=true)
