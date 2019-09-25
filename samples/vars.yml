@@ -1,6 +1,6 @@
 ---
 # some data to make the urls unique
-# change to another value, e.g. your User ID or sec364_<<your group id>>
+# change to another value, e.g. your User ID or sec364-<<your group id>>
 ID: 00-00-00
 
 # Choose cfapps.eu10.hana.ondemand.com for the EU10 landscape, cfapps.us10.hana.ondemand.com for US10
