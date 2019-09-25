@@ -64,18 +64,18 @@
 		<dependency>
 			<groupId>com.sap.cloud.security.xsuaa</groupId>
 			<artifactId>spring-xsuaa-test</artifactId>
-			<version>1.6.0</version>
+			<version>2.0.0</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.sap.cloud.security.xsuaa</groupId>
 			<artifactId>spring-xsuaa-mock</artifactId>
-			<version>1.6.0</version>
+			<version>2.0.0</version>
 			<scope>test</scope>
 		</dependency>
-    </dependencies>
+	</dependencies>
 	<build>
-      <finalName>product-list</finalName>
+		<finalName>product-list</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
