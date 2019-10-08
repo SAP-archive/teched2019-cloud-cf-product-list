@@ -22,7 +22,7 @@ In this exercise you'll learn how you can clone the Product List sample applicat
 
 ## 2. Import the sample project into Eclipse (not for Node.JS)
 In case you like to develop a Java or Spring application.
-1. Open the Windows Start menu and enter ```Eclipse``` in the input field. Under ```Programs``` you will see ```Eclipse (Java Oxygen)```. Click on this entry to open Eclipse.
+1. Open the Windows Start menu and enter ```Spring Tool``` in the input field. Under ```Programs``` you will see ```Spring Tool Suit```. Click on this entry to open Spring Tool Suite.
 2. Now import the two sample projects as Maven project into your Eclipse workspace: In the Eclipse menu, chose ```File```> ```Import...```.
 3. In the ```Import``` wizard, select ```Maven``` > ```Existing Maven Projects``` and click ```Next```.
 <br><br>
