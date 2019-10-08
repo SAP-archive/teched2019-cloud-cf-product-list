@@ -20,7 +20,7 @@ In this exercise you'll learn how you can clone the Product List sample applicat
 
 3.  Unzip the downloaded file in your students directory - a new directory ```teched2019-cloud-cf-product-list-teched2019``` will be created.
 
-## 2. Import the sample project into Eclipse (not for Node.JS)
+## 2. Import the sample project into Spring Tool Suite (not for Node.JS)
 In case you like to develop a Java or Spring application.
 1. Open the Windows Start menu and enter ```Spring Tool``` in the input field. Under ```Programs``` you will see ```Spring Tool Suit```. Click on this entry to open Spring Tool Suite.
 2. Now import the two sample projects as Maven project into your Eclipse workspace: In the Eclipse menu, chose ```File```> ```Import...```.
