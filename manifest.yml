@@ -1,0 +1,11 @@
+applications:
+# Product List Application
+- name: product-list
+  instances: 1
+  memory: 128M
+  routes:
+    - route: <insert your route here>
+  path: myapp
+  buildpacks:
+    - nodejs_buildpack  
+  timeout: 180
