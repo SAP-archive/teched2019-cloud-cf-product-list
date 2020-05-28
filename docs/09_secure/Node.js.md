@@ -8,8 +8,8 @@ The module `xsenv` module is needed to retrieve the configuration of the default
 
 ```json
 "dependencies": {
-    "@sap/xsenv": "^1.2.9",
-    "@sap/xssec": "^2.1.15",
+    "@sap/xsenv": "^2.2.0",
+    "@sap/xssec": "^3.0.3",
     ...
 }
 ```
